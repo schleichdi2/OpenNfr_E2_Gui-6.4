@@ -1,0 +1,10 @@
+<keymap>
+      <translate>
+              <device name="gigablue remote control">
+                      <key from="KEY_OPTION" to="KEY_BOOKMARKS"/>	
+                      <key from="KEY_LIST" to="KEY_HELP"/>
+                      <key from="KEY_ARCHIVE" to="KEY_SLEEP"/>	
+                      <key from="KEY_AUX" to="KEY_SETUP"/>				  
+              </device>
+      </translate>
+</keymap>

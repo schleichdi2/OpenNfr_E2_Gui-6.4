@@ -1,0 +1,52 @@
+<!-- defaultPlaylistScreen -->
+<screen name="defaultPlaylist" position="center,center" size="1280,720" flags="wfNoBorder" backgroundColor="#80ffffff">
+    <widget backgroundColor="#20000000" font="mediaportal_clean;40" halign="right" position="960,6" render="Label" size="133,60" source="global.CurrentTime" transparent="1" valign="center">
+        <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget backgroundColor="#20000000" font="mediaportal_clean;20" position="1113,6" render="Label" size="153,60" source="global.CurrentTime" transparent="1" valign="center">
+        <convert type="ClockToText">Format:%A                   %d. %B</convert>
+    </widget>
+  <eLabel backgroundColor="#20000000" text="MediaPortal" font="mediaportal_clean;33" halign="left" valign="center" position="33,6" shadowColor="#00000000" shadowOffset="2,2" size="800,60" transparent="1" />
+  <eLabel name="bg_up" position="6,6" size="1266,60" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_titel" position="6,73" size="840,73" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_list" position="6,153" size="840,526" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_cover" position="853,73" size="419,280" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_player" position="853,360" size="419,226" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_mode" position="853,593" size="419,86" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_down" position="6,686" size="1266,26" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="button red" position="10,711" size="243,1" backgroundColor="#00f23d21" zPosition="1" />
+  <eLabel name="button green" position="256,711" size="243,1" backgroundColor="#0031a500" zPosition="1" />
+  <eLabel name="button yellow" position="503,711" size="243,1" backgroundColor="#00e5b243" zPosition="1" />
+  <eLabel name="button blue" position="750,711" size="243,1" backgroundColor="#000064c7" zPosition="1" />
+  <!-- select screen -->
+  <widget alphatest="on" name="coverArt" position="860,80" size="406,266" />
+  <widget backgroundColor="#20000000" font="mediaportal;20" name="artist" position="860,366" size="406,60" transparent="1" valign="center" halign="center" />
+  <widget backgroundColor="#20000000" font="mediaportal;20" name="songtitle" position="860,433" size="406,80" transparent="1" valign="top" halign="center" />
+  <eLabel backgroundColor="#00616161" position="860,526" size="406,1" foregroundColor="grey" />
+  <widget position="860,520" progress_pointer="~/clean_hd/images/pointer.png:18,1" render="PositionGauge" size="406,13" source="session.CurrentService" transparent="1" zPosition="1">
+    <convert type="MPServicePosition">Gauge</convert>
+  </widget>
+  <widget backgroundColor="#20000000" font="mediaportal;16" halign="left" position="860,540" render="Label" size="80,23" source="session.CurrentService" transparent="1">
+    <convert type="MPServicePosition">Position</convert>
+  </widget>
+  <widget backgroundColor="#20000000" font="mediaportal;16" position="1186,540" render="Label" size="80,23" source="session.CurrentService" transparent="1" halign="right">
+    <convert type="MPServicePosition">Remaining,Negate</convert>
+  </widget>
+  <widget backgroundColor="#20000000" font="mediaportal;16" halign="center" position="1023,540" render="Label" size="80,23" source="session.CurrentService" transparent="1">
+    <convert type="MPServicePosition">Length</convert>
+  </widget>
+  <eLabel backgroundColor="#20000000" font="mediaportal;20" position="861,640" size="120,23" text="Playmode" transparent="1" valign="top" />
+  <widget backgroundColor="#20000000" font="mediaportal;20" name="playmode" position="993,640" size="273,23" transparent="1" valign="top" />
+  <eLabel backgroundColor="#20000000" font="mediaportal;20" position="860,610" size="120,23" text="Album" transparent="1" valign="top" />
+  <widget backgroundColor="#20000000" font="mediaportal;20" position="993,610" size="273,23" transparent="1" valign="top" name="album" />
+  <widget name="liste" position="13,160" size="826,483" backgroundColor="#20000000" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="foreground" foregroundColor="foreground" zPosition="0" itemHeight="23" />
+  <widget name="title" position="13,80" size="826,60" backgroundColor="#20000000" transparent="1" font="mediaportal_clean;33" valign="center" halign="center" />
+  <widget name="F1" position="10,686" size="243,26" transparent="1" font="mediaportal;16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+  <widget name="F2" position="256,686" size="243,26" transparent="1" font="mediaportal;16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+  <widget name="F3" position="503,686" size="243,26" transparent="1" font="mediaportal;16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+  <widget name="F4" position="750,686" size="243,26" transparent="1" font="mediaportal;16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+  <eLabel name="button ok" position="1160,690" size="40,18" backgroundColor="#00000000" text="OK" font="mediaportal;10" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+  <eLabel name="button exit" position="1213,690" size="40,18" backgroundColor="#00000000" text="EXIT" font="mediaportal;10" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+  <eLabel name="button ok bg" position="1159,689" size="42,20" backgroundColor="#00616161" zPosition="0" />
+  <eLabel name="button exit bg" position="1212,689" size="42,20" backgroundColor="#00616161" zPosition="0" />
+</screen>

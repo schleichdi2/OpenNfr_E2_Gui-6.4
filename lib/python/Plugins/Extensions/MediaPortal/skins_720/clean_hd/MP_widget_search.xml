@@ -1,0 +1,4 @@
+<widget name="bg_search" position="342,382" size="169,77" zPosition="9" backgroundColor="#40ffffff" />
+<widget name="suchtitel" position="343,383" size="167,26" backgroundColor="#20000000" transparent="0" font="mediaportal;21" valign="center" halign="center" zPosition="10" />
+<widget name="suche" position="343,410" size="167,48" backgroundColor="#20000000" transparent="0" font="mediaportal;33" valign="center" halign="center" zPosition="10" />
+<widget name="suchhinweis" position="20,154" size="133,18" backgroundColor="#20000000" transparent="1" font="mediaportal;15" valign="center" halign="center" zPosition="10" />

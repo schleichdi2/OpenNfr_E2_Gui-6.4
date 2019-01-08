@@ -1,0 +1,32 @@
+<!-- defaultListWideScreen -->
+  <screen name="defaultListWide" position="center,center" size="1920,1080" flags="wfNoBorder">
+    <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/edit.png" />
+    <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+      <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+      <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+    </widget>
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/yellow.png" position="1066,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/blue.png" position="1565,1000" size="300,76" alphatest="blend" />
+    <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />
+    <ePixmap name="selector-quick" position="1184,209" size="40,722" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector-quickmenu.png" alphatest="blend" />
+    <eLabel backgroundColor="grey" text="MediaPortal" font="LCD; 42" halign="center" valign="center" position="74,50" size="720,45" transparent="1" foregroundColor="grey" />
+    <!-- select screen -->
+    <widget name="handlung" position="1226,658" size="647,270" backgroundColor="black" font="Regular;27" transparent="1" halign="center" />
+    <widget name="coverArt" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/no_coverArt.png" position="1226,212" size="647,300" transparent="1" alphatest="blend" />
+    <widget name="ContentTitle" position="55,220" size="1125,45" backgroundColor="white" zPosition="5" font="LCD; 35" halign="center" transparent="1" />
+    <widget name="name" position="1226,515" size="647,140" backgroundColor="darkgrey" transparent="1" zPosition="1" font="Regular;30" valign="center" halign="center" foregroundColor="darkgrey" />
+    <widget name="liste" position="55,275" size="1125,630" backgroundColor="black" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="#ffffff" itemHeight="35" />
+    <widget name="title" position="55,141" size="790,40" backgroundColor="goldenrod" transparent="1" font="LCD; 35" valign="center" halign="center" foregroundColor="goldenrod" />
+    <widget name="Page" position="454,941" size="150,30" backgroundColor="goldenrod" transparent="1" font="Regular; 28" zPosition="1" foregroundColor="goldenrod" halign="right" />
+    <widget name="page" position="605,941" size="200,30" backgroundColor="blue" transparent="1" font="Regular; 28" zPosition="1" halign="center" foregroundColor="blue" />
+    <widget name="F1" position="77,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F2" position="590,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F3" position="1088,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F4" position="1587,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <ePixmap position="423,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_ok.png" transparent="1" alphatest="blend" />
+    <ePixmap position="1424,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_exit.png" transparent="1" alphatest="blend" />
+  </screen>

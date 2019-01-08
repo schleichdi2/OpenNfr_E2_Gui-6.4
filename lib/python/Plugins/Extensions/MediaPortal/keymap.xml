@@ -1,0 +1,136 @@
+<keymap>
+	<map context="MP_Actions">
+		<device name="compatible: pcKeyboard">
+			<key id="KEY_F1" mapto="red" flags="m" />
+			<key id="KEY_F2" mapto="green" flags="m" />
+			<key id="KEY_F3" mapto="yellow" flags="m" />
+			<key id="KEY_F4" mapto="blue" flags="m" />
+			<key id="KEY_F5" mapto="info" flags="m" />
+			<key id="KEY_F6" mapto="menu" flags="m" />
+			<key id="KEY_F12" mapto="mediaInfo" flags="m" />
+			<key id="KEY_ESC" mapto="cancel" flags="m" />
+			<key id="KEY_ENTER" mapto="ok" flags="m" />
+		</device>
+		<key id="KEY_1" mapto="1" flags="b" />
+		<key id="KEY_2" mapto="2" flags="b" />
+		<key id="KEY_3" mapto="3" flags="b" />
+		<key id="KEY_4" mapto="4" flags="b" />
+		<key id="KEY_5" mapto="5" flags="b" />
+		<key id="KEY_5" mapto="long5" flags="l" />
+		<key id="KEY_6" mapto="6" flags="b" />
+		<key id="KEY_7" mapto="7" flags="b" />
+		<key id="KEY_8" mapto="8" flags="b" />
+		<key id="KEY_9" mapto="9" flags="b" />
+		<key id="KEY_0" mapto="0" flags="b" />
+		<key id="KEY_RED" mapto="red" flags="m" />
+		<key id="KEY_GREEN" mapto="green" flags="m" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
+		<key id="KEY_BLUE" mapto="blue" flags="m" />
+		<key id="KEY_INFO" mapto="info" flags="m" />
+		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_HELP" mapto="displayHelp" flags="m" />
+		<key id="KEY_VIDEO" mapto="mediaInfo" flags="m" />
+		<key id="KEY_RECORD" mapto="mediaInfo" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_HOME" mapto="moveTop" flags="mr" />
+		<key id="KEY_END" mapto="moveEnd" flags="mr" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_LEFT" mapto="left" flags="mr" />
+		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
+		<key id="KEY_PAGEUP" mapto="prevBouquet" flags="m" />
+		<key id="KEY_PAGEDOWN" mapto="nextBouquet" flags="m" />
+		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
+		<key id="KEY_PREVIOUS" mapto="deleteBackward" flags="m" />
+		<key id="KEY_NEXT" mapto="deleteForward" flags="m" />
+	</map>
+	<map context="MP_Actions2">
+		<key id="KEY_UP" mapto="up" flags="m" />
+		<key id="KEY_DOWN" mapto="down" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="m" />
+		<key id="KEY_RIGHT" mapto="right" flags="m" />
+		<key id="KEY_UP" mapto="upRepeated" flags="r" />
+		<key id="KEY_DOWN" mapto="downRepeated" flags="r" />
+		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
+		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
+		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="r" />
+		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="r" />
+		<key id="KEY_PAGEUP" mapto="prevBouquet" flags="r" />
+		<key id="KEY_PAGEDOWN" mapto="nextBouquet" flags="r" />
+		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
+		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
+		<key id="KEY_UP" mapto="upUp" flags="b" />
+		<key id="KEY_DOWN" mapto="downUp" flags="b" />
+	</map>
+	<map context="MP_NumberActions">
+		<key id="KEY_1" mapto="1" flags="b" />
+		<key id="KEY_2" mapto="2" flags="b" />
+		<key id="KEY_3" mapto="3" flags="b" />
+		<key id="KEY_4" mapto="4" flags="b" />
+		<key id="KEY_5" mapto="5" flags="b" />
+		<key id="KEY_6" mapto="6" flags="b" />
+		<key id="KEY_7" mapto="7" flags="b" />
+		<key id="KEY_8" mapto="8" flags="b" />
+		<key id="KEY_9" mapto="9" flags="b" />
+		<key id="KEY_0" mapto="0" flags="b" />
+	</map>
+	<map context="MP_KeyActions">
+		<device name="compatible: pcKeyboard">
+			<key id="KEY_1" mapto="1" flags="m" />
+			<key id="KEY_2" mapto="2" flags="m" />
+			<key id="KEY_3" mapto="3" flags="m" />
+			<key id="KEY_4" mapto="4" flags="m" />
+			<key id="KEY_5" mapto="5" flags="m" />
+			<key id="KEY_6" mapto="6" flags="m" />
+			<key id="KEY_7" mapto="7" flags="m" />
+			<key id="KEY_8" mapto="8" flags="m" />
+			<key id="KEY_9" mapto="9" flags="m" />
+			<key id="KEY_0" mapto="0" flags="m" />
+			<key id="KEY_A" mapto="a" flags="m" />
+			<key id="KEY_B" mapto="b" flags="m" />
+			<key id="KEY_C" mapto="c" flags="m" />
+			<key id="KEY_D" mapto="d" flags="m" />
+			<key id="KEY_E" mapto="e" flags="m" />
+			<key id="KEY_F" mapto="f" flags="m" />
+			<key id="KEY_G" mapto="g" flags="m" />
+			<key id="KEY_H" mapto="h" flags="m" />
+			<key id="KEY_I" mapto="i" flags="m" />
+			<key id="KEY_J" mapto="j" flags="m" />
+			<key id="KEY_K" mapto="k" flags="m" />
+			<key id="KEY_L" mapto="l" flags="m" />
+			<key id="KEY_M" mapto="m" flags="m" />
+			<key id="KEY_N" mapto="n" flags="m" />
+			<key id="KEY_O" mapto="o" flags="m" />
+			<key id="KEY_P" mapto="p" flags="m" />
+			<key id="KEY_Q" mapto="q" flags="m" />
+			<key id="KEY_R" mapto="r" flags="m" />
+			<key id="KEY_S" mapto="s" flags="m" />
+			<key id="KEY_T" mapto="t" flags="m" />
+			<key id="KEY_U" mapto="u" flags="m" />
+			<key id="KEY_V" mapto="v" flags="m" />
+			<key id="KEY_W" mapto="w" flags="m" />
+			<key id="KEY_X" mapto="x" flags="m" />
+			<key id="KEY_Y" mapto="y" flags="m" />
+			<key id="KEY_Z" mapto="z" flags="m" />
+			<key id="KEY_SPACE" mapto="space" flags="m" />
+			<key id="KEY_BACKSPACE" mapto="back" flags="mr" />
+		</device>
+	</map>
+	<map context="MP_SpecialActions">
+		<device name="compatible: pcKeyboard">
+			<key id="KEY_F9" mapto="specTv" flags="l" />
+			<key id="KEY_F5" mapto="specTmdb" flags="m" />
+		</device>
+		<key id="KEY_TV" mapto="specTv" flags="l" />
+		<key id="KEY_INFO" mapto="specTmdb" flags="m" />
+	</map>
+	<map context="MP_SP_Move">
+		<key id="KEY_CHANNELUP" mapto="SPMoveUp" flags="mr" />
+		<key id="KEY_CHANNELDOWN" mapto="SPMoveDown" flags="mr" />
+		<key id="KEY_PAGEUP" mapto="SPMoveUp" flags="mr" />
+		<key id="KEY_PAGEDOWN" mapto="SPMoveDown" flags="mr" />
+	</map>
+</keymap>

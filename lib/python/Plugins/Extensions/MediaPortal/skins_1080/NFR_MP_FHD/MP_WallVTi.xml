@@ -1,0 +1,33 @@
+<!-- Hauptscreen_Wall_2 -->
+<screen name="MediaPortal" position="center,center" size="1920,1080" flags="wfNoBorder" backgroundColor="#80ffffff">
+  <widget backgroundColor="#20000000" font="mediaportal_clean;60" halign="right" position="1440,10" render="Label" size="200,90" source="global.CurrentTime" transparent="1" valign="center">
+    <convert type="ClockToText">Default</convert>
+  </widget>
+  <widget backgroundColor="#20000000" font="mediaportal_clean;31" position="1670,10" render="Label" size="230,90" source="global.CurrentTime" transparent="1" valign="center">
+    <convert type="ClockToText">Format:%A                   %d. %B</convert>
+  </widget>
+  <eLabel backgroundColor="#20000000" text="MediaPortal" font="mediaportal_clean;50" halign="left" valign="center" position="50,10" shadowColor="#00000000" shadowOffset="4,4" size="1200,90" transparent="1" />
+  <widget name="version" backgroundColor="#20000000" font="mediaportal_clean;20" halign="left" valign="bottom" position="330,53" shadowColor="#00000000" shadowOffset="4,4" size="130,25" transparent="1" />
+  <widget backgroundColor="#20000000" font="mediaportal_clean;50" valign="center" halign="center" name="name" position="0,120" size="1920,90" transparent="1" />
+  <widget backgroundColor="#20000000" font="mediaportal;28" valign="center" halign="right" name="page" position="1680,986" size="200,34" transparent="1" />
+  <widget backgroundColor="#20000000" font="mediaportal;25" name="F1" position="15,1030" size="365,40" valign="center" halign="center" transparent="1" />
+  <widget backgroundColor="#20000000" font="mediaportal;25" name="F2" position="385,1030" size="365,40" valign="center" halign="center" transparent="1" />
+  <widget backgroundColor="#20000000" font="mediaportal;25" name="F3" position="755,1030" size="365,40" valign="center" halign="center" transparent="1" />
+  <widget backgroundColor="#20000000" font="mediaportal;25" name="F4" position="1125,1030" size="365,40" valign="center" halign="center" transparent="1" />
+  <eLabel name="bg_up" position="10,10" size="1900,90" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_wall" position="10,110" size="1900,910" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="bg_down" position="10,1030" size="1900,40" zPosition="-1" backgroundColor="#20000000" />
+  <eLabel name="button red" position="15,1068" size="365,2" backgroundColor="#00f23d21" zPosition="1" />
+  <eLabel name="button green" position="385,1068" size="365,2" backgroundColor="#0031a500" zPosition="1" />
+  <eLabel name="button yellow" position="755,1068" size="365,2" backgroundColor="#00e5b243" zPosition="1" />
+  <eLabel name="button blue" position="1125,1068" size="365,2" backgroundColor="#000064c7" zPosition="1" />
+  <eLabel name="button bouquet" position="1580,1035" size="60,30" backgroundColor="#00000000" text="BOUQ" font="mediaportal; 15" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+  <eLabel name="button info" position="1660,1035" size="60,30" backgroundColor="#00000000" text="INFO" font="mediaportal; 15" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+  <eLabel name="button help" position="1740,1035" size="60,30" backgroundColor="#00000000" text="HELP" font="mediaportal; 15" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+  <eLabel name="button exit" position="1820,1035" size="60,30" backgroundColor="#00000000" text="EXIT" font="mediaportal; 15" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+  <eLabel name="button bouquet bg" position="1579,1034" size="62,32" backgroundColor="#00616161" zPosition="0" />
+  <eLabel name="button info bg" position="1659,1034" size="62,32" backgroundColor="#00616161" zPosition="0" />
+  <eLabel name="button help bg" position="1739,1034" size="62,32" backgroundColor="#00616161" zPosition="0" />
+  <eLabel name="button exit bg" position="1819,1034" size="62,32" backgroundColor="#00616161" zPosition="0" />
+  <widget name="list" position="10,210" size="1900,781" itemSize="225,120" itemScale="130,130" itemSpace="20" useShadow="1" useOverlay="1" backgroundColorGlobal="#20000000" backgroundColor="#20000000" backgroundColorSelected="#20000000" transparent="0"/>
+  </screen>

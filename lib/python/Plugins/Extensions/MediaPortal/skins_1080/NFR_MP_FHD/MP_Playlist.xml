@@ -1,0 +1,49 @@
+<!-- defaultPlaylistScreen -->
+  <screen name="defaultPlaylist" position="center,center" size="1920,1080" flags="wfNoBorder">
+    <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/edit.png" />
+    <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+      <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+      <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+    </widget>
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/yellow.png" position="1066,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/blue.png" position="1565,1000" size="300,76" alphatest="blend" />
+    <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />
+    <ePixmap name="selector-quick" position="1184,209" size="40,722" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector-quickmenu.png" alphatest="blend" />
+    <eLabel backgroundColor="grey" text="MediaPortal" font="LCD; 42" halign="center" valign="center" position="74,50" size="720,45" transparent="1" foregroundColor="grey" />
+    <!-- select screen -->
+    <widget alphatest="on" name="coverArt" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/no_coverArt.png" position="1226,212" size="647,300" />
+    <widget backgroundColor="white" font="Regular;30" name="artist" position="1226,512" size="647,90" transparent="1" valign="center" halign="center" />
+    <widget backgroundColor="white" font="Regular;30" name="songtitle" position="1226,602" size="647,170" transparent="1" valign="top" halign="center" zPosition="1" />
+    <eLabel backgroundColor="grey" position="1226,776" size="647,2" foregroundColor="grey" zPosition="3" />
+    <widget position="1226,780" progress_pointer="clean_fhd/images/pointer.png:18,4" render="PositionGauge" size="647,20" source="session.CurrentService" transparent="1" zPosition="1">
+      <convert type="MPServicePosition">Gauge</convert>
+    </widget>
+    <widget backgroundColor="white" font="Regular;25" halign="left" position="1226,804" render="Label" size="120,35" source="session.CurrentService" transparent="1">
+      <convert type="MPServicePosition">Length</convert>
+    </widget>
+    <widget backgroundColor="white" font="Regular;25" halign="left" position="1226,804" render="Label" size="120,35" source="session.CurrentService" transparent="1">
+      <convert type="MPServicePosition">Length</convert>
+    </widget>
+    <widget backgroundColor="white" font="Regular;25" position="1754,804" render="Label" size="120,35" source="session.CurrentService" transparent="1" halign="right">
+      <convert type="MPServicePosition">Remaining,Negate</convert>
+    </widget>
+    <widget backgroundColor="white" font="Regular;25" halign="center" position="1487,804" render="Label" size="120,35" source="session.CurrentService" transparent="1">
+      <convert type="MPServicePosition">Position</convert>
+    </widget>
+    <eLabel backgroundColor="goldenrod" font="Regular;30" position="1226,890" size="180,35" text="Playmode" transparent="1" valign="top" foregroundColor="goldenrod" />
+    <widget backgroundColor="white" font="Regular;30" name="playmode" position="1406,890" size="470,35" transparent="1" valign="center" halign="center" />
+    <eLabel backgroundColor="goldenrod" font="Regular;30" position="1226,847" size="180,35" text="Album" transparent="1" valign="top" foregroundColor="goldenrod" />
+    <widget backgroundColor="white" font="Regular;30" position="1406,847" size="470,35" transparent="1" valign="center" name="album" halign="center" />
+    <widget name="liste" position="55,220" size="1129,700" backgroundColor="black" scrollbarMode="showOnDemand" transparent="1" foregroundColorSelected="foreground" foregroundColor="foreground" zPosition="0" itemHeight="35" />
+    <widget name="title" position="55,141" size="790,40" backgroundColor="goldenrod" transparent="1" font="LCD; 35" valign="center" halign="center" foregroundColor="goldenrod" />
+    <widget name="F1" position="77,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F2" position="590,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F3" position="1088,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F4" position="1587,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <ePixmap position="423,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_ok.png" transparent="1" alphatest="blend" />
+    <ePixmap position="1424,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_exit.png" transparent="1" alphatest="blend" />
+  </screen>

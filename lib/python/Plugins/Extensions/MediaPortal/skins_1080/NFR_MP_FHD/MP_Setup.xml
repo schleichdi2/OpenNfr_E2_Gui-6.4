@@ -1,0 +1,39 @@
+<!-- hauptScreenSetup -->
+  <screen name="hauptScreenSetup" position="center,center" size="1920,1080" flags="wfNoBorder">
+    <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/edit.png" />
+    <eLabel position="1247,234" zPosition="1" size="611,295" backgroundColor="unff000000" />
+    <widget source="session.VideoPicture" render="Pig" position="1247,234" size="611,295" zPosition="0" />
+    <ePixmap name="tvback" position="1231,220" size="642,322" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/channelselectiontvback.png" />
+    <ePixmap name="senderback" position="1231,571" size="642,80" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/mpsendernameback.png" />
+    <ePixmap name="progressback" position="1231,671" size="642,55" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/mpprogressbackmenu.png" zPosition="1" />
+    <widget source="session.CurrentService" render="Label" position="1259,589" size="580,45" zPosition="2" font="LCD; 38" halign="center" noWrap="1" transparent="1" backgroundColor="white">
+      <convert type="ServiceName">Name</convert>
+    </widget>
+    <widget source="session.Event_Now" render="Progress" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/progress.png" position="1244,690" size="619,17" zPosition="3" transparent="1">
+      <convert type="EventTime">Progress</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+      <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+      <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+    </widget>
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/yellow.png" position="1066,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/blue.png" position="1565,1000" size="300,76" alphatest="blend" />
+    <widget name="config" position="52,220" size="1130,680" zPosition="1" scrollbarMode="showOnDemand" transparent="1" font="Regular; 30" />
+    <applet type="onLayoutFinish">
+        self["config"].instance.setItemHeight(40)
+    </applet>
+    <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />
+    <ePixmap name="selector-quick" position="1184,209" size="40,722" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector-quickmenu.png" alphatest="blend" />
+    <widget name="title" position="74,50" size="720,45" font="LCD; 42" foregroundColor="grey" backgroundColor="grey" transparent="1" halign="center" />
+    <widget name="F1" position="77,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F2" position="590,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F3" position="1088,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F4" position="1587,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <ePixmap position="924,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_ok.png" transparent="1" alphatest="blend" />
+    <ePixmap position="1419,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_exit.png" transparent="1" alphatest="blend" />
+    <ePixmap position="423,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_bouquet.png" transparent="1" alphatest="blend" />
+  </screen>

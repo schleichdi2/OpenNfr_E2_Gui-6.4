@@ -1,0 +1,28 @@
+<!-- Hauptscreen_Wall_2 -->
+  <screen name="MediaPortal" position="center,center" size="1920,1080" flags="wfNoBorder">
+    <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/edit.png" />
+    <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+      <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+      <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+    </widget>
+    <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />
+    <eLabel text="MediaPortal" position="203,50" size="279,45" font="LCD; 42" backgroundColor="grey" transparent="1" foregroundColor="grey" halign="center" />
+    <widget name="version" backgroundColor="background" font="LCD; 42" halign="center" valign="center" position="482,50" size="200,45" transparent="1" foregroundColor="grey" />
+    <widget backgroundColor="goldenrod" font="LCD; 60" valign="center" halign="center" name="name" position="55,221" size="1816,60" transparent="1" foregroundColor="goldenrod" />
+    <widget backgroundColor="black" font="Regular; 30" valign="center" halign="right" name="page" position="1666,938" size="200,34" transparent="1" zPosition="2" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/yellow.png" position="1066,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/blue.png" position="1565,1000" size="300,76" alphatest="blend" />
+    <widget name="F1" render="Label" position="77,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F2" render="Label" position="590,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F3" render="Label" position="1088,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F4" render="Label" position="1587,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <ePixmap position="1379,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_bouquet.png" transparent="1" alphatest="blend" />
+    <ePixmap position="1474,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_exit.png" transparent="1" alphatest="blend" />
+    <ePixmap position="366,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_help.png" transparent="1" alphatest="blend" />
+    <ePixmap position="478,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_info.png" transparent="1" alphatest="blend" />
+    <widget name="covercollection" position="55,220" size="1816,700" transparent="1" zPosition="1" backgroundColor="black" coverSize="225,120" selectedCoverScale="1.25" unselectedCoverDimm="0.85" coverBeginPosition="156,78" coverDistance="5,5" style="0" noCoverAvailablePic="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/images/comingsoon.png" />
+  </screen>

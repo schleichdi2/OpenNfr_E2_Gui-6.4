@@ -1,0 +1,8 @@
+<screen name="PinInputExt" position="center,center" size="642,322" title="" flags="wfNoBorder" backgroundColor="black">
+  <ePixmap name="tvback" position="0,0" size="642,322" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/channelselectiontvback.png" />
+  <widget font="Regular;28" name="service" position="17,79" size="608,35" zPosition="1" backgroundColor="black" />
+  <widget font="Regular;28" halign="center" name="text" position="17,116" size="608,64" backgroundColor="black" zPosition="1" />
+  <widget font="Regular;28" halign="center" name="tries" position="17,180" size="608,35" backgroundColor="black" zPosition="1" />
+  <widget font="Regular;50" halign="center" name="input" position="18,251" size="608,40" backgroundColor="black" zPosition="1" />
+  <widget name="title" position="17,15" size="608,60" font="Regular;40" backgroundColor="black" foregroundColor="white" zPosition="1" halign="center" valign="center" />
+</screen>

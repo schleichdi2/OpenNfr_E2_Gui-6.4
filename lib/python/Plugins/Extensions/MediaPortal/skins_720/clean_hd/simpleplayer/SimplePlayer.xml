@@ -1,0 +1,49 @@
+  <screen backgroundColor="transparent" flags="wfNoBorder" name="SimplePlayer" position="6,546" size="1266,166">
+	<widget alphatest="on" name="Icon" position="123,43" scale="1" size="266,83" zPosition="1" />
+	<widget alphatest="on" name="Cover" position="3,3" size="106,160" zPosition="1" />
+	<widget backgroundColor="#00616161" font="mediaportal_clean;23" halign="center" name="seekbartime" position="728,50" size="200,26" transparent="1" foregroundColor="#00ffffff" zPosition="1" />
+	<widget backgroundColor="#00616161" font="mediaportal_clean;23" foregroundColor="#00ffffff" halign="left" position="403,93" render="Label" size="106,26" source="session.CurrentService" transparent="1" zPosition="1">
+		<convert type="MPServicePosition">Position,ShowHours</convert>
+	</widget>
+	<eLabel backgroundColor="#00ffffff" position="403,84" size="850,1" foregroundColor="#00000000" />
+	<widget name="seekbarcursor" position="403,79" size="10,10" zPosition="4" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/seekbutton.png" alphatest="on" />
+	<widget position="403,78" progress_pointer="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/images/pointer.png:18,1" render="PositionGauge" size="850,12" source="session.CurrentService" transparent="1" zPosition="1">
+		<convert type="MPServicePosition">Gauge</convert>
+	</widget>
+	<widget backgroundColor="#00616161" font="mediaportal_clean;23" foregroundColor="#00ffffff" halign="right" position="1146,93" render="Label" size="106,26" source="session.CurrentService" transparent="1" zPosition="1">
+		<convert type="MPServicePosition">Remaining,Negate,ShowHours</convert>
+	</widget>
+	<widget backgroundColor="#00616161" font="mediaportal_clean;23" foregroundColor="#00ffffff" halign="center" position="728,93" render="Label" size="200,26" source="session.CurrentService" transparent="1" zPosition="1">
+		<convert type="MPServicePosition">Length,ShowHours</convert>
+	</widget>
+	<widget backgroundColor="#20000000" font="mediaportal_clean;23" foregroundColor="#00ffffff" halign="center" position="123,6" render="Label" size="1136,30" source="session.CurrentService" transparent="1" zPosition="1">
+		<convert type="MPServiceName">Name</convert>
+	</widget>
+	<eLabel name="bgbg bar" position="116,0" size="1150,166" zPosition="-2" backgroundColor="#20000000" />
+	<eLabel name="bg cover" position="0,0" size="113,166" zPosition="-1" backgroundColor="#20000000" />
+	<widget name="noCover" position="3,3" size="106,160" zPosition="0" alphatest="blend" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/clock.png" position="123,133" size="26,26" zPosition="1" alphatest="blend" />
+	<widget source="global.CurrentTime" render="Label" position="156,132" size="66,26" font="mediaportal_clean;23" transparent="1" backgroundColor="#00616161" halign="left" foregroundColor="#00ffffff" zPosition="1">
+		<convert type="ClockToText">Default</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/clockend.png" position="236,133" size="26,26" zPosition="1" alphatest="blend">
+		<convert type="MPServicePosition">EndTime</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<widget source="session.CurrentService" render="Label" position="270,132" size="66,26" font="mediaportal_clean;23" halign="left" backgroundColor="#00616161" transparent="1" foregroundColor="#00ffffff" zPosition="1">
+		<convert type="MPServicePosition">EndTime,ShowNoSeconds</convert>
+	</widget>
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/resicon.png" position="350,133" size="26,26" zPosition="1" alphatest="blend">
+		<convert type="MPServiceInfo">VideoInfo</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<widget source="session.CurrentService" render="Label" position="383,132" size="320,26" backgroundColor="#00616161" transparent="1" font="mediaportal_clean;23" halign="left" foregroundColor="#00ffffff">
+		<convert type="MPServiceInfo">VideoInfoCodec</convert>
+	</widget>
+	<widget source="session.CurrentService" render="mp_AudioIcon" position="1146,136" zPosition="1" path="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer" size="53,23" alphatest="blend">
+		<convert type="mp_audioinfo">AudioIcon</convert>
+	</widget>
+	<widget name="premiumoff" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/premium_off.png" position="1206,136" size="53,23" zPosition="2" alphatest="blend" />
+	<widget name="premiumizemeon" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/premiumize_on.png" position="1206,136" size="53,23" zPosition="2" alphatest="blend" />
+	<widget name="realdebridon" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/clean_hd/simpleplayer/realdebrid_on.png" position="1206,136" size="53,23" zPosition="2" alphatest="blend" />
+</screen>

@@ -1,0 +1,6 @@
+<screen name="MPUpdateScreen" position="center,center" size="936,497" title="" backgroundColor="#80ffffff" flags="wfNoBorder">
+    <widget name="mplog" position="6,50" size="920,440" backgroundColor="#20000000" transparent="1" zPosition="1" foregroundColor="#00ffffff" itemHeight="23" />
+    <eLabel name="bg up" position="1,1" size="933,40" backgroundColor="#20000000" />
+    <eLabel name="bg down" position="1,42" size="933,453" backgroundColor="#20000000" />
+    <widget name="title" position="1,1" size="933,40" font="mediaportal_clean;26" backgroundColor="#20000000" foregroundColor="#00ffffff" zPosition="1" halign="center" valign="center" />
+</screen>

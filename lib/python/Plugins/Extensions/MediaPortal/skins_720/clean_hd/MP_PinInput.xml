@@ -1,0 +1,9 @@
+<screen name="PinInputExt" position="center,center" size="462,174" title="" flags="wfNoBorder" backgroundColor="#80ffffff">
+    <widget font="mediaportal;18" name="service" position="3,46" size="453,23" zPosition="1" />
+    <widget font="mediaportal;18" halign="center" name="text" position="3,70" size="453,42" zPosition="1" />
+    <widget font="mediaportal;18" halign="center" name="tries" position="3,116" size="453,23" zPosition="1" />
+    <widget font="mediaportal;33" halign="center" name="input" position="3,143" size="453,26" zPosition="1" />
+    <eLabel name="bg conf" position="1,42" size="460,131" backgroundColor="#20000000" />
+    <eLabel name="bg title" position="1,1" size="460,40" backgroundColor="#20000000" />
+    <widget name="title" position="1,1" size="460,40" font="mediaportal_clean;26" backgroundColor="#20000000" foregroundColor="#00ffffff" zPosition="1" halign="center" valign="center" />
+</screen>

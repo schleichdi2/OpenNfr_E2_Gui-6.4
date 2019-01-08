@@ -1,0 +1,62 @@
+<skin>
+	<windowstyle id="0" type="skinned">
+		<title font="mediaportal;32" offset="15,2" />
+		<color color="#20000000" name="Background" />
+		<color color="#ffffff" name="LabelForeground" />
+		<color color="#20000000" name="ListboxBackground" />
+		<color color="#ffffff" name="ListboxForeground" />
+		<color color="#000000" name="ListboxSelectedBackground" />
+		<color color="#ffffff" name="ListboxSelectedForeground" />
+		<color color="#20000000" name="ListboxMarkedBackground" />
+		<color color="#ffffff" name="ListboxMarkedForeground" />
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground" />
+		<color color="#f23d21" name="ListboxMarkedAndSelectedForeground" />
+		<color color="#0033b5e5" name="WindowTitleForeground" />
+		<color color="#2fffffff" name="WindowTitleBackground" />
+		<color color="#66000000" name="WindowDimmer" />
+		<borderset name="bsWindow">
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_tl.png" pos="bpTopLeft" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_t.png" pos="bpTop" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_tr.png" pos="bpTopRight" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_l.png" pos="bpLeft" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_r.png" pos="bpRight" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_bl.png" pos="bpBottomLeft" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_b.png" pos="bpBottom" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/b_br.png" pos="bpBottomRight" />
+		</borderset>
+		<borderset name="bsListboxEntry">
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/line.png" pos="bpTop" />
+			<pixmap filename="skins_1080/NFR_MP_FHD/images/line.png" pos="bpBottom" />
+		</borderset>
+		<listfont type="Bigger" font="Regular" size="32" />
+		<listfont type="Big" font="Regular" size="30" />
+		<listfont type="Medium" font="Regular" size="29" />
+		<listfont type="Small" font="Regular" size="28" />
+		<listfont type="Smaller" font="Regular" size="26" />
+	</windowstyle>
+	<windowstylescrollbar id="4">
+		<value name="BackgroundPixmapTopHeight" value="0" />
+		<value name="BackgroundPixmapBottomHeight" value="0" />
+		<value name="ValuePixmapTopHeight" value="2" />
+		<value name="ValuePixmapBottomHeight" value="2" />
+		<value name="ScrollbarWidth" value="7" />
+		<value name="ScrollbarBorderWidth" value="0" />
+		<pixmap filename="skins_1080/NFR_MP_FHD/images/scrollbar.png" name="BackgroundPixmap" />
+		<pixmap filename="skins_1080/NFR_MP_FHD/images/slider.png" name="ValuePixmap" />
+	</windowstylescrollbar>
+    <listboxcontent>
+        <offset name="left" value="5" />
+        <offset name="right" value="5" />
+        <font font="mediaportal;29" name="string" />
+        <value name="string_item_height" value="40" />
+        <font font="mediaportal;29" name="config_description" />
+        <font font="mediaportal;26" name="config_value" />
+        <value name="config_item_height" value="40" />
+    </listboxcontent>
+	<mediaportal>
+		<color color="#00ffffff" name="ThumbViewTextForeground" />
+		<!--<overridefont font="Regular" />-->
+		<!--<overridefontsize value="30" />-->
+		<!--<overridesizefactor value="3" />-->
+	</mediaportal>
+</skin>

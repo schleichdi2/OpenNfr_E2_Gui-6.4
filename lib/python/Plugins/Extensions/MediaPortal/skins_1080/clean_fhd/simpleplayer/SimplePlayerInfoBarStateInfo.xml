@@ -1,0 +1,5 @@
+<screen name="SimplePlayerInfoBarStateInfo" position="center,center" size="700,175" backgroundColor="#80ffffff" flags="wfNoBorder">
+	<eLabel name="bg" position="2,2" size="696,171" backgroundColor="#20000000" />
+	<widget name="state" position="5,10" size="690,55" halign="center" valign="center" transparent="1" font="mediaportal_clean;40" zPosition="1" />
+	<widget name="message" position="5,75" size="690,90" halign="center" valign="center" transparent="1" font="mediaportal;25" zPosition="1" />
+</screen>

@@ -1,0 +1,44 @@
+  <screen title="TMDb - The Movie Database" name="TMDB" position="center,center" size="1920,1080" flags="wfNoBorder" backgroundColor="black">
+    <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/menu.png" />
+    <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+      <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+      <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+    </widget>
+    <eLabel backgroundColor="grey" text="MediaPortal" font="LCD; 42" halign="center" valign="center" position="74,50" size="720,45" transparent="1" foregroundColor="grey" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/yellow.png" position="1066,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/blue.png" position="1565,1000" size="300,76" alphatest="blend" />
+    <widget name="title" backgroundColor="goldenrod" font="LCD; 35" halign="center" position="55,141" size="790,40" transparent="1" foregroundColor="goldenrod" />
+    <widget name="searchinfo" position="55,220" size="920,45" zPosition="2" transparent="1" font="Regular;35" halign="center" backgroundColor="black" />
+    <widget name="subtitle" position="55,264" size="920,45" zPosition="2" transparent="1" font="Regular;35" halign="center" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="fulldescription" position="55,314" size="920,610" font="Regular;25" transparent="1" />
+    <widget name="coverArt" position="1030,370" size="320,455" alphatest="blend" transparent="1" />
+    <widget name="rating10" position="1020,327" size="340,35" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/clean_fhd/images/stars-full10.png" zPosition="4" transparent="1" backgroundColor="background" />
+    <widget name="rating0" position="1020,327" size="340,35" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/clean_fhd/images/stars-empty10.png" zPosition="3" transparent="1" alphatest="blend" backgroundColor="background" />
+    <widget name="fsk_txt" position="1370,150" size="200,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="fsk" position="1495,150" size="385,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="year_txt" position="1370,238" size="400,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="year" position="1495,237" size="385,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="country_txt" position="1370,317" size="400,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="country" position="1495,318" size="385,40" zPosition="2" transparent="1" font="Regular;22" backgroundColor="black" />
+    <widget name="runtime_txt" position="1370,398" size="400,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="runtime" position="1495,399" size="385,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="votes_txt" position="1370,479" size="400,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="votes" position="1495,479" size="385,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="director_txt" position="1370,555" size="400,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="director" position="1495,556" size="385,70" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="author_txt" position="1370,658" size="400,40" zPosition="2" transparent="1" font="Regular;25" backgroundColor="goldenrod" foregroundColor="goldenrod" />
+    <widget name="author" position="1495,657" size="385,70" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="genre_txt" position="1370,763" size="100,40" font="Regular; 25" backgroundColor="goldenrod" transparent="1" foregroundColor="goldenrod" />
+    <widget name="genre" position="1495,762" size="385,70" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="studio_txt" position="1370,868" size="100,40" font="Regular; 25" backgroundColor="goldenrod" transparent="1" foregroundColor="goldenrod" />
+    <widget name="studio" position="1495,868" size="385,70" zPosition="2" transparent="1" font="Regular;25" backgroundColor="black" />
+    <widget name="F1" render="Label" position="77,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F2" render="Label" position="590,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F3" render="Label" position="1088,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F4" render="Label" position="1587,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <ePixmap position="924,1021" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_exit.png" transparent="1" alphatest="blend" />
+  </screen>

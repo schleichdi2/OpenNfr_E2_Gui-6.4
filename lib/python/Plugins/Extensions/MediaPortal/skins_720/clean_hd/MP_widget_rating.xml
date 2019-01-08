@@ -1,0 +1,3 @@
+<widget name="rating0" position="943,324" size="226,22" pixmap="~/clean_hd/images/stars-empty10.png" zPosition="3" transparent="1" alphatest="blend" />
+<widget name="rating10" position="943,324" size="226,22" pixmap="~/clean_hd/images/stars-full10.png" zPosition="4" transparent="1" />
+<ePixmap pixmap="~/clean_hd/images/rating_back.png" position="943,324" size="226,22" zPosition="2" />

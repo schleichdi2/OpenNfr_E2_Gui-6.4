@@ -1,0 +1,8 @@
+<screen position="center,center" size="910,245" title="" backgroundColor="#80ffffff" flags="wfNoBorder" name="PluginUserDefault">
+    <widget name="config" position="15,80" size="880,150" scrollbarMode="showOnDemand" itemHeight="40" zPosition="1" transparent="1" />
+    <eLabel name="bg conf" position="2,64" size="906,179" backgroundColor="#20000000" />
+    <eLabel name="bg title" position="2,2" size="906,60" backgroundColor="#20000000" />
+    <widget name="title" position="2,2" size="906,60" font="mediaportal_clean;40" backgroundColor="#20000000" foregroundColor="#00ffffff" zPosition="1" halign="center" valign="center" />
+	<eLabel name="button blue" position="690,225" size="200,2" backgroundColor="#000064c7" zPosition="1" />
+	<widget name="F4" position="690,185" size="200,40" transparent="1" font="mediaportal; 25" backgroundColor="#26181d20" foregroundColor="#00ffffff" valign="center" halign="center" zPosition="1" /> 	
+</screen>

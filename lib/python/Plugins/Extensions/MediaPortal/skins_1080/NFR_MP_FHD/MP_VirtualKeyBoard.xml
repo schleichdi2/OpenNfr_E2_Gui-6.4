@@ -1,0 +1,22 @@
+<screen name="VirtualKeyBoardExt" backgroundColor="black" position="center,center" size="1920,1080" title="" flags="wfNoBorder">
+  <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/edit.png" />
+  <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+    <convert type="ClockToText">Default</convert>
+  </widget>
+  <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+    <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+  </widget>
+  <widget name="title" position="72,50" size="720,45" font="LCD; 42" backgroundColor="grey" foregroundColor="grey" zPosition="1" halign="center" valign="center" transparent="1" />
+  <widget source="country" render="Pixmap" position="center,1009" size="75,50" alphatest="on" zPosition="3">
+    <convert type="ValueToPixmap">LanguageCode</convert>
+  </widget>
+  <widget name="header" position="55,230" size="415,45" font="LCD; 40" transparent="1" noWrap="1" foregroundColor="goldenrod" zPosition="1" valign="center" halign="left" backgroundColor="goldenrod" />
+  <widget name="text" position="478,230" size="1375,45" font="Regular; 40" transparent="1" noWrap="1" halign="left" zPosition="1" />
+  <widget name="list" position="center,322" size="960,250" selectionDisabled="1" transparent="1" itemHeight="45" zPosition="2" />
+  <ePixmap name="selector" position="40,560" size="930,10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector.png" zPosition="1" />
+  <ePixmap name="selector" position="970,560" size="930,10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector.png" zPosition="1" />
+  <ePixmap name="selector" position="40,301" size="930,10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector.png" zPosition="1" />
+  <ePixmap name="selector" position="970,301" size="930,10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector.png" zPosition="1" />
+  <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />
+  <eLabel position="center,650" size="605,200" blackColor="black" zPosition="1" />  
+</screen>

@@ -1,0 +1,17 @@
+<screen name="VirtualKeyBoardExt" backgroundColor="#80ffffff" position="190,48" size="900,622" zPosition="9998" title="" flags="wfNoBorder">
+    <widget name="title" position="1,1" size="897,40" font="mediaportal_clean;26" backgroundColor="#20000000" foregroundColor="#00ffffff" zPosition="1" halign="center" valign="center" />
+    <widget source="country" render="Pixmap" position="833,140" size="50,33" alphatest="on" zPosition="2">
+        <convert type="ValueToPixmap">LanguageCode</convert>
+    </widget>
+    <widget name="header" position="1,43" size="897,40" font="mediaportal;23" transparent="1" noWrap="1" foregroundColor="#00ffffff" zPosition="1" valign="center" halign="center" />
+    <widget name="text" position="116,85" size="666,40" font="mediaportal;30" transparent="1" noWrap="1" halign="left" zPosition="1" />
+    <widget name="list" position="128,150" size="640,180" selectionDisabled="1" transparent="1" itemHeight="30" zPosition="2" />
+    <widget name="suggestionlist" position="116,355" size="666,116" selectionDisabled="1" transparent="1" scrollbarMode="showOnDemand" itemHeight="23" zPosition="1" />
+    <widget name="captcha" position="693,480" size="200,133" transparent="1" alphatest="on" zPosition="1" />
+    <eLabel name="title" position="1,1" size="897,40" backgroundColor="#20000000" />
+    <eLabel name="header" position="1,43" size="897,40" backgroundColor="#20000000" />
+    <eLabel name="text" position="1,85" size="897,40" backgroundColor="#20000000" />
+    <eLabel name="list" position="1,127" size="897,225" backgroundColor="#20000000" />
+    <eLabel name="suggestionlist" position="1,354" size="897,118" backgroundColor="#20000000" />
+    <eLabel name="bg down" position="1,474" size="897,146" backgroundColor="#20000000" />
+</screen>

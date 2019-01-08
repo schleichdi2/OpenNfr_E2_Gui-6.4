@@ -1,0 +1,15 @@
+<screen name="VirtualKeyBoardExtInputHelpDialog" position="442,529" zPosition="9999" size="403,133" backgroundColor="#80ffffff" flags="wfNoBorder">
+    <eLabel position="1,1" size="400,131" backgroundColor="#20000000" zPosition="-1" />
+    <widget name="key1" position="6,6" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key2" position="136,6" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key3" position="266,6" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key4" position="6,36" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key5" position="136,36" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key6" position="266,36" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key7" position="6,66" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key8" position="136,66" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key9" position="266,66" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="help1" position="6,96" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="key0" position="136,96" size="130,30" font="mediaportal;16" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+    <widget name="help2" position="266,96" size="130,30" font="mediaportal;18" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#20000000" />
+</screen>

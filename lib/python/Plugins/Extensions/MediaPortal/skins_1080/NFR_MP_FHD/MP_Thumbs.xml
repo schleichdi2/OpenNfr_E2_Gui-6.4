@@ -1,0 +1,29 @@
+<!-- ThumbsScreen -->
+  <screen name="MediaPortal_Thumbs" position="0,0" size="1920,1080" title="MediaPortal" flags="wfNoBorder">
+    <ePixmap position="center,center" zPosition="-10" size="1920,1080" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/edit.png" />
+    <widget source="global.CurrentTime" render="Label" position="1690,42" size="150,60" font="LCD; 55" halign="right" foregroundColor="white" backgroundColor="white" transparent="1">
+      <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget source="global.CurrentTime" render="Label" position="1166,50" size="550,45" font="LCD; 42" halign="right" foregroundColor="grey" backgroundColor="grey" transparent="1">
+      <convert type="ClockToText">Format:%A, %d.%m.%Y</convert>
+    </widget>
+    <widget name="Thumb" position="57,370" size="200,60" halign="right" backgroundColor="black" font="Regular;40" transparent="1" />
+    <widget name="thumb" position="266,370" size="200,60" halign="left" backgroundColor="black" font="Regular;40" transparent="1" />
+    <widget name="Page" position="516,370" size="450,60" halign="right" backgroundColor="black" foregroundColor="white" font="Regular;40" transparent="1" />
+    <widget name="page" position="969,370" size="900,60" halign="left" backgroundColor="black" foregroundColor="white" font="Regular;40" transparent="1" />
+    <eLabel backgroundColor="grey" text="MediaPortal" font="LCD; 42" halign="center" valign="center" position="74,50" size="720,45" transparent="1" foregroundColor="grey" />
+    <widget backgroundColor="grey" font="LCD; 50" foregroundColor="grey" halign="center" name="title" position="55,215" size="1816,60" transparent="1" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/yellow.png" position="1066,1000" size="300,76" alphatest="blend" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/blue.png" position="1565,1000" size="300,76" alphatest="blend" />
+    <widget name="F1" render="Label" position="77,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F2" render="Label" position="590,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F3" render="Label" position="1088,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <widget name="F4" render="Label" position="1587,1017" size="255,34" zPosition="1" font="LCD; 34" halign="center" valign="center" backgroundColor="white" transparent="1" />
+    <ePixmap position="1414,1019" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_exit.png" transparent="1" alphatest="blend" />
+    <ePixmap position="418,1020" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_help.png" transparent="1" alphatest="blend" />
+    <ePixmap position="913,1023" size="80,31" zPosition="10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/key_info.png" transparent="1" alphatest="blend" />
+    <ePixmap name="selector" position="963,285" size="930,10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector.png" zPosition="1" />
+    <ePixmap name="selector" position="35,285" size="930,10" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/selector.png" zPosition="1" />
+    <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />

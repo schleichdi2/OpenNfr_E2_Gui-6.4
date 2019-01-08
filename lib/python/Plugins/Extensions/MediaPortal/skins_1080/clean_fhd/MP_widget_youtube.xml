@@ -1,0 +1,21 @@
+  <!-- YouTube widgets -->
+  <widget name="Metalang" position="1290,660" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="metalang" position="1550,660" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" />
+  <widget name="Regionid" position="1290,695" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="regionid" position="1550,695" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" noWrap="1" />
+  <widget name="Query" position="1290,730" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="query" position="1550,730" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" noWrap="1" />
+  <widget name="Time" position="1290,765" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="time" position="1550,765" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" />
+  <widget name="Author" position="1290,800" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="author" position="1550,800" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" />
+  <widget name="3D" position="1290,835" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="3d" position="1550,835" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" noWrap="1" />
+  <widget name="Duration" position="1290,870" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="duration" position="1550,870" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" />
+  <widget name="Keywords" position="1290,905" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="keywords" position="1550,905" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" noWrap="1" />
+  <widget name="Reserve1" position="1290,940" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="reserve1" position="1550,940" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" noWrap="1" />
+  <widget name="Reserve2" position="1290,975" size="240,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" halign="right" />
+  <widget name="reserve2" position="1550,975" size="350,35" backgroundColor="#20000000" transparent="1" font="mediaportal;28" noWrap="1" />  

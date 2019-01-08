@@ -1,0 +1,51 @@
+<screen title="TMDb - The Movie Database" name="TMDB" position="center,center" size="1280,720" flags="wfNoBorder" backgroundColor="#80ffffff">
+    <widget backgroundColor="#20000000" font="mediaportal_clean;40" halign="right" position="960,6" render="Label" size="133,60" source="global.CurrentTime" transparent="1" valign="center">
+        <convert type="ClockToText">Default</convert>
+    </widget>
+    <widget backgroundColor="#20000000" font="mediaportal_clean;20" position="1113,6" render="Label" size="153,60" source="global.CurrentTime" transparent="1" valign="center">
+        <convert type="ClockToText">Format:%A                   %d. %B</convert>
+    </widget>
+    <eLabel backgroundColor="#20000000" text="MediaPortal" font="mediaportal_clean;33" halign="left" valign="center" position="33,6" shadowColor="#00000000" shadowOffset="2,2" size="800,60" transparent="1" />
+    <eLabel name="bg_up" position="6,6" size="1266,60" zPosition="-1" />
+    <eLabel name="bg_titel" position="6,73" size="1266,73" zPosition="-1" />
+    <eLabel name="bg_station" position="6,153" size="1266,72" zPosition="-1" />
+    <eLabel name="bg_list" position="6,233" size="630,446" zPosition="-1" />
+    <eLabel name="bg_cover" position="880,233" size="392,446" zPosition="-1" />
+    <eLabel name="bg_cover" position="643,233" size="230,446" zPosition="-1" />
+    <eLabel name="bg_down" position="6,686" size="1266,26" zPosition="-1" />
+    <eLabel name="button red" position="10,711" size="243,1" backgroundColor="#00f23d21" zPosition="1" />
+    <eLabel name="button green" position="256,711" size="243,1" backgroundColor="#0031a500" zPosition="1" />
+    <eLabel name="button yellow" position="503,711" size="243,1" backgroundColor="#00e5b243" zPosition="1" />
+    <eLabel name="button blue" position="750,711" size="243,1" backgroundColor="#000064c7" zPosition="1" />
+    <widget name="title" backgroundColor="#20000000" font="mediaportal_clean;33" halign="center" position="13,80" size="1253,60" transparent="1" />
+    <widget name="searchinfo" position="13,160" size="1253,30" zPosition="2" transparent="1" font="mediaportal_clean;23" halign="center" backgroundColor="#20000000" />
+    <widget name="subtitle" position="13,190" size="1253,30" zPosition="2" transparent="1" font="mediaportal_clean;23" halign="center" backgroundColor="#20000000" />
+    <widget name="fulldescription" position="13,240" size="616,433" font="mediaportal_clean;16" />
+    <widget name="coverArt" position="650,370" size="216,303" alphatest="blend" />
+    <widget name="rating10" position="644,293" size="226,23" pixmap="~/clean_hd/images/stars-full10.png" zPosition="4" transparent="1" backgroundColor="#20000000" />
+    <widget name="rating0" position="644,293" size="226,23" pixmap="~/clean_hd/images/stars-empty10.png" zPosition="3" transparent="1" alphatest="blend" backgroundColor="#20000000" />
+    <widget name="fsk_txt" position="886,303" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="fsk" position="970,303" size="300,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="year_txt" position="886,336" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="year" position="970,336" size="300,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="country_txt" position="886,370" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="country" position="970,373" size="300,26" zPosition="2" transparent="1" font="mediaportal;14" backgroundColor="#20000000" />
+    <widget name="runtime_txt" position="886,403" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="runtime" position="970,403" size="300,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="votes_txt" position="886,436" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="votes" position="970,436" size="300,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="director_txt" position="886,470" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="director" position="970,470" size="300,46" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="author_txt" position="886,523" size="266,26" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="author" position="970,523" size="300,46" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="genre_txt" position="886,576" size="66,26" font="mediaportal_clean; 16" backgroundColor="#20000000" />
+    <widget name="genre" position="970,576" size="300,46" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="studio_txt" position="886,633" size="66,26" font="mediaportal_clean; 16" backgroundColor="#20000000" />
+    <widget name="studio" position="970,630" size="300,46" zPosition="2" transparent="1" font="mediaportal_clean;16" backgroundColor="#20000000" />
+    <widget name="F1" position="10,686" size="243,26" transparent="1" font="mediaportal_clean; 16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+    <widget name="F2" position="256,686" size="243,26" transparent="1" font="mediaportal_clean; 16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+    <widget name="F3" position="503,686" size="243,26" transparent="1" font="mediaportal_clean; 16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+    <widget name="F4" position="750,686" size="243,26" transparent="1" font="mediaportal_clean; 16" backgroundColor="#20000000" valign="center" halign="center" zPosition="1" />
+    <eLabel name="button exit" position="1213,690" size="40,18" backgroundColor="#00000000" text="EXIT" font="mediaportal; 10" foregroundColor="#00ffffff" halign="center" valign="center" shadowColor="#00000000" shadowOffset="-3,-3" zPosition="1" />
+    <eLabel name="button exit bg" position="1212,689" size="42,20" backgroundColor="#00616161" zPosition="0" />
+</screen>

@@ -1,0 +1,3 @@
+<screen backgroundColor="transparent" name="PVRState" position="center,233" size="200,53" flags="wfNoBorder" zPosition="1000">
+	<widget backgroundColor="background" name="state" position="0,0" size="200,53" font="mediaportal;40" halign="center" transparent="1"/>
+</screen>

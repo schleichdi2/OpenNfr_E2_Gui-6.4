@@ -1,0 +1,7 @@
+﻿// In diese Datei können eigene YouTube Kanäle eingetragen werden
+// Diese Datei sollte am besten mit Notepad++ editiert werden
+// Die Kodierung sollte auf UTF-8 gestellt sein
+
+// Beispiele:
+<name>Rocket Beans TV (via Username)</name><user>ROCKETBEANSTV</user>
+<name>Rocket Beans TV (via Channel-Id)</name><user>UCQvTDmHza8erxZqDkjQ4bQQ</user>
