@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -114,7 +114,7 @@ class TnAflixGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '%20')
+			self.suchString = urllib.quote(callback).replace(' ', '%20')
 			Link = '%s' % (self.suchString)
 			Name = "--- Search ---"
 			self.session.open(TnAflixFilmScreen, Link, Name, self.portal, self.baseurl)
@@ -208,7 +208,8 @@ class TnAflixFilmScreen(MPScreen, ThumbsHelper):
 			url = 'https://cdn-fck.empflix.com/empflix/%s-1.fid?key=%s&VID=%s&nomp4=1&catID=0&rollover=1&startThumb=31&embed=0&utm_source=0&multiview=0&premium=1&country=0user=0&vip=1&cd=0&ref=0&alpha' % (vk, nk, vid)
 		else:
 			url = 'https://cdn-fck.tnaflix.com/tnaflix/%s.fid?key=%s&VID=%s&nomp4=1&catID=0&rollover=1&startThumb=31&embed=0&utm_source=0&multiview=0&premium=1&country=0user=0&vip=1&cd=0&ref=0&alpha' % (vk, nk, vid)
-		twAgentGetPage(url, timeout=30).addCallback(self.getVideoPage).addErrback(self.dataError)
+		ref = "https://cdn-fck.tnaflix.com/flixPlayer_v1.12.2.44.swf?v=1.0"
+		twAgentGetPage(url, headers={'Referer':ref}, timeout=30).addCallback(self.getVideoPage).addErrback(self.dataError)
 
 	def getVideoPage(self, data):
 		url = re.findall('<videoLink>.*?//(.*?)(?:]]>|</videoLink>)', data, re.S)

@@ -98,26 +98,34 @@ class youtubeUrl(object):
 	elif videoPrio == 2: #720p
 		self.VIDEO_FMT_PRIORITY_MAP = {
 			'22'  : 1, #MP4 720p
-			'35'  : 2, #FLV 480p
-			'18'  : 4, #MP4 360p
-			'34'  : 5, #FLV 360p
+			'35'  : 3, #FLV 480p
+			'18'  : 5, #MP4 360p
+			'34'  : 6, #FLV 360p
 		}
 		if config_mp.mediaportal.youtubeenabledash480p.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
-			'135' : 3, #MP4 480p (DASH)
+			'135' : 4, #MP4 480p (DASH)
+			})
+		if config_mp.mediaportal.youtubeenabledash720p.value:
+			self.VIDEO_FMT_PRIORITY_MAP.update({
+			'136' : 2, #MP4 720p (DASH)
 			})
 	elif videoPrio == 3: #1080p
 		self.VIDEO_FMT_PRIORITY_MAP = {
 			'299' : 3, #MP4 1080p60 (DASH)
 			'137' : 4, #MP4 1080p (DASH)
 			'22'  : 5, #MP4 720p
-			'35'  : 6, #FLV 480p
-			'18'  : 8, #MP4 360p
-			'34'  : 9, #FLV 360p
+			'35'  : 7, #FLV 480p
+			'18'  : 9, #MP4 360p
+			'34'  : 10, #FLV 360p
 		}
 		if config_mp.mediaportal.youtubeenabledash480p.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
-			'135' : 7, #MP4 480p (DASH)
+			'135' : 8, #MP4 480p (DASH)
+			})
+		if config_mp.mediaportal.youtubeenabledash720p.value:
+			self.VIDEO_FMT_PRIORITY_MAP.update({
+			'136' : 6, #MP4 720p (DASH)
 			})
 		if config_mp.mediaportal.youtubeenablevp9.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
@@ -129,13 +137,17 @@ class youtubeUrl(object):
 			'299' : 5, #MP4 1080p60 (DASH)
 			'137' : 6, #MP4 1080p (DASH)
 			'22'  : 7, #MP4 720p
-			'35'  : 8, #FLV 480p
-			'18'  : 10, #MP4 360p
-			'34'  : 11, #FLV 360p
+			'35'  : 9, #FLV 480p
+			'18'  : 11, #MP4 360p
+			'34'  : 12, #FLV 360p
 		}
 		if config_mp.mediaportal.youtubeenabledash480p.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
-			'135' : 9, #MP4 480p (DASH)
+			'135' : 10, #MP4 480p (DASH)
+			})
+		if config_mp.mediaportal.youtubeenabledash720p.value:
+			self.VIDEO_FMT_PRIORITY_MAP.update({
+			'136' : 8, #MP4 720p (DASH)
 			})
 		if config_mp.mediaportal.youtubeenablevp9.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
@@ -149,13 +161,17 @@ class youtubeUrl(object):
 			'299' : 7, #MP4 1080p60 (DASH)
 			'137' : 8, #MP4 1080p (DASH)
 			'22'  : 9, #MP4 720p
-			'35'  : 10, #FLV 480p
-			'18'  : 12, #MP4 360p
-			'34'  : 13, #FLV 360p
+			'35'  : 11, #FLV 480p
+			'18'  : 13, #MP4 360p
+			'34'  : 14, #FLV 360p
 		}
 		if config_mp.mediaportal.youtubeenabledash480p.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
-			'135' : 11, #MP4 480p (DASH)
+			'135' : 12, #MP4 480p (DASH)
+			})
+		if config_mp.mediaportal.youtubeenabledash720p.value:
+			self.VIDEO_FMT_PRIORITY_MAP.update({
+			'136' : 10, #MP4 720p (DASH)
 			})
 		if config_mp.mediaportal.youtubeenablevp9.value:
 			self.VIDEO_FMT_PRIORITY_MAP.update({
@@ -202,7 +218,7 @@ class youtubeUrl(object):
 		links = {}
 		audio = {}
 		encoded_url_map = ""
-		if self.dash and self.videoPrio > 2:
+		if self.dash and (self.videoPrio >= 3 or (config_mp.mediaportal.youtubeenabledash480p.value and self.videoPrio >= 1) or (config_mp.mediaportal.youtubeenabledash720p.value and self.videoPrio >= 2)):
 			try:
 				encoded_url_map += u"," + flashvars.get('adaptive_fmts', [])
 			except:
@@ -245,7 +261,7 @@ class youtubeUrl(object):
 			try:
 				links[self.VIDEO_FMT_PRIORITY_MAP[str(key)]] = url
 			except KeyError:
-				if self.dash and self.videoPrio > 2:
+				if self.dash and (self.videoPrio >= 3 or (config_mp.mediaportal.youtubeenabledash480p.value and self.videoPrio >= 1) or (config_mp.mediaportal.youtubeenabledash720p.value and self.videoPrio >= 2)):
 					try:
 						audio[self.AUDIO_FMT_PRIORITY_MAP[str(key)]] = url
 					except KeyError:
@@ -253,10 +269,11 @@ class youtubeUrl(object):
 				else:
 					continue
 
-		url = flashvars.get('hlsvp','')
+		hlsdata = videoinfo.replace('\\/','/').replace('\\"','"')
+		url = re.findall('hlsManifestUrl":"(http.*?\.m3u8)"(?:}|,)', hlsdata, re.S)
 		if url:
 			links = {}
-			links[0] = url
+			links[0] = url[-1]
 
 		#print "#####################################################################################"
 		#try:
@@ -268,7 +285,7 @@ class youtubeUrl(object):
 		#print "#####################################################################################"
 		try:
 			self.video_url = links[sorted(links.iterkeys())[0]].encode('utf-8')
-			if self.dash and self.videoPrio > 2:
+			if self.dash:
 				try:
 					if int(re.search('.*?itag=(\d+)', self.video_url).group(1))>100:
 						self.audio_url = audio[sorted(audio.iterkeys())[0]].encode('utf-8')

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -69,7 +69,7 @@ class sporttotalGenreScreen(MPScreen):
 
 	def loadPage(self):
 		self.filmliste = []
-		url = "http://www.sporttotal.tv/live"
+		url = "https://www.sporttotal.tv/live"
 		getPage(url).addCallback(self.parseData).addErrback(self.dataError)
 
 	def parseData(self, data):
@@ -127,14 +127,14 @@ class sporttotalSubGenreScreen(MPScreen):
 			if info:
 				for (url, date, teams, season) in info:
 					match = "%s: %s, %s" % (season.strip(), date.strip(), stripAllTags(teams).strip())
-					url = 'http://www.sporttotal.tv' + url
+					url = 'https://www.sporttotal.tv' + url
 					self.genreliste.append((decodeHtml(match), url))
 		if pre2:
 			info = re.findall('class="table-link".*?tableLink\(\'(.*?)\'.*?class="date-filter">(.*?)</.*?class="teams">(.*?)</.*?class="division">(.*?)</', pre2[0], re.S)
 			if info:
 				for (url, date, teams, season) in info:
 					match = "%s: %s, %s" % (season.strip(), date.strip(), stripAllTags(teams).strip())
-					url = 'http://www.sporttotal.tv' + url
+					url = 'https://www.sporttotal.tv' + url
 					self.genreliste.append((decodeHtml(match), url))
 		if not pre1 and not pre2:
 			self.genreliste.append((_("Currently no streams available"), None))

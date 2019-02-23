@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -46,7 +46,6 @@ MyHeaders= {'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;
 default_cover = "file://%s/beeg.png" % (config_mp.mediaportal.iconcachepath.value + "logos")
 
 beeg_apikey = ''
-beeg_salt = ''
 
 class beegGenreScreen(MPScreen):
 
@@ -79,23 +78,9 @@ class beegGenreScreen(MPScreen):
 		twAgentGetPage(url, agent=IPhone5Agent, headers=MyHeaders).addCallback(self.getApiKeys2).addErrback(self.dataError)
 
 	def getApiKeys2(self, data):
-		cpl = re.findall('<script[^>]+src=["\']((?:/static|(?:https?:)?//static\.beeg\.com)/cpl/\d+\.js.*?)["\']', data, re.S)[0]
-		if cpl.startswith('/static'):
-			cpl = 'https://beeg.com' + cpl
-		twAgentGetPage(cpl, agent=IPhone5Agent, headers=MyHeaders).addCallback(self.getApiKeys3).addErrback(self.dataError)
-
-	def getApiKeys3(self, data):
+		cpl = re.findall('beeg_version = (\d+);', data, re.S)
 		global beeg_apikey
-		beeg_apikey = str(re.findall('beeg_version=(\d+)', data, re.S)[0])
-		global beeg_salt
-		beeg_salt = re.findall('beeg_salt="(.*?)"', data, re.S)[0]
-		if beeg_salt == '' or beeg_apikey == '':
-			message = self.session.open(MessageBoxExt, _("Broken URL parsing, please report to the developers."), MessageBoxExt.TYPE_INFO, timeout=3)
-		else:
-			self.layoutFinished()
-
-	def layoutFinished(self):
-		self.keyLocked = True
+		beeg_apikey = cpl[0]
 		url = "https://beeg.com/api/v6/%s/index/main/0/mobile" % beeg_apikey
 		twAgentGetPage(url, agent=IPhone5Agent, headers=MyHeaders).addCallback(self.genreData).addErrback(self.dataError)
 
@@ -129,7 +114,7 @@ class beegGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Link = self.suchString
 			Name = "--- Search ---"
 			self.session.open(beegFilmScreen, Link, Name)
@@ -186,7 +171,7 @@ class beegFilmScreen(MPScreen, ThumbsHelper):
 
 	def loadData(self, data):
 		self.getLastPage(data, '', '"pages":(.*?),')
-		Videos = re.findall('\{"title":"(.*?)","id":"(.*?)"', data, re.S)
+		Videos = re.findall('\{"title":"(.*?)","id":(\d+)', data, re.S)
 		if Videos:
 			for (Title, VideoId) in Videos:
 				Url = 'https://beeg.com/api/v6/%s/video/%s' % (beeg_apikey, VideoId)
@@ -212,29 +197,12 @@ class beegFilmScreen(MPScreen, ThumbsHelper):
 		url = self['liste'].getCurrent()[0][1]
 		twAgentGetPage(url, agent=IPhone5Agent, headers=MyHeaders).addCallback(self.getVideoPage).addErrback(self.dataError)
 
-	def decrypt_key(self, key):
-		try:
-			import execjs
-			node = execjs.get("Node")
-		except:
-			printl('nodejs not found',self,'E')
-			self.session.open(MessageBoxExt, _("This plugin requires packages python-pyexecjs and nodejs."), MessageBoxExt.TYPE_INFO)
-			return
-		js = 'var jsalt="%s";' % beeg_salt + 'String.prototype.str_split=function(e,t){var n=this;e=e||1,t=!!t;var r=[];if(t){var a=n.length%e;a>0&&(r.push(n.substring(0,a)),n=n.substring(a))}for(;n.length>e;)r.push(n.substring(0,e)),n=n.substring(e);return r.push(n),r};  function jsaltDecode(e){e=decodeURIComponent(e);for(var s=jsalt.length,t="",o=0;o<e.length;o++){var l=e.charCodeAt(o),n=o%s,i=jsalt.charCodeAt(n)%21;t+=String.fromCharCode(l-i)}return t.str_split(3,!0).reverse().join("")};' + 'var key = "%s";' % key +  'vidurl = jsaltDecode(key); return vidurl;'
-		key = str(node.exec_(js))
-		return key
-
-	def decrypt_url(self, encrypted_url):
-		encrypted_url = 'https:' + encrypted_url.replace('/{DATA_MARKERS}/', '/data=pc_XX__%s/' % beeg_apikey)
-		key = re.search('/key=(.*?)%2Cend=', encrypted_url).group(1)
-		if not key:
-			return encrypted_url
-		return encrypted_url.replace(key, self.decrypt_key(key))
-
 	def getVideoPage(self, data):
 		streamlinks = re.findall('\d{3}p":"(.*?)"', data , re.S)
 		if streamlinks:
-			streamlink = self.decrypt_url(streamlinks[-1])
+			streamlink = streamlinks[-1].replace('/{DATA_MARKERS}/', '/data=pc_XX__%s/' % beeg_apikey)
+			if streamlink.startswith('//'):
+				streamlink = "http:" + streamlink
 			Title = self['liste'].getCurrent()[0][0]
 			Cover = self['liste'].getCurrent()[0][2]
 			mp_globals.player_agent = IPhone5Agent

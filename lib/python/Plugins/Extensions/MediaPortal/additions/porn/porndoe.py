@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -80,13 +80,13 @@ class porndoeGenreScreen(MPScreen):
 		getPage(url, agent=agent, cookies=ck).addCallback(self.genreData).addErrback(self.dataError)
 
 	def genreData(self, data):
-		Cats = re.findall('class="item">.*?href="(.*?)".*?data-src="(.*?)".*?class="txt">(.*?)</span', data, re.S)
+		Cats = re.findall('class="item">.*?href="(.*?)".*?data-src="(.*?)".*?class="txt">(.*?)(?:</span|<span)', data, re.S)
 		if Cats:
 			for (Url, Image, Title) in Cats:
 				Url = "https://www.porndoe.com" + Url
 				if Image.startswith('//'):
 					Image = 'https:' + Image
-				self.genreliste.append((Title.replace('&amp;','&'), Url, Image, True))
+				self.genreliste.append((Title.replace('&amp;','&').strip(), Url, Image, True))
 			self.genreliste.sort()
 			self.genreliste.insert(0, ("Longest", "https://www.porndoe.com/videos?sort=duration-down", default_cover, False))
 			self.genreliste.insert(0, ("Most Viewed", "https://www.porndoe.com/videos?sort=views-down", default_cover, False))
@@ -117,7 +117,7 @@ class porndoeGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(porndoeFilmScreen, Link, Name, False)
 
 class porndoeFilmScreen(MPScreen, ThumbsHelper):
@@ -232,7 +232,7 @@ class porndoeFilmScreen(MPScreen, ThumbsHelper):
 	def getVideoPage(self, data):
 		videoPage = re.findall('<source.*?src="(.*?)".*?type="video/mp4".*?label="(\d+)', data, re.S)
 		if videoPage:
-			url = videoPage[-1][0]
+			url = videoPage[0][0]
 			if url.startswith('//'):
 				url = 'http:' + url
 			url = url.replace('%2F','%252F').replace('%3D','%253D').replace('%2B','%252B')

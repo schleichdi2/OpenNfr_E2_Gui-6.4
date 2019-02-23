@@ -197,14 +197,11 @@ class youtubeGenreScreen(MenuHelper):
 			]
 
 		self.HoerspielChannels = [
-			('Audible Hörbücher', 'https://www.youtube.com/user/audibletrailer'),
-			('Björns Hörspiel-TV', 'https://www.youtube.com/user/BjoernsHoerspielTV'),
+			('Audible Deutschland', 'https://www.youtube.com/user/audibletrailer'),
 			('Edgar Allan Poe´s Kaminzimmer', 'https://www.youtube.com/user/EAPoeProductions'),
 			('FRUITY - SOUND - DISASTER', 'https://www.youtube.com/user/MrFruitylooper'),
 			('Hein Bloed', 'https://www.youtube.com/user/Heinbloedful'),
-			('Hörbücher, Hörspiele und mehr', 'https://www.youtube.com/user/BestSound1000'),
 			('Hörspiele und Klassik', 'https://www.youtube.com/user/scyliorhinus'),
-			('LAUSCH - Phantastische Hörspiele', 'https://www.youtube.com/user/merlausch'),
 			('Lauschgoldladen', 'https://www.youtube.com/user/Lauschgoldladen'),
 			('Multipolizei2', 'https://www.youtube.com/user/Multipolizei2'),
 			('Multipolizei3', 'https://www.youtube.com/user/Multipolizei3'),
@@ -221,38 +218,38 @@ class youtubeGenreScreen(MenuHelper):
 			('BMW Deutschland', 'https://www.youtube.com/user/BMWDeutschland'),
 			('BMW Motorrad', 'https://www.youtube.com/user/bmwmotorrad'),
 			('CITROËN Deutschland', 'https://www.youtube.com/user/CitroenDeutschland'),
-			('Ducati Motor Official Channel', 'https://www.youtube.com/user/DucatiMotorHolding'),
+			('Ducati', 'https://www.youtube.com/user/DucatiMotorHolding'),
 			('Fiat Deutschland', 'https://www.youtube.com/user/FiatDeutschland'),
 			('Ford Deutschland', 'https://www.youtube.com/user/fordindeutschland'),
 			('Harley-Davidson Europe', 'https://www.youtube.com/user/HarleyDavidsonEurope'),
 			('Honda Deutschland', 'https://www.youtube.com/user/HondaDeutschlandGmbH'),
-			('Kawasaki Motors Europe', 'https://www.youtube.com/user/Kawasakimotors'),
+			('Kawasaki Motors', 'https://www.youtube.com/user/Kawasakimotors'),
 			('Land Rover Deutschland', 'https://www.youtube.com/user/experiencegermany'),
 			('Mazda Deutschland', 'https://www.youtube.com/user/MazdaDeutschland'),
-			('Mercedes-Benz', 'https://www.youtube.com/user/mercedesbenz'),
-			('MITSUBISHI MOTORS Deutschland', 'https://www.youtube.com/user/MitsubishiMotorsDE'),
+			('Mercedes-Benz Deutschland', 'https://www.youtube.com/user/mercedesbenz'),
+			('Mitsubishi Motors Europe', 'https://www.youtube.com/channel/UCejAnh9OrFJ_ubho2IIAexQ'),
 			('Moto Guzzi', 'https://www.youtube.com/user/motoguzziofficial'),
 			('Nissan Deutschland', 'https://www.youtube.com/user/NissanDeutsch'),
-			('Porsche Channel', 'https://www.youtube.com/user/Porsche'),
+			('Porsche', 'https://www.youtube.com/user/Porsche'),
 			('SEAT Deutschland', 'https://www.youtube.com/user/SEATde'),
 			('ŠKODA AUTO Deutschland', 'https://www.youtube.com/user/skodade'),
-			('WAYOFLIFE SUZUKI', 'https://www.youtube.com/user/GlobalSuzukiChannel'),
+			('SUZUKI Way of Life!', 'https://www.youtube.com/user/GlobalSuzukiChannel'),
 			('Toyota Deutschland', 'https://www.youtube.com/user/toyota'),
 			('Official Triumph Motorcycles', 'https://www.youtube.com/user/OfficialTriumph'),
 			('Volkswagen', 'https://www.youtube.com/user/myvolkswagen'),
 			('Yamaha Motor Europe', 'https://www.youtube.com/user/YamahaMotorEurope'),
-			('AUTO BILD TV', 'https://www.youtube.com/user/Autobild'),
-			('autotouring-TV', 'https://www.youtube.com/user/autotouring'),
-			('ADAC e.V.', 'https://www.youtube.com/user/adac'),
+			('AUTO BILD', 'https://www.youtube.com/user/Autobild'),
+			('ADAC', 'https://www.youtube.com/user/adac'),
 			('MOTORVISION BIKE', 'https://www.youtube.com/user/motorvisionbike'),
-			('www.MOTORRADonline.de', 'https://www.youtube.com/user/motorrad'),
+			('MOTORRADonline.de', 'https://www.youtube.com/user/motorrad'),
 			('TOURENFAHRER', 'https://www.youtube.com/user/Tourenfahrer'),
-			('DEKRA Automobil GmbH', 'https://www.youtube.com/user/DEKRAAutomobil'),
+			('DEKRA Automobil', 'https://www.youtube.com/user/DEKRAAutomobil'),
 			('Motorvision', 'https://www.youtube.com/user/MOTORVISIONcom'),
-			('Auto Motor & Sport', 'https://www.youtube.com/user/automotorundsport'),
-			('1000PS Motorradvideos', 'https://www.youtube.com/user/1000ps'),
+			('auto motor und sport', 'https://www.youtube.com/user/automotorundsport'),
+			('1000PS - die starke Motorradseite im Internet', 'https://www.youtube.com/user/1000ps'),
 			('Motorrad Online', 'https://www.youtube.com/user/motorrad'),
-			('DMAX MOTOR', 'https://www.youtube.com/user/DMAX'),
+			('Hyundai Deutschland', 'https://www.youtube.com/user/HyundaiMotorGermany'),
+			('Kia Motors Deutschland', 'https://www.youtube.com/user/KiaMotorsDeutschland'),
 			]
 		self.CarChannels.sort(key=lambda t : t[0].lower())
 		self.subCatCarChannels = []
@@ -261,25 +258,22 @@ class youtubeGenreScreen(MenuHelper):
 
 		self.GamingChannels = [
 			('THCsGameChannel', 'https://www.youtube.com/user/THCsGameChannel'),
-			('Game Tube', 'https://www.youtube.com/user/GameTube'),
-			('Electronic Arts GmbH', 'https://www.youtube.com/user/ElectronicArtsDE'),
+			('GameTube', 'https://www.youtube.com/user/GameTube'),
+			('EA - Electronic Arts Deutschland', 'https://www.youtube.com/user/ElectronicArtsDE'),
 			('Ubisoft', 'https://www.youtube.com/user/ubisoft'),
 			('PlayStation', 'https://www.youtube.com/user/PlayStation'),
-			('Game Star', 'https://www.youtube.com/user/GameStarDE'),
-			('Assassins Creed DE', 'https://www.youtube.com/user/AssassinsCreedDE'),
-			('XboxDE\'s channel', 'https://www.youtube.com/user/XboxDE'),
-			('Disney Deutschland', 'https://www.youtube.com/user/WaltDisneyStudiosDE'),
-			('GIGA', 'https://www.youtube.com/user/giga'),
+			('GameStar', 'https://www.youtube.com/user/GameStarDE'),
+			('Assassin\'s Creed DE', 'https://www.youtube.com/user/AssassinsCreedDE'),
+			('XboxDACH', 'https://www.youtube.com/user/XboxDE'),
+			('GIGA GAMES', 'https://www.youtube.com/user/giga'),
 			('Gronkh', 'https://www.youtube.com/user/Gronkh'),
 			('Sarazar', 'https://www.youtube.com/user/SarazarLP'),
 			('RANDOM ENCOUNTER', 'https://www.youtube.com/user/thegeekmythology'),
-			('gameinside tv', 'https://www.youtube.com/user/gameinsideshow'),
-			('Comedy Gaming mit Pink Panter', 'https://www.youtube.com/user/WartimeDignity'),
-			('CommanderKrieger - Baff Disch', 'https://www.youtube.com/user/CommanderKrieger'),
+			('Game Inside', 'https://www.youtube.com/user/gameinsideshow'),
+			('Pink Panter - Comedy', 'https://www.youtube.com/user/WartimeDignity'),
 			('Danny Burnage - Darauf ein Snickers-Eis!', 'https://www.youtube.com/user/TheDannyBurnage'),
 			('m4xFPS - Keks mit ♥', 'https://www.youtube.com/user/m4xFPS'),
-			('Kanal von xTheSolution', 'https://www.youtube.com/user/xTheSolution'),
-			('TheDoctorKaboom', 'https://www.youtube.com/user/TheDoctorKaboom'),
+			('xTheSolution', 'https://www.youtube.com/user/xTheSolution'),
 			]
 		self.GamingChannels.sort(key=lambda t : t[0].lower())
 		self.subCatGamingChannels = []
@@ -288,16 +282,16 @@ class youtubeGenreScreen(MenuHelper):
 
 		self.MusicChannels = [
 			('Ultra Music', 'https://www.youtube.com/user/UltraRecords'),
-			('ArmadaMusic.TV', 'https://www.youtube.com/user/armadamusic'),
-			('YOU LOVE DANCE.TV', 'https://www.youtube.com/user/Planetpunkmusic'),
-			('Classical Music Only Channel', 'https://www.youtube.com/user/ClassicalMusicOnly'),
+			('Armada Music', 'https://www.youtube.com/user/armadamusic'),
+			('You Love Dance.TV', 'https://www.youtube.com/user/Planetpunkmusic'),
+			('Classical Music Only', 'https://www.youtube.com/user/ClassicalMusicOnly'),
 			('Music Channel Romania', 'https://www.youtube.com/user/1musicchannel'),
-			('50 Cent Music', 'https://www.youtube.com/user/50CentMusic'),
+			('50 Cent', 'https://www.youtube.com/user/50CentMusic'),
 			('GMC Schlager', 'https://www.youtube.com/user/BlueSilverstar'),
 			('Classical Music Channel / Klassische', 'https://www.youtube.com/user/BPanther'),
 			('EMI Music Germany', 'https://www.youtube.com/user/EMIMusicGermany'),
 			('Sony Music Germany', 'https://www.youtube.com/user/SMECatalogGermany'),
-			('Kanal von MyWorldCharts', 'https://www.youtube.com/user/MyWorldCharts'),
+			('MyWorldCharts', 'https://www.youtube.com/user/MyWorldCharts'),
 			('CaptainCharts', 'https://www.youtube.com/user/CaptainCharts'),
 			('PowerCharts', 'https://www.youtube.com/user/PowerCharts'),
 			('Kontor.TV', 'https://www.youtube.com/user/kontor'),
@@ -306,14 +300,12 @@ class youtubeGenreScreen(MenuHelper):
 			('BigCityBeats', 'https://www.youtube.com/user/HammerDontHurtEm'),
 			('The Best Of', 'https://www.youtube.com/user/alltimebestofmusic'),
 			('Tomorrowland', 'https://www.youtube.com/user/TomorrowlandChannel'),
-			('DrDoubleT', 'https://www.youtube.com/user/DrDoubleT'),
 			('►Techno, HandsUp & Dance◄', 'https://www.youtube.com/user/DJFlyBeatMusic'),
 			('Zooland Records', 'https://www.youtube.com/user/zoolandMusicGmbH'),
 			('Bazooka Records', 'https://www.youtube.com/user/bazookalabel'),
 			('Crystal Lake Music', 'https://www.youtube.com/user/CrystaLakeTV'),
 			('SKRILLEX', 'https://www.youtube.com/user/TheOfficialSkrillex'),
 			('AggroTV', 'https://www.youtube.com/user/aggroTV'),
-			('Bands & ART-Ellie Goulding', 'https://www.youtube.com/user/EllieGouldingEmpire'),
 			('Bands & ART-Psyche', 'https://www.youtube.com/user/thandewye'),
 			('Bands & ART-Joint Venture', 'https://www.youtube.com/user/srudlak'),
 			('Bands & ART-Madonna', 'https://www.youtube.com/user/madonna'),
@@ -439,12 +431,22 @@ class youtubeGenreScreen(MenuHelper):
 		self.channelId = None
 
 	def initSubCat(self):
-		hl = 'en-US'
-		rc = 'US'
-		url = 'https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&hl=%s&regionCode=%s&key=%s' % (hl, rc, APIKEYV3)
-		twAgentGetPage(url, agent=agent, headers=std_headers).addCallback(self.parseCats)
+		if fileExists("/tmp/mp_yt_cache"):
+			tmp = open("/tmp/mp_yt_cache","r")
+			data = tmp.read()
+			tmp.close()
+			self.parseCats(data)
+		else:
+			hl = 'en-US'
+			rc = 'US'
+			url = 'https://www.googleapis.com/youtube/v3/videoCategories?part=snippet&hl=%s&regionCode=%s&key=%s' % (hl, rc, APIKEYV3)
+			twAgentGetPage(url, agent=agent, headers=std_headers).addCallback(self.parseCats)
 
 	def parseCats(self, data):
+		if not fileExists("/tmp/mp_yt_cache"):
+			tmp = open("/tmp/mp_yt_cache","w")
+			tmp.write(data)
+			tmp.close()
 		data = json.loads(data)
 		strings = [_('Autos & Vehicles'), _('Comedy'), _('Education'), _('Entertainment'), _('Film & Animation'), _('Gaming'), _('Howto & Style'), _('Music'), _('News & Politics'), _('People & Blogs'), _('Pets & Animals'), _('Science & Technology'), _('Sports'), _('Travel & Events')]
 		for item in data.get('items', {}):

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -102,7 +102,7 @@ class tubepornclassicGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = callback.replace(' ', '%20')
+			Link = urllib.quote(callback).replace(' ', '%20')
 			self.session.open(tubepornclassicFilmScreen, Link, Name)
 
 class tubepornclassicFilmScreen(MPScreen, ThumbsHelper, txxxcrypt):
@@ -158,7 +158,8 @@ class tubepornclassicFilmScreen(MPScreen, ThumbsHelper, txxxcrypt):
 		Movies = re.findall('class="item.*?<a\shref="(https?://de.tubepornclassic.com/videos/.*?)".*?class="thumb.*?src="(.*?)".*?\s+alt="(.*?)".*?class="duration">(.*?)</div.*?class="added">(.*?)</div.*?class="views ico ico-eye">(.*?)</div', data, re.S)
 		if Movies:
 			for (Url, Image, Title, Runtime, Added, Views) in Movies:
-				Image = Image.replace('/1.jpg','/15.jpg')
+				if "240x180" in Image:
+					Image = Image.split('240x180')[0] + "preview.jpg"
 				self.filmliste.append((decodeHtml(Title), Url, Image, Runtime, Views.replace(' ',''), stripAllTags(Added)))
 		if len(self.filmliste) == 0:
 			self.filmliste.append((_('No movies found!'), None, None, None, None, None))

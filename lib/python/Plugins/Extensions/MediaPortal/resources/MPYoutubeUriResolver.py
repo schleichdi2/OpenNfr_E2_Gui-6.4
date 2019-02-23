@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -97,8 +97,8 @@ try:
 			return True
 
 		def parseLive(self, data, service):
-			data = data.replace('\/','/')
-			urls = re.findall('hlsvp":"(http.*?\.m3u8)","', data, re.S)
+			data = data.replace('\\/','/').replace('\\"','"')
+			urls = re.findall('hlsManifestUrl":"(http.*?\.m3u8)"(?:}|,)', data, re.S)
 			if urls:
 				uri = urls[-1]
 				try:

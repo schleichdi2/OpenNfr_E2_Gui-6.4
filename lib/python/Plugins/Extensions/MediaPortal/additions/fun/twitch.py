@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -94,7 +94,7 @@ class twitchMainScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = self['liste'].getCurrent()[0][0]
 			ID = self['liste'].getCurrent()[0][1]
-			self.suchString = callback.replace(' ', '%20')
+			self.suchString = urllib.quote(callback).replace(' ', '%20')
 			self.session.open(twitchGames, self.suchString, Name, ID)
 
 class twitchGames(MPScreen):

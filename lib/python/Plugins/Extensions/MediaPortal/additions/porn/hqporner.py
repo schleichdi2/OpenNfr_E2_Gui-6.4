@@ -42,7 +42,7 @@ class hqpornerGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Link = self.suchString
 			Name = self['liste'].getCurrent()[0][0]
 			self.session.open(hqpornerListScreen, Link, Name)

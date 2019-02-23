@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -99,7 +99,7 @@ class befuckGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Link = '?q=%s' % self.suchString
 			Name = self['liste'].getCurrent()[0][0]
 			self.session.open(befuckListScreen, Link, Name)

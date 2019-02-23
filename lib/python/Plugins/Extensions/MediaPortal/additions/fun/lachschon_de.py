@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -91,7 +91,7 @@ class show_LSDE_Genre(MenuHelper):
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
 			self.suchString = callback
-			qr = self.suchString.replace(' ','+')
+			qr = urllib.quote(self.suchString).replace(' ','+')
 			genreurl = self.mh_baseUrl+(self.mh_genreUrl[self.mh_menuLevel] % qr)+'set_gallery_type=video'
 			self.session.open(LSDE_FilmListeScreen, genreurl, self.mh_genreTitle)
 

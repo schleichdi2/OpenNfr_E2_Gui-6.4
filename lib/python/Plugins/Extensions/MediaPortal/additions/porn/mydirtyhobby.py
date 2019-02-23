@@ -60,7 +60,7 @@ class MDHtoGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(MDHtoFilmScreen, Link, Name)
 
 class MDHtoFilmScreen(MPScreen, ThumbsHelper):

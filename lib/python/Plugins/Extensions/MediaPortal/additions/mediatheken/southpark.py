@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -252,7 +252,7 @@ class SouthparkAktScreen(MPScreen):
 						quality = "phttp"
 					else:
 						quality = "hls"
-					url = "http://www.southpark.de/feeds/video-player/mediagen?uri=mgid:arc:episode:southpark.de:%s&suppressRegisterBeacon=true&suppressRegisterBeacon=true&acceptMethods=%s%s" % (id, quality, self.lang)
+					url = "http://media-utils.mtvnservices.com/services/MediaGenerator/mgid:arc:video:southparkstudios.com:%s?context=Array&format=xml&acceptMethods=%s%s" % (id, quality, self.lang)
 					Titel = self.Name + " - Teil " + str(x)
 					self.filmliste.append((Titel, url, self.Link))
 			self.ml.setList(map(self._defaultlistleft, self.filmliste))

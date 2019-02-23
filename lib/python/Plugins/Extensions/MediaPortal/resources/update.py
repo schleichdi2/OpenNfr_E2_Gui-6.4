@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -129,19 +129,14 @@ class MPUpdateScreen(MPScreen):
 			self.container.appClosed_conn = self.container.appClosed.connect(self.finishedPluginUpdate)
 			self.container.stdoutAvail_conn = self.container.stdoutAvail.connect(self.mplog)
 
-			f = open("/etc/apt/apt.conf", "r")
-			arch = ''.join(f.readlines()).strip()
-			arch = re.findall('Architecture "(.*?)";', arch, re.S)[0]
-
+			feed = ''
 			tmp_infolines = self.html.splitlines()
-			files = ''
 			for i in range(0, len(tmp_infolines)):
-				if re.match(".*?/update/",tmp_infolines[i], re.S):
-					file = "wget -nv -O /tmp/mediaportal/update/%s %s" % (tmp_infolines[i].split('/update/')[-1].replace('&&ARCH&&', arch), tmp_infolines[i].replace('&&ARCH&&', arch))
-					files = files + ' && ' + file
-			download = files.strip(' && ')
-
-			self.container.execute("mkdir -p /tmp/mediaportal/update && %s && cd /tmp/mediaportal/update/ && dpkg-scanpackages . | gzip -1c > Packages.gz && echo deb file:/tmp/mediaportal/update ./ > /etc/apt/sources.list.d/mediaportal.list && apt-get update && apt-get install -y --force-yes enigma2-plugin-extensions-mediaportal && rm -r /tmp/mediaportal/update && rm /etc/apt/sources.list.d/mediaportal.list" % download)
+				if re.match(".*?#FEED#",tmp_infolines[i], re.S):
+					feed = tmp_infolines[i].split('#FEED#')[-1]
+			if not feed:
+				feed = 'https://apt.fury.io/mediaportal/'
+			self.container.execute("rm -f /etc/apt/sources.list.d/mediaportal.list && echo deb [trusted=yes] %s / > /etc/apt/sources.list.d/mediaportal.list && apt-get update && apt-get --only-upgrade install -y enigma2-plugin-extensions-mediaportal" % feed)
 		else:
 			self.container.appClosed.append(self.finishedPluginUpdate)
 			self.container.stdoutAvail.append(self.mplog)

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -226,7 +226,7 @@ class RadioSubValueGenreScreen(MPScreen):
 
 		self.session.open(RadioListeScreen, self.topgenre, self.url.replace('valuesofcategory','broadcastsofcategory'), Value)
 
-class RadioListeScreen(MPScreen, ThumbsHelper, SearchHelper):
+class RadioListeScreen(MPScreen, ThumbsHelper):
 
 	def __init__(self, session, genre, url, value=None, sub=''):
 		self.genre = genre
@@ -234,14 +234,13 @@ class RadioListeScreen(MPScreen, ThumbsHelper, SearchHelper):
 		self.value = value
 		self.sub = sub
 
-		MPScreen.__init__(self, session, skin='MP_Plugin', widgets=('MP_widget_search',), default_cover=default_cover)
+		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
 		ThumbsHelper.__init__(self)
-		SearchHelper.__init__(self)
 
 		self["actions"] = ActionMap(["MP_Actions"], {
 			"ok"    : self.keyOK,
 			"0" : self.closeAll,
-			"long5" : self.keyShowThumb,
+			"5" : self.keyShowThumb,
 			"up" : self.keyUp,
 			"down" : self.keyDown,
 			"right" : self.keyRight,
@@ -267,15 +266,6 @@ class RadioListeScreen(MPScreen, ThumbsHelper, SearchHelper):
 		self['liste'] = self.ml
 
 		self.onLayoutFinish.append(self.loadPage)
-
-	def goToNumber(self, num):
-		if self.sub == '':
-			self.keyNumberGlobal(num, self.streamList)
-			self.showSearchkey(num)
-
-	def goToLetter(self, key):
-		if self.sub == '':
-			self.keyLetterGlobal(key, self.streamList)
 
 	def loadPage(self):
 		self.keyLocked = True
@@ -314,8 +304,9 @@ class RadioListeScreen(MPScreen, ThumbsHelper, SearchHelper):
 		if len(self.streamList) == 0:
 			self.streamList.append((_('No stations found!'), None, None))
 		self.ml.setList(map(self._defaultlistleft, self.streamList))
+		self.ml.moveToIndex(0)
 		self.keyLocked = False
-		self.th_ThumbsQuery(self.streamList, 0, 1, 2, None, None, 1, 1, mode=0)
+		self.th_ThumbsQuery(self.streamList, 0, 1, 2, None, None, self.page, self.lastpage, mode=0)
 		self.showInfos()
 
 	def showInfos(self):

@@ -57,7 +57,7 @@ class pornrewindGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '-')
+			self.suchString = urllib.quote(callback).replace(' ', '-')
 			Name = "--- Search ---"
 			Link = '%s' % (self.suchString)
 			self.session.open(pornrewindFilmScreen, Link, Name)

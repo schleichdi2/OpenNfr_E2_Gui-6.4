@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -71,19 +71,20 @@ class bangbrosGenreScreen(MPScreen):
 
 	def layoutFinished(self):
 		self.keyLocked = True
-		url = "http://bangbrothers.net/category"
+		url = "http://bangbros.com/category"
 		getPage(url, agent=myagent).addCallback(self.genreData).addErrback(self.dataError)
 
 	def genreData(self, data):
 		Cats = re.findall('href="(/category/.*?)".*? class="thmb_pic"><img src="(.*?)".*?class="thmb_ttl">(.*?)</span', data, re.S)
 		if Cats:
 			for (Url, Image, Title) in Cats:
-				Url = 'http://bangbrothers.net%s' % Url
+				Url = 'http://bangbros.com%s' % Url
+				Image = "http:" + Image
 				self.genreliste.append((decodeHtml(Title), Url, Image))
 		self.genreliste.sort()
-		self.genreliste.insert(0, ("Most Viewed", 'http://bangbrothers.net/videos/views', default_cover))
-		self.genreliste.insert(0, ("Most Popular", 'http://bangbrothers.net/videos/popular', default_cover))
-		self.genreliste.insert(0, ("Newest", 'http://bangbrothers.net/videos', default_cover))
+		self.genreliste.insert(0, ("Most Viewed", 'http://bangbros.com/videos/views', default_cover))
+		self.genreliste.insert(0, ("Most Popular", 'http://bangbros.com/videos/popular', default_cover))
+		self.genreliste.insert(0, ("Newest", 'http://bangbros.com/videos', default_cover))
 		self.genreliste.insert(0, ("--- Search ---", "callSuchen", default_cover))
 		self.ml.setList(map(self._defaultlistcenter, self.genreliste))
 		self.ml.moveToIndex(0)
@@ -113,7 +114,7 @@ class bangbrosGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			self.suchString = callback
 			Name = "--- Search ---"
-			Link = self.suchString.replace(' ', '-')
+			Link = urllib.quote(self.suchString).replace(' ', '-')
 			self.session.open(bangbrosFilmScreen, Link, Name)
 
 class bangbrosFilmScreen(MPScreen, ThumbsHelper):
@@ -158,7 +159,7 @@ class bangbrosFilmScreen(MPScreen, ThumbsHelper):
 		self['name'].setText(_('Please wait...'))
 		self.filmliste = []
 		if re.match(".*?Search", self.Name):
-			url = "http://bangbrothers.net/search/videos/%s/%s" % (self.Link, str(self.page))
+			url = "http://bangbros.com/search/videos/%s/%s" % (self.Link, str(self.page))
 		else:
 			if self.page == 1:
 				url = self.Link

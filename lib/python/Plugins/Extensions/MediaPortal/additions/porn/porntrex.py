@@ -112,7 +112,7 @@ class porntrexGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = callback.replace(' ', '-')
+			Link = urllib.quote(callback).replace(' ', '-')
 			self.session.open(porntrexFilmScreen, Link, Name, self.portal, self.baseurl)
 
 	def keySetup(self):
@@ -237,18 +237,32 @@ class porntrexFilmScreen(MPScreen, ThumbsHelper):
 
 	def loadData(self, data):
 		self.getLastPage(data, 'class="pagination"(.*?)</ul>')
-		Movies = re.findall('class="video-item.*?href="(.*?)"\stitle="(.*?)".*?data-(?:original|src)="(.*?)".*?</a>(.*?)class="ico.*?class="viewsthumb">(.*?)\sviews.*?clock-o"></i>(.*?)</div.*?list-unstyled">.*?<li>(.*?)</li', data, re.S)
-		if Movies:
-			for (url, title, image, private, views, runtime, added) in Movies:
-				if image.startswith('//'):
-					image = 'https:' + image
-				runtime = runtime.strip()
-				views = views.replace(' ','')
-				if "private" in private:
-					private = True
-				else:
-					private = False
-				self.filmliste.append((decodeHtml(title), url, image, runtime, views, added, private))
+		if self.portal == "Porntrex.com":
+			Movies = re.findall('class="video-preview.*?href="(.*?)".*?data-(?:original|src)="(.*?)".*?alt="(.*?)".*?</a>(.*?)class="ico.*?class="viewsthumb">(.*?)\sviews.*?clock-o"></i>(.*?)</div.*?list-unstyled">.*?<li>(.*?)</li', data, re.S)
+			if Movies:
+				for (url, image, title, private, views, runtime, added) in Movies:
+					if image.startswith('//'):
+						image = 'https:' + image
+					runtime = runtime.strip()
+					views = views.replace(' ','')
+					if "private" in private:
+						private = True
+					else:
+						private = False
+					self.filmliste.append((decodeHtml(title), url, image, runtime, views, added, private))
+		else:
+			Movies = re.findall('class="video-item.*?href="(.*?)"\stitle="(.*?)".*?data-(?:original|src)="(.*?)".*?</a>(.*?)class="ico.*?class="viewsthumb">(.*?)\sviews.*?clock-o"></i>(.*?)</div.*?list-unstyled">.*?<li>(.*?)</li', data, re.S)
+			if Movies:
+				for (url, title, image, private, views, runtime, added) in Movies:
+					if image.startswith('//'):
+						image = 'https:' + image
+					runtime = runtime.strip()
+					views = views.replace(' ','')
+					if "private" in private:
+						private = True
+					else:
+						private = False
+					self.filmliste.append((decodeHtml(title), url, image, runtime, views, added, private))
 		if len(self.filmliste) == 0:
 			self.filmliste.append((_('No videos found!'), None, None, '', '', '', False))
 		self.ml.setList(map(self._defaultlistleft, self.filmliste))

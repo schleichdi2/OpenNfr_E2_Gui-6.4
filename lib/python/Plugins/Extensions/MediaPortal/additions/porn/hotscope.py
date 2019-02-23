@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -118,7 +118,7 @@ class hotscopeGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(hotscopeFilmScreen, Link, Name)
 
 class hotscopeFilmScreen(MPScreen, ThumbsHelper):

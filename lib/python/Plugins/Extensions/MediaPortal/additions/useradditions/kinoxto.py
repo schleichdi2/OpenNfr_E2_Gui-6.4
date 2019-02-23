@@ -178,7 +178,7 @@ class kxKino(MPScreen, ThumbsHelper):
 				self.streamList.append((decodeHtml(kxTitle),kxUrl,False,kxLang,kxImage,kxHandlung))
 			self.ml.setList(map(self._defaultlistleftmarked, self.streamList))
 			self.keyLocked = False
-			self.th_ThumbsQuery(self.streamList, 0, 1, 2, None, None, 1, 1)
+			self.th_ThumbsQuery(self.streamList, 0, 1, 4, None, None, 1, 1)
 			self.showInfos()
 
 	def showInfos(self):
@@ -243,7 +243,7 @@ class kxNeuesteKino(MPScreen, ThumbsHelper):
 					self.streamList.append((decodeHtml(kxTitle),kxUrl,False,kxLang,kxImage))
 				self.ml.setList(map(self._defaultlistleftmarked, self.streamList))
 				self.keyLocked = False
-				self.th_ThumbsQuery(self.streamList, 0, 1, 2, None, None, 1, 1)
+				self.th_ThumbsQuery(self.streamList, 0, 1, 4, None, None, 1, 1)
 				self.showInfos()
 
 	def showInfos(self):
@@ -304,17 +304,20 @@ class kxNeuesteOnline(MPScreen, ThumbsHelper):
 		twAgentGetPage(self.kxGotLink, agent=kx_agent, cookieJar=kx_cookies).addCallback(self.parseData).addErrback(self.dataError)
 
 	def parseData(self, data):
-		neueste = re.findall('div class="Opt leftOpt Headlne"><h1>Neue Filme online vom(.*?)</table>', data, re.S)
+		neueste = re.search('div class="Opt leftOpt Headlne"><h1>Neue Filme online vom(.*?)</table>', data, re.S)
 		if neueste:
-			movies = re.findall(' class="Icon"><img src="/gr/sys/lng/(.*?).png".*?class="Title img_preview" rel="(.*?)"><a href="(/Stream/.*?)" title=".*?" class="OverlayLabel">(.*?)</a></td>', neueste[0], re.S)
+			movies = re.findall('<tr(.*?)</tr>', neueste.group(1), re.S)
 			if movies:
-				for (kxLang,kxImage,kxUrl,kxTitle) in movies:
-					kxUrl = kx_url + kxUrl
-					kxImage = kx_url + kxImage
-					self.streamList.append((decodeHtml(kxTitle),kxUrl,False,kxLang,kxImage))
-					self.ml.setList(map(self._defaultlistleftmarked, self.streamList))
+				for movie in movies:
+					mov = re.findall('class="Icon"><img src="/gr/sys/lng/(.*?).png".*?class="Title img_preview" rel="(.*?)"><a href="(/Stream/.*?)" title=".*?" class="OverlayLabel">(.*?)</a></td>', movie, re.S)
+					if mov:
+						for (kxLang,kxImage,kxUrl,kxTitle) in mov:
+							kxUrl = kx_url + kxUrl
+							kxImage = kx_url + kxImage
+							self.streamList.append((decodeHtml(kxTitle),kxUrl,False,kxLang,kxImage))
+				self.ml.setList(map(self._defaultlistleftmarked, self.streamList))
 				self.keyLocked = False
-				self.th_ThumbsQuery(self.streamList, 0, 1, None, None, '<div class="Grahpics">.*?<img src="(.*?)"', 1, 1)
+				self.th_ThumbsQuery(self.streamList, 0, 1, 4, None, None, 1, 1)
 				self.showInfos()
 
 	def showInfos(self):
@@ -384,17 +387,15 @@ class kxABC(MPScreen):
 		auswahl = self['liste'].getCurrent()[0][0]
 		self.session.open(kxABCpage, auswahl, self.Name.replace('A-Z',''))
 
-class kxABCpage(MPScreen, ThumbsHelper):
+class kxABCpage(MPScreen):
 
 	def __init__(self, session, letter, name):
 		self.letter = letter
 		self.Name = name
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
-		ThumbsHelper.__init__(self)
 
 		self["actions"] = ActionMap(["MP_Actions"], {
 			"0": self.closeAll,
-			"5" : self.keyShowThumb,
 			"ok" : self.keyOK,
 			"cancel": self.keyCancel,
 			"up" : self.keyUp,
@@ -454,7 +455,6 @@ class kxABCpage(MPScreen, ThumbsHelper):
 				self.streamList.append((decodeHtml(kxTitle),kxUrl,False,kxLang,kxHandlung))
 				self.ml.setList(map(self._defaultlistleftmarked, self.streamList))
 			self.keyLocked = False
-			self.th_ThumbsQuery(self.streamList, 0, 1, 2, None, None, self.page)
 			self.showInfos()
 		else:
 			self['page'].setText("END")
@@ -490,17 +490,15 @@ class kxABCpage(MPScreen, ThumbsHelper):
 			writePlaylist.close()
 			message = self.session.open(MessageBoxExt, _("Selection was added to the watchlist."), MessageBoxExt.TYPE_INFO, timeout=3)
 
-class kxNeueste(MPScreen, ThumbsHelper):
+class kxNeueste(MPScreen):
 
 	def __init__(self, session, kxGotLink, name):
 		self.kxGotLink = kxGotLink
 		self.Name = name
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
-		ThumbsHelper.__init__(self)
 
 		self["actions"] = ActionMap(["MP_Actions"], {
 			"0": self.closeAll,
-			"5" : self.keyShowThumb,
 			"ok" : self.keyOK,
 			"cancel": self.keyCancel
 		}, -1)
@@ -535,7 +533,6 @@ class kxNeueste(MPScreen, ThumbsHelper):
 				self.streamList.append((decodeHtml(kxTitle),kxUrl,False,kxLang))
 				self.ml.setList(map(self._defaultlistleftmarked, self.streamList))
 			self.keyLocked = False
-			self.th_ThumbsQuery(self.streamList, 0, 1, None, 2, '<div class="Grahpics">.*?<img src="(.*?)"', 1, 1)
 
 	def keyOK(self):
 		exist = self['liste'].getCurrent()
@@ -940,16 +937,14 @@ class kxParts(MPScreen):
 			streamname = "%s - %s" % (self.stream_name ,part)
 			self.session.open(SimplePlayer, [(streamname, stream_url)], showPlaylist=False, ltype='kinox', cover=False)
 
-class kxSucheScreen(MPScreen, ThumbsHelper):
+class kxSucheScreen(MPScreen):
 
 	def __init__(self, session, searchURL):
 		self.kxGotLink = searchURL
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
-		ThumbsHelper.__init__(self)
 
 		self["actions"] = ActionMap(["MP_Actions"], {
 			"0": self.closeAll,
-			"5" : self.keyShowThumb,
 			"ok" : self.keyOK,
 			"cancel": self.keyCancel,
 			"up" : self.keyUp,
@@ -986,7 +981,6 @@ class kxSucheScreen(MPScreen, ThumbsHelper):
 					self.streamList.append((decodeHtml(kxTitle),kxUrl, kxLang, kxArt.capitalize()))
 			self.ml.setList(map(self.kxListSearchEntry, self.streamList))
 			self.keyLocked = False
-			self.th_ThumbsQuery(self.streamList, 0, 1, None, 2, '<div class="Grahpics">.*?<img src="(.*?)"', 1, 1)
 			self.showInfos()
 
 	def showInfos(self):

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -108,7 +108,7 @@ class faapyGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Name = "--- Search ---"
 			Link = self.suchString
 			self.session.open(faapyFilmScreen, Link, Name)

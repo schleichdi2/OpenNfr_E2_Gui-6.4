@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -119,7 +119,7 @@ class extremetubeGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = self['liste'].getCurrent()[0][0]
 			self.suchString = callback
-			Link = 'http://www.extremetube.com/videos?search=%s' % self.suchString.replace(' ', '+')
+			Link = 'http://www.extremetube.com/videos?search=%s' % urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(extremetubeFilmScreen, Link, Name)
 
 	def getSuggestions(self, text, max_res):

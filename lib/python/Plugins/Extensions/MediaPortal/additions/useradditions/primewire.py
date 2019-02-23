@@ -63,7 +63,7 @@ class PrimeWireGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			auswahl = "--- Search ---"
 			url = "https://www2.primewire.ac/?search_keywords=%s&search_section=1&page=" % self.suchString
 			self.session.open(PrimeWireFilmlisteScreen, url, auswahl)

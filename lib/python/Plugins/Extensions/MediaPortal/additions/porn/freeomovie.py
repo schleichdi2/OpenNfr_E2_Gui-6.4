@@ -102,7 +102,7 @@ class freeomovieGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			freeomovieUrl = '%s' % (self.suchString)
 			freeomovieGenre = "--- Search ---"
 			self.session.open(freeomovieFilmListeScreen, freeomovieUrl, freeomovieGenre)

@@ -15,7 +15,7 @@ class pandamovieGenreScreen(MPScreen):
 			"cancel": self.keyCancel
 		}, -1)
 
-		self['title'] = Label("pandamovie")
+		self['title'] = Label("PandaMovie")
 		self['ContentTitle'] = Label("Genre:")
 		self['name'] = Label(_("Please wait..."))
 
@@ -65,7 +65,7 @@ class pandamovieGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Link = self.suchString
 			Name = self['liste'].getCurrent()[0][0]
 			self.session.open(pandamovieListScreen, Link, Name)
@@ -105,7 +105,7 @@ class pandamovieListScreen(MPScreen, ThumbsHelper):
 			"green" : self.keyPageNumber
 		}, -1)
 
-		self['title'] = Label("pandamovie")
+		self['title'] = Label("PandaMovie")
 		self['ContentTitle'] = Label("Genre: %s" % self.Name)
 		self['F2'] = Label(_("Page"))
 
@@ -145,11 +145,11 @@ class pandamovieListScreen(MPScreen, ThumbsHelper):
 				self.lastpage = self.page + 1
 			self['page'].setText(str(self.page) + ' / ' + str(self.lastpage))
 		else:
-			self.getLastPage(data, '', "class='pages'>.*?of\s(.*?)<")
-		preparse = re.search('(class="h1catname.*?$)', data, re.S)
-		raw = re.findall('class="item.*?.*?class="clip-link".*?title="(.*?)".*?href="(.*?)".*?src="(.*?)"', preparse.group(1), re.S)
+			self.getLastPage(data, "class='pagination'>(.*?)</nav>")
+		raw = re.findall('class="ml-item.*?.*?href="(.*?)".*?data-original="(.*?)".*?mli-info">(.*?)</span', data, re.S)
 		if raw:
-			for (title, link, image) in raw:
+			for (link, image, title) in raw:
+				title = stripAllTags(title).strip()
 				self.filmliste.append((decodeHtml(title), link, image))
 			self.ml.setList(map(self._defaultlistleft, self.filmliste))
 			self.ml.moveToIndex(0)
@@ -188,7 +188,7 @@ class StreamAuswahl(MPScreen):
 			"cancel": self.keyCancel
 		}, -1)
 
-		self['title'] = Label("pandamovie")
+		self['title'] = Label("PandaMovie")
 		self['ContentTitle'] = Label("%s" %self.Title)
 		self['name'] = Label(_("Please wait..."))
 

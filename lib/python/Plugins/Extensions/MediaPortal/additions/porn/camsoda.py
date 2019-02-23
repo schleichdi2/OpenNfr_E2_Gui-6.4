@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -167,14 +167,17 @@ class camsodaFilmScreen(MPScreen, ThumbsHelper):
 						Title = str(node["display_name"])
 						Name = str(node["username"])
 						enc = stream_name.split('-')[-1]
-						try:
-							tsize = str(node["tsize"])
-						except:
+						if str(node["thumb"]).startswith('//'):
+							Image = "https:" + str(node["thumb"])
+						else:
 							try:
-								tsize = str(node["thumb_small"]).split('/')[-3]
+								tsize = str(node["tsize"])
 							except:
-								tsize = str(node["thumb"]).split('/')[-3]
-						Image = 'https://thumbs-orig.camsoda.com/thumbs/' + stream_name + '/' + enc + '/' + tsize + '/null/' + Name + '.jpg'
+								try:
+									tsize = str(node["thumb_small"]).split('/')[-3]
+								except:
+									tsize = str(node["thumb"]).split('/')[-3]
+							Image = 'https://thumbs-orig.camsoda.com/thumbs/' + stream_name + '/' + enc + '/' + tsize + '/null/' + Name + '.jpg'
 						Viewers = node["connections"]
 						descr = str(node["subject_html"])
 						self.filmliste.append((Title, Name, Image, Viewers, descr))

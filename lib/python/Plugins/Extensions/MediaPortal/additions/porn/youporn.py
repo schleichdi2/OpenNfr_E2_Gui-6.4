@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -177,7 +177,7 @@ class youpornGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = 'http://www.youporn.com/search/?query=%s&page=' % self.suchString.replace(' ', '+')
+			Link = 'http://www.youporn.com/search/?query=%s&page=' % urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(youpornFilmScreen, Link, Name)
 
 	def keySetup(self):

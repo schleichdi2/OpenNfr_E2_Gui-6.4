@@ -62,7 +62,7 @@ class ivhunterGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', self.delim)
+			self.suchString = urllib.quote(callback).replace(' ', self.delim)
 			Name = "--- Search ---"
 			Link = '%s' % (self.suchString)
 			self.session.open(ivhunterFilmScreen, Link, Name, self.portal, self.baseurl)

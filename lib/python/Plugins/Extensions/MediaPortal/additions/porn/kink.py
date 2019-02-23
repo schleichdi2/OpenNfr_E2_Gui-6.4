@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -82,7 +82,8 @@ class kinkGenreScreen(MPScreen):
 			Cats = re.findall('href="(.*?)"\sclass="category-link">.*?<img\ssrc="(.*?)">.*?class="category-name">(.*?)</span>', parse.group(1), re.S)
 			if Cats:
 				for (Url, Image, Title) in Cats:
-					Url = "https://www.kink.com" + Url + "/page/"
+					Url = Url.split('?')
+					Url = "https://www.kink.com" + Url[0] + "/shoots/page/"
 					Title = Title.strip()
 					self.genreliste.append((decodeHtml(Title), Url, Image))
 		self.genreliste.sort()
@@ -118,7 +119,7 @@ class kinkGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			self.suchString = callback
 			Name = "--- Search ---"
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(kinkFilmScreen, Link, Name)
 
 class kinkFilmScreen(MPScreen, ThumbsHelper):
@@ -163,18 +164,18 @@ class kinkFilmScreen(MPScreen, ThumbsHelper):
 		self['name'].setText(_('Please wait...'))
 		self.filmliste = []
 		if re.match(".*?Search", self.Name):
-			url = "https://www.kink.com/search/page/%s?q=%s&catViewingPref=straight" % (str(self.page), self.Link)
+			url = "https://www.kink.com/search?type=shoots&q=%s&page=%s" % (self.Link, str(self.page))
 		else:
 			url = "%s%s" % (self.Link, str(self.page))
 		getPage(url, agent=myagent, cookies=ck).addCallback(self.loadData).addErrback(self.dataError)
 
 	def loadData(self, data):
-		self.getLastPage(data, 'class="pagination">(.*?)</table>', '.*>\s(\d+)\s<')
-		Movies = re.findall('class="shoot">.*?img\ssrc="(.*?)".*?class="date">(.*?)</div.*?class="video">.*?span>(.*?)</span.*?href="(.*?)">(.*?)</a', data, re.S)
+		self.getLastPage(data, 'class="(?:pagination|paginated-nav)"(.*?)</(?:table|nav)>', '.*>\s{0,1}(\d+)\s{0,1}<')
+		Movies = re.findall('class="shoot(?:\ssearch|)">.*?img\ssrc="(.*?)".*?class="date">(.*?)</div.*?class="video">.*?span>(.*?)</span.*?href="(.*?)">(.*?)</a', data, re.S)
 		if Movies:
 			for (Image, Date, Runtime, Url, Title) in Movies:
 				Runtime = Runtime.strip()
-				Title = decodeHtml(Title.strip())
+				Title = stripAllTags(decodeHtml(Title.strip()))
 				Url = "https://www.kink.com" + Url
 				self.filmliste.append((Title, Url, Image, Date, Runtime))
 		if len(self.filmliste) == 0:

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -104,7 +104,7 @@ class xvideosGenreScreen(MPScreen):
 					Url = "https://www.xvideos.com" + Url + "/$$PAGE$$"
 					self.filmliste.append((Title, Url, default_cover, False))
 		else:
-			Cats = re.findall('class="dyn.*?href="/c/(.*?)">(.*?)</a', data, re.S)
+			Cats = re.findall('class="dyn.*?href="/c/(.*?)".*?>(.*?)</a', data, re.S)
 			if Cats:
 				for (Url, Title) in Cats:
 					Url = "https://www.xvideos.com/c/$$AGE$$$$PAGE$$/" + Url
@@ -155,7 +155,7 @@ class xvideosGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(xvideosFilmScreen, Link, Name, True)
 
 	def getSuggestions(self, text, max_res):

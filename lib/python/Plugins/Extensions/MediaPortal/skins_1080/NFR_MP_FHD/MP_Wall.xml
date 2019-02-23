@@ -10,7 +10,7 @@
     <ePixmap name="nfr" position="834,11" size="328,182" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/teiler1.png" alphatest="blend" />
     <eLabel text="MediaPortal" position="203,50" size="279,45" font="LCD; 42" backgroundColor="grey" transparent="1" foregroundColor="grey" halign="center" />
     <widget name="version" backgroundColor="background" font="LCD; 42" halign="center" valign="center" position="482,50" size="200,45" transparent="1" foregroundColor="grey" />
-    <widget backgroundColor="goldenrod" font="LCD; 60" valign="center" halign="center" name="name" position="55,221" size="1816,60" transparent="1" foregroundColor="goldenrod" />
+    <widget backgroundColor="white" font="LCD; 55" valign="center" halign="left" name="name" position="85,130" size="1816,60" transparent="1" foregroundColor="white" />
     <widget backgroundColor="black" font="Regular; 30" valign="center" halign="right" name="page" position="1666,938" size="200,34" transparent="1" zPosition="2" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/red.png" position="55,1000" size="300,76" alphatest="blend" />
     <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/NFR_MP_FHD/images/green.png" position="568,1000" size="300,76" alphatest="blend" />

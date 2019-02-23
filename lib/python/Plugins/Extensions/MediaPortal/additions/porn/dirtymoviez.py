@@ -63,7 +63,7 @@ class dmvzGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(dmvzFilmScreen, Link, Name)
 
 class dmvzFilmScreen(MPScreen, ThumbsHelper):

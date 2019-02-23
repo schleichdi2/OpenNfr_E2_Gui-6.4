@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -115,7 +115,7 @@ class epornerGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = self['liste'].getCurrent()[0][0]
 			self.suchString = callback
-			streamGenreLink = 'http://www.eporner.com/search/%s/' % self.suchString.replace(' ', '-')
+			streamGenreLink = 'http://www.eporner.com/search/%s/' % urllib.quote(self.suchString).replace(' ', '-')
 			self.session.open(epornerFilmScreen, streamGenreLink, Name)
 
 	def getSuggestions(self, text, max_res):

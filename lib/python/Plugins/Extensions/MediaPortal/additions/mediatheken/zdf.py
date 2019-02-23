@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -123,7 +123,7 @@ class ZDFGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			self.suchString = callback
 			genreName = "Suche - " + self.suchString
-			streamLink = "%s/suche?q=%s&from=&to=&sender=alle+Sender&attrs=" % (BASE_URL,callback.replace(' ', '+'))
+			streamLink = "%s/suche?q=%s&from=&to=&sender=alle+Sender&attrs=" % (BASE_URL,urllib.quote(callback).replace(' ', '+'))
 			self.session.open(ZDFStreamScreen,streamLink,genreName,genreFlag,default_cover)
 
 class ZDFPreSelect(MPScreen):
@@ -317,7 +317,7 @@ class ZDFPostSelect(MPScreen, ThumbsHelper):
 			if articles:
 				for article in articles:
 					data = re.sub('itemprop="image" content=""','',article,flags=re.S)
-					folgen = re.findall('picture class.*?class="m-16-9"\s+data-srcset="(.*?)[\"|\s].*?class="teaser-cat-category">(.*?)</span>.*?m-border\">.*?data-plusbar-title=\"(.*?)\".*?data-plusbar-url=\"(.*?)\"', data, re.S)
+					folgen = re.findall('picture class.*?class="m-16-9"\s+data-srcset="(.*?)[\"|\s].*?class="teaser-cat-category">(.*?)</span>.*?data-plusbar-title=\"(.*?)\".*?data-plusbar-url=\"(.*?)\"', data, re.S)
 					if folgen:
 						for (image,genre,title,url) in folgen:
 							genre = decodeHtml(genre).strip().split("|")[0].strip()
@@ -412,9 +412,9 @@ class ZDFStreamScreen(MPScreen, ThumbsHelper):
 			for article in articles:
 				data = re.sub('<div class="img-container x-large-8 x-column">','<source class="m-16-9" data-srcset="/static~Trash">',article, flags=re.S)
 				data = re.sub('itemprop="image" content=""','',data,flags=re.S)
-				treffer = re.findall('<article.*?picture class.*?data-srcset="(.*?)[\"|\s].*?\"teaser-label\".*?</span>(.*?)<strong>(.*?)<.*?title=\"(.*?)\".*?teaser-info.*?>(.*?)<.*?data-plusbar-id=\"(.*?)\".*?data-plusbar-path=\"(.*?)\"', data, re.S)
+				treffer = re.findall('<article.*?picture class.*?data-srcset="(.*?)[\"|\s].*?title="(.*?)".*?"special-info">(.*?)</div.*?teaser-info.*?>(.*?)<.*?data-plusbar-id=\"(.*?)\".*?data-plusbar-path=\"(.*?)\"', data, re.S)
 				if treffer:
-					for (image,airtime,clock,title,dur,assetId,assetPath) in treffer:
+					for (image,title,clock,dur,assetId,assetPath) in treffer:
 						if "/static" in image:
 							try:
 								if "m-16-9" in data:
@@ -449,7 +449,7 @@ class ZDFStreamScreen(MPScreen, ThumbsHelper):
 								genre = " ("+re.search('class="teaser-cat\s{0,1}">.*?class="teaser-cat-category">(.*?)</span',data,re.S).group(1).strip().split("|")[0].strip()+")"
 							except:
 								pass
-						handlung = "Sendung: "+decodeHtml(sendung)+genre+"\nDatum: "+airtime+clock+"\nLaufzeit: "+dur
+						handlung = "Sendung: "+decodeHtml(sendung)+genre+"\nUhrzeit: "+clock+"\nLaufzeit: "+dur
 						self.filmliste.append((title,assetId,handlung,image,title,assetPath))
 		elif self.gF == "4": # Podcast
 			image = re.search('<itunes:image href="(.*?)"',data).group(1)
@@ -477,18 +477,18 @@ class ZDFStreamScreen(MPScreen, ThumbsHelper):
 				image = ""
 				info = ""
 				genre = ""
-				if "<time datetime" in data and not "m-border" in data:
+				if '<time class="air-time"' in data and not "search-foot" in data:
 					continue
 				if "Beiträge" in data:
 					continue
-				elif "m-border\">" in data:
-					airtimedata = re.search('time datetime=.*?>(.*?)<',data)
+				elif '"search-foot">' in data:
+					airtimedata = re.search('time class="air-time" datetime=.*?>(.*?)<',data)
 				if airtimedata:
 					airtime = airtimedata.group(1)
 				else:
 					airtime = '---'
-				if 'm-border">' in data:
-					dur = re.search('m-border\">(.*?)<',data).group(1)
+				if '"teaser-foot">' in data:
+					dur = re.search('class="teaser-info">(.*?)</dd>',data, re.S).group(1)
 					if "Bilder" in dur:
 						continue
 				else:

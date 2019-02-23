@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -104,7 +104,7 @@ class moviefapGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Link = '%s' % (self.suchString)
 			Name = "--- Search ---"
 			self.session.open(moviefapFilmScreen, Link, Name)
@@ -190,7 +190,12 @@ class moviefapFilmScreen(MPScreen, ThumbsHelper):
 		if not xml:
 			xml = re.findall('name="config".*?//(.*?)"', data, re.S)
 		url = "http://" + xml[0]
-		twAgentGetPage(url, timeout=30).addCallback(self.getVideoPage).addErrback(self.dataError)
+		refs = re.findall('swfobject.embedSWF\("(.*?)",', data, re.S)
+		if refs:
+			ref = refs[0]
+		else:
+			ref = "https://cdn-fck.tnaflix.com/flixPlayer_v1.12.2.44.swf?v=1.0"
+		twAgentGetPage(url, headers={'Referer':ref}, timeout=30).addCallback(self.getVideoPage).addErrback(self.dataError)
 
 	def getVideoPage(self, data):
 		url = re.findall('<videoLink>.*?//(.*?)(?:]]>|</videoLink>)', data, re.S)

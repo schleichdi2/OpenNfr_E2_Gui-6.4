@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -122,7 +122,7 @@ class tube8GenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '%20')
+			Link = urllib.quote(self.suchString).replace(' ', '%20')
 			self.session.open(tube8FilmScreen, Link, Name)
 
 	def getSuggestions(self, text, max_res):

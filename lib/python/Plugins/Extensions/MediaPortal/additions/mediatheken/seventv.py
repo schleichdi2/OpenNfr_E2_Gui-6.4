@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -391,13 +391,15 @@ class sevenStreamScreen(MPScreen):
 			Link = self['liste'].getCurrent()[0][1]
 			twAgentGetPage(Link, agent=sevenAgent, cookieJar=sevenCookies).addCallback(self.parseData2, Link, web=True).addErrback(self.dataError)
 		else:
-			max_bw = 0
+			max_bw = -1
+			stream_url = ''
 			for stream in json_data["sources"]:
 				url = stream["url"]
 				bw = int(stream["bitrate"])
 				if max_bw < bw:
 					max_bw = bw
 					stream_url = str(url)
-			mp_globals.player_agent = sevenAgent
-			Name = self['liste'].getCurrent()[0][0]
-			self.session.open(SimplePlayer, [(Name, stream_url)], showPlaylist=False, ltype='7tv')
+			if stream_url:
+				mp_globals.player_agent = sevenAgent
+				Name = self['liste'].getCurrent()[0][0]
+				self.session.open(SimplePlayer, [(Name, stream_url)], showPlaylist=False, ltype='7tv')

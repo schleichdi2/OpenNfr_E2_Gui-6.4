@@ -40,7 +40,7 @@ class adultbayGenreScreen(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			Link = self.suchString
 			Name = "--- Search ---"
 			self.session.open(adultbayListScreen, Link, Name)
@@ -84,7 +84,7 @@ class adultbaySubGenreScreen(MPScreen):
 
 	def loadPage(self):
 		url = "http://adultbay.org/"
-		getPage(url).addCallback(self.parseData).addErrback(self.dataError)
+		twAgentGetPage(url).addCallback(self.parseData).addErrback(self.dataError)
 
 	def parseData(self, data):
 		parse = re.search('class="cat-item.*?>'+self.Name+'</a>(.*?)</ul>', data, re.S)
@@ -148,7 +148,7 @@ class adultbayListScreen(MPScreen, ThumbsHelper):
 				url = self.Link
 			else:
 				url = self.Link + "?paged=" + str(self.page)
-		getPage(url).addCallback(self.parseData).addErrback(self.dataError)
+		twAgentGetPage(url).addCallback(self.parseData).addErrback(self.dataError)
 
 	def parseData(self, data):
 		if re.match('.*?<h2>Not Found</h2>', data, re.S):
@@ -216,7 +216,7 @@ class StreamAuswahl(MPScreen):
 		CoverHelper(self['coverArt']).getCover(self.Cover)
 		self.keyLocked = True
 		url = self.Link
-		getPage(url).addCallback(self.loadPageData).addErrback(self.dataError)
+		twAgentGetPage(url).addCallback(self.loadPageData).addErrback(self.dataError)
 
 	def loadPageData(self, data):
 		parse = re.search('class="post-header">(.*?)Recommends:</strong>', data, re.S)

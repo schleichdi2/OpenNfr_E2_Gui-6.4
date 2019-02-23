@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -231,7 +231,7 @@ class pornhubGenreScreen(MPScreen, LoginFunc):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = base_url + '/video/search?search=%s&page=' % self.suchString.replace(' ', '+')
+			Link = base_url + '/video/search?search=%s&page=' % urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(pornhubFilmScreen, Link, Name)
 
 	def keySetup(self):

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -117,7 +117,7 @@ class teamskeetGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			self.suchString = callback
 			Name = "--- Search ---"
-			Link = self.suchString.replace(' ', '%20')
+			Link = urllib.quote(self.suchString).replace(' ', '%20')
 			self.session.open(teamskeetFilmScreen, Link, Name)
 
 class teamskeetFilmScreen(MPScreen, ThumbsHelper):

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -117,7 +117,7 @@ class txxxGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = '%s' + self.suchString.replace(' ', '+')
+			Link = '%s' + urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(txxxFilmScreen, Link, Name)
 
 	def getSuggestions(self, text, max_res):
@@ -189,7 +189,7 @@ class txxxFilmScreen(MPScreen, ThumbsHelper, txxxcrypt):
 
 	def loadData(self, data):
 		self.getLastPage(data, 'class="pagination"(.*?)</div>', 'class="btn__text">((?:\d+.)\d+)<')
-		Movies = re.findall('data-video-id.*?href="(.*?)".*?img\ssrc="(.*?)"\salt="(.*?)(?:,|").*?class="thumb__duration">(.*?)</div>.*?class="date">(.*?)</span>', data, re.S)
+		Movies = re.findall('data-video-id.*?href="(.*?)".*?img\ssrc="(.*?)"\salt="(.*?)(?:,|").*?class="thumb__duration">(.*?)</.*?class="date">(.*?)</span>', data, re.S)
 		if Movies:
 			for (Url, Image, Title, Runtime, Added) in Movies:
 				if not Url.startswith('http'):

@@ -95,13 +95,13 @@ class YourPornSexyGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = self.suchString.replace(' ', '-')
+			Link = urllib.quote(self.suchString).replace(' ', '-')
 			self.session.open(YourPornSexyFilmScreen, Link, Name)
 
 	def getSuggestions(self, text, max_res):
-		url = "http://yourporn.sexy/php/livesearch.php"
-		postdata = {'key': text.replace(' ','-'), 'c':'livesearch3', 'uid': uid}
-		d = getPage(url, method='POST', postdata=urlencode(postdata), agent=myagent, headers=json_headers, timeout=5)
+		url = "https://yourporn.sexy/php/livesearch.php"
+		postdata = {'key': text.replace(' ','-'), 'c':'livesearch4', 'uid': uid}
+		d = twAgentGetPage(url, method='POST', postdata=urlencode(postdata), agent=myagent, headers=json_headers, timeout=5)
 		d.addCallback(self.gotSuggestions, max_res)
 		d.addErrback(self.gotSuggestions, max_res, err=True)
 		return d
@@ -381,7 +381,7 @@ class YourPornSexyFilmScreen(MPScreen, ThumbsHelper):
 		videoUrl = re.findall('data-vnfo=\'\{"[0-9a-f]+":"(.*?)"\}\'', data, re.S)
 		if videoUrl:
 			url = videoUrl[-1].replace('\/','/')
-			url = 'https://yourporn.sexy' + url.replace('/cdn/','/cdn3/')
+			url = 'https://yourporn.sexy' + url.replace('/cdn/','/cdn4/')
 			self.tw_agent_hlp.getRedirectedUrl(url).addCallback(self.getStream).addErrback(self.dataError)
 
 	def getStream(self, url):

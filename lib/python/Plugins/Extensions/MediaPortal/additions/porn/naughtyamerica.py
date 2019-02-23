@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -115,7 +115,7 @@ class naughtyamericaGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			self.suchString = callback
 			Name = "--- Search ---"
-			Link = self.suchString.replace(' ', '+')
+			Link = urllib.quote(self.suchString).replace(' ', '+')
 			self.session.open(naughtyamericaFilmScreen, Link, Name)
 
 	def keyChangeCats(self):

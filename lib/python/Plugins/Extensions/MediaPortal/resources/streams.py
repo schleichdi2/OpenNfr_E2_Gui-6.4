@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -141,10 +141,10 @@ class get_stream_link:
 			return "error"
 
 	def callPremium(self, link):
-		if self.prz == 1 and config_mp.mediaportal.premiumize_use.value:
-			r_getPage(self.papiurl+link).addCallback(self.papiCallback, link).addErrback(self.errorload)
-		elif self.rdb == 1 and config_mp.mediaportal.realdebrid_use.value:
+		if self.rdb == 1 and config_mp.mediaportal.realdebrid_use.value:
 			self.session.openWithCallback(self.rapiCallback, realdebrid_oauth2, str(link))
+		elif self.prz == 1 and config_mp.mediaportal.premiumize_use.value:
+			r_getPage(self.papiurl+link).addCallback(self.papiCallback, link).addErrback(self.errorload)
 
 	def callPremiumYT(self, link, val):
 		if val == "prz":
@@ -172,8 +172,15 @@ class get_stream_link:
 			if stream_url:
 				if "&sig=" in stream_url[0]:
 					url = stream_url[0].split('&sig=')
-					file = url[1].split('&f=')
-					url = url[0] + "&sig=" + file[0].replace('%2F','%252F').replace('%3D','%253D').replace('%2B','%252B') + "&f=" + file[1]
+					sig = ''
+					filename = ''
+					if "&f=" in stream_url[0]:
+						file = url[1].split('&f=')
+						sig = "&sig=" + file[0].replace('%2F','%252F').replace('%3D','%253D').replace('%2B','%252B')
+						filename = "&f=" + file[1]
+					else:
+						sig = "&sig=" + url[1].replace('%2F','%252F').replace('%3D','%253D').replace('%2B','%252B')
+					url = url[0] + sig + filename
 				else:
 					url = stream_url[0]
 				mp_globals.premiumize = True

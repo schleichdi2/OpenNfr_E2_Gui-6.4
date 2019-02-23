@@ -125,7 +125,7 @@ class filmPalastMain(MPScreen):
 
 	def SuchenCallback(self, callback = None):
 		if callback is not None and len(callback):
-			Link = "%s/search/title/%s/" % (BASEURL, callback.replace(' ', '%20'))
+			Link = "%s/search/title/%s/" % (BASEURL, urllib.quote(callback).replace(' ', '%20'))
 			Name = self['liste'].getCurrent()[0][0]
 			self.session.open(filmPalastParsing, Name, Link)
 

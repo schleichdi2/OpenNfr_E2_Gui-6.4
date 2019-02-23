@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -108,7 +108,7 @@ class tubewolfGenreScreen(MPScreen):
 		if callback is not None and len(callback):
 			Name = "--- Search ---"
 			self.suchString = callback
-			Link = callback.replace(' ', '+')
+			Link = urllib.quote(callback).replace(' ', '+')
 			self.session.open(tubewolfListScreen, Link, Name, self.portal, self.baseurl)
 
 	def keyOK(self):

@@ -193,7 +193,7 @@ class sharedirMenueScreen(sharedirHelper, MPScreen):
 		Name = self['liste'].getCurrent()[0][0]
 		Pick = self['liste'].getCurrent()[0][1]
 		if callback is not None and len(callback):
-			self.suchString = callback.replace(' ', '+')
+			self.suchString = urllib.quote(callback).replace(' ', '+')
 			self.session.openWithCallback(self.cancelSetValue, sharedirListScreen, self.suchString, Name, self.hoster, self.type, self.size, self.sort)
 
 	def pincheck(self):
@@ -387,7 +387,7 @@ class sharedirListScreen(sharedirHelper, MPScreen):
 		self.ml.setList(map(self.searchallucMultiListEntry, self.filmliste))
 		self['handlung'].setText('')
 		self['name'].setText(_('Please wait...'))
-		Url = "%s" % self.suchString.replace(" ", "+")
+		Url = "%s" % urllib.quote(self.suchString).replace(" ", "+")
 		if self.sort != '':
 			Url = "%s&sort=%s" % (Url, self.sort)
 		if self.size != '':

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -272,10 +272,10 @@ class chaturbateFilmScreen(MPScreen, ThumbsHelper):
 
 	def loadplaylist(self, data, baseurl):
 		self.bandwith_list = []
-		match_sec_m3u8=re.findall('BANDWIDTH=(\d+).*?\n(.*?m3u8)', data, re.S)
+		match_sec_m3u8=re.findall('BANDWIDTH=(\d+).*?RESOLUTION=(\d+).*?\n(.*?m3u8)', data, re.S)
 		max = 0
 		for x in match_sec_m3u8:
-			if int(x[0]) > max:
+			if (int(x[0]) > max) and (int(x[1]) <= 1920):
 				max = int(x[0])
 		videoPrio = int(config_mp.mediaportal.videoquali_others.value)
 		if videoPrio == 2:
@@ -285,8 +285,9 @@ class chaturbateFilmScreen(MPScreen, ThumbsHelper):
 		else:
 			bw = max/3
 		for each in match_sec_m3u8:
-			bandwith,url = each
-			self.bandwith_list.append((int(bandwith),url))
+			bandwith,res,url = each
+			if int(res) <= 1920:
+				self.bandwith_list.append((int(bandwith),url))
 		_, best = min((abs(int(x[0]) - bw), x) for x in self.bandwith_list)
 
 		url = baseurl.replace('playlist.m3u8','') + best[1]

@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -75,10 +75,6 @@ try:
 except:
 	mp_globals.isDreamOS = False
 
-if mp_globals.isDreamOS:
-	if fileExists('/etc/apt/sources.list.d/mediaportal.list'):
-		os.remove('/etc/apt/sources.list.d/mediaportal.list')
-
 try:
 	f = open("/proc/stb/info/model", "r")
 	model = ''.join(f.readlines()).strip()
@@ -103,12 +99,12 @@ except:
 	mp_globals.covercollection = False
 
 try:
-	from enigma import eWall, eWallPythonMultiContent, BT_SCALE
+	from enigma import eWallPythonMultiContent, BT_SCALE
 	from Components.BaseWall import BaseWall
 	class CoverWall(BaseWall):
 		def setentry(self, entry):
 			res = [entry]
-			res.append((eWallPythonMultiContent.TYPE_COVER, eWallPythonMultiContent.SHOW_ALWAYS, loadPNG(entry[2]), BT_SCALE))
+			res.append((eWallPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, eWallPythonMultiContent.SHOW_ALWAYS, 0, 0, 0, 0, 100, 100, 100, 100, loadPNG(entry[2]), None, None, BT_SCALE))
 			return res
 	mp_globals.isVTi = True
 except:
@@ -197,8 +193,8 @@ config_mp.mediaportal.epg_deepstandby = ConfigSelection(default = "skip", choice
 		])
 
 # Allgemein
-config_mp.mediaportal.version = NoSave(ConfigText(default="2018121901"))
-config.mediaportal.version = NoSave(ConfigText(default="2018121901"))
+config_mp.mediaportal.version = NoSave(ConfigText(default="2019021701"))
+config.mediaportal.version = NoSave(ConfigText(default="2019021701"))
 config_mp.mediaportal.autoupdate = ConfigYesNo(default = True)
 config.mediaportal.autoupdate = NoSave(ConfigYesNo(default = True))
 
@@ -275,6 +271,7 @@ config_mp.mediaportal.filter = ConfigSelection(default = "ALL", choices = ["ALL"
 config.mediaportal.filter = NoSave(ConfigSelection(default = "ALL", choices = ["ALL"]))
 config_mp.mediaportal.youtubeenablevp9 = ConfigYesNo(default = False)
 config_mp.mediaportal.youtubeenabledash = ConfigYesNo(default = False)
+config_mp.mediaportal.youtubeenabledash720p = ConfigYesNo(default = False)
 config_mp.mediaportal.youtubeenabledash480p = ConfigYesNo(default = False)
 config_mp.mediaportal.youtubeprio = ConfigSelection(default = "2", choices = [("0", "360p"),("1", "480p"),("2", "720p"),("3", "1080p"),("4", "1440p"),("5", "2160p")])
 config_mp.mediaportal.videoquali_others = ConfigSelection(default = "2", choices = [("0", _("Low")),("1", _("Medium")),("2", _("High"))])
@@ -676,7 +673,7 @@ class MPSetup(Screen, CheckPremiumize, ConfigListScreenExt):
 		self.configlist.append(getConfigListEntry(_("Enable DASH format (no seeking possible):"), config_mp.mediaportal.youtubeenabledash, True))
 		if config_mp.mediaportal.youtubeenabledash.value:
 			self.configlist.append(getConfigListEntry(_("Use DASH format for 480p:"), config_mp.mediaportal.youtubeenabledash480p, False))
-		if config_mp.mediaportal.youtubeenabledash.value:
+			self.configlist.append(getConfigListEntry(_("Use DASH format for 720p:"), config_mp.mediaportal.youtubeenabledash720p, False))
 			self.configlist.append(getConfigListEntry(_("Enable VP9 codec (required for resolutions >1080p):"), config_mp.mediaportal.youtubeenablevp9, False))
 		self.configlist.append(getConfigListEntry(_("Show USER-Channels Help:"), config_mp.mediaportal.show_userchan_help, False))
 		self.configlist.append(getConfigListEntry(_('Use Proxy:'), config_mp.mediaportal.sp_use_yt_with_proxy, True))
@@ -1210,7 +1207,7 @@ class MPList(Screen, HelpableScreen):
 			if self.icons_data:
 				for x,y in self.icons_data:
 					if y == icon+'.png':
-						ds.run(downloadPage, url, poster_path)
+						d = ds.run(downloadPage, url, poster_path)
 			poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 		else:
 			if self.icons_data:
@@ -1219,7 +1216,7 @@ class MPList(Screen, HelpableScreen):
 						remote_hash = x
 						local_hash = hashlib.md5(open(poster_path, 'rb').read()).hexdigest()
 						if remote_hash != local_hash:
-							ds.run(downloadPage, url, poster_path)
+							d = ds.run(downloadPage, url, poster_path)
 							poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 
 		logo_path = "%s/%s.png" % (config_mp.mediaportal.iconcachepath.value + "logos", icon)
@@ -1228,7 +1225,7 @@ class MPList(Screen, HelpableScreen):
 			if self.logo_data:
 				for x,y in self.logo_data:
 					if y == icon+'.png':
-						ds.run(downloadPage, url, logo_path)
+						d = ds.run(downloadPage, url, logo_path)
 		else:
 			if self.logo_data:
 				for x,y in self.logo_data:
@@ -1236,7 +1233,7 @@ class MPList(Screen, HelpableScreen):
 						remote_hash = x
 						local_hash = hashlib.md5(open(logo_path, 'rb').read()).hexdigest()
 						if remote_hash != local_hash:
-							ds.run(downloadPage, url, logo_path)
+							d = ds.run(downloadPage, url, logo_path)
 
 		scale = AVSwitch().getFramebufferScale()
 		if mp_globals.videomode == 2:
@@ -2034,7 +2031,7 @@ class MPWall(Screen, HelpableScreen):
 					if icons_data:
 						for a,b in icons_data:
 							if b == postername+'.png':
-								ds.run(downloadPage, url, poster_path)
+								d = ds.run(downloadPage, url, poster_path)
 					poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 				else:
 					if icons_data:
@@ -2043,7 +2040,7 @@ class MPWall(Screen, HelpableScreen):
 								remote_hash = a
 								local_hash = hashlib.md5(open(poster_path, 'rb').read()).hexdigest()
 								if remote_hash != local_hash:
-									ds.run(downloadPage, url, poster_path)
+									d = ds.run(downloadPage, url, poster_path)
 									poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 			else:
 				poster_path = "%s/%s.png" % (config_mp.mediaportal.iconcachepath.value + "icons", postername)
@@ -2052,7 +2049,7 @@ class MPWall(Screen, HelpableScreen):
 					if icons_data:
 						for a,b in icons_data:
 							if b == postername+'.png':
-								ds.run(downloadPage, url, poster_path)
+								d = ds.run(downloadPage, url, poster_path)
 					poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 				else:
 					if icons_data:
@@ -2061,7 +2058,7 @@ class MPWall(Screen, HelpableScreen):
 								remote_hash = a
 								local_hash = hashlib.md5(open(poster_path, 'rb').read()).hexdigest()
 								if remote_hash != local_hash:
-									ds.run(downloadPage, url, poster_path)
+									d = ds.run(downloadPage, url, poster_path)
 									poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 
 			logo_path = "%s/%s.png" % (config_mp.mediaportal.iconcachepath.value + "logos", postername)
@@ -2070,7 +2067,7 @@ class MPWall(Screen, HelpableScreen):
 				if logo_data:
 					for a,b in logo_data:
 						if b == postername+'.png':
-							ds.run(downloadPage, url, logo_path)
+							d = ds.run(downloadPage, url, logo_path)
 			else:
 				if logo_data:
 					for a,b in logo_data:
@@ -2078,7 +2075,7 @@ class MPWall(Screen, HelpableScreen):
 							remote_hash = a
 							local_hash = hashlib.md5(open(logo_path, 'rb').read()).hexdigest()
 							if remote_hash != local_hash:
-								ds.run(downloadPage, url, logo_path)
+								d = ds.run(downloadPage, url, logo_path)
 
 			scale = AVSwitch().getFramebufferScale()
 			if mp_globals.videomode == 2:
@@ -2105,7 +2102,7 @@ class MPWall(Screen, HelpableScreen):
 					if icons_data_zoom:
 						for a,b in icons_data_zoom:
 							if b == postername+'.png':
-								ds.run(downloadPage, url, poster_path)
+								d = ds.run(downloadPage, url, poster_path)
 					poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 				else:
 					if icons_data_zoom:
@@ -2114,7 +2111,7 @@ class MPWall(Screen, HelpableScreen):
 								remote_hash = a
 								local_hash = hashlib.md5(open(poster_path, 'rb').read()).hexdigest()
 								if remote_hash != local_hash:
-									ds.run(downloadPage, url, poster_path)
+									d = ds.run(downloadPage, url, poster_path)
 									poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 
 				scale = AVSwitch().getFramebufferScale()
@@ -3011,7 +3008,7 @@ class MPWall2(Screen, HelpableScreen):
 					if icons_data:
 						for x,y in icons_data:
 							if y == p_picname+'.png':
-								ds.run(downloadPage, url, poster_path)
+								d = ds.run(downloadPage, url, poster_path)
 					poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 				else:
 					if icons_data:
@@ -3020,7 +3017,7 @@ class MPWall2(Screen, HelpableScreen):
 								remote_hash = x
 								local_hash = hashlib.md5(open(poster_path, 'rb').read()).hexdigest()
 								if remote_hash != local_hash:
-									ds.run(downloadPage, url, poster_path)
+									d = ds.run(downloadPage, url, poster_path)
 									poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 			else:
 				poster_path = "%s/%s.png" % (config_mp.mediaportal.iconcachepath.value + "icons", p_picname)
@@ -3029,7 +3026,7 @@ class MPWall2(Screen, HelpableScreen):
 					if icons_data:
 						for x,y in icons_data:
 							if y == p_picname+'.png':
-								ds.run(downloadPage, url, poster_path)
+								d = ds.run(downloadPage, url, poster_path)
 					poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 				else:
 					if icons_data:
@@ -3038,7 +3035,7 @@ class MPWall2(Screen, HelpableScreen):
 								remote_hash = x
 								local_hash = hashlib.md5(open(poster_path, 'rb').read()).hexdigest()
 								if remote_hash != local_hash:
-									ds.run(downloadPage, url, poster_path)
+									d = ds.run(downloadPage, url, poster_path)
 									poster_path = "%s/images/comingsoon.png" % mp_globals.pluginPath
 
 			logo_path = "%s/%s.png" % (config_mp.mediaportal.iconcachepath.value + "logos", p_picname)
@@ -3047,7 +3044,7 @@ class MPWall2(Screen, HelpableScreen):
 				if logo_data:
 					for x,y in logo_data:
 						if y == p_picname+'.png':
-							ds.run(downloadPage, url, logo_path)
+							d = ds.run(downloadPage, url, logo_path)
 			else:
 				if logo_data:
 					for x,y in logo_data:
@@ -3055,7 +3052,7 @@ class MPWall2(Screen, HelpableScreen):
 							remote_hash = x
 							local_hash = hashlib.md5(open(logo_path, 'rb').read()).hexdigest()
 							if remote_hash != local_hash:
-								ds.run(downloadPage, url, logo_path)
+								d = ds.run(downloadPage, url, logo_path)
 
 			if mp_globals.covercollection:
 				row.append((p_name, p_picname, poster_path, p_genre, p_hits, p_sort))
@@ -3528,6 +3525,7 @@ def exit(session, result, lastservice):
 
 		reactor.callLater(1, export_lru_caches)
 		reactor.callLater(5, clearTmpBuffer)
+		reactor.callLater(30, clearFileBuffer)
 		watcher.stop()
 		if SHOW_HANG_STAT:
 			lc_stats.stop()
@@ -3796,6 +3794,31 @@ def clearTmpBuffer():
 		if os.path.exists(path):
 			for fn in next(os.walk(path))[2]:
 				BgFileEraser.erase(os.path.join(path,fn))
+
+def clearFileBuffer():
+	def clean(hashes, path):
+		BgFileEraser = eBackgroundFileEraser.getInstance()
+		if os.path.exists(path):
+			for fn in next(os.walk(path))[2]:
+				local_hash = hashlib.md5(open(os.path.join(path,fn), 'rb').read()).hexdigest()
+				if local_hash not in (item[0] for item in hashes):
+					BgFileEraser.erase(os.path.join(path,fn))
+	icon_url = getIconUrl()
+	path = config_mp.mediaportal.iconcachepath.value + "icons"
+	icons_hashes = grabpage(icon_url+"icons/hashes")
+	if icons_hashes:
+		icons_data = re.findall('(.*?)\s\*(.*?\.png)', icons_hashes)
+		clean(icons_data, path)
+	path = config_mp.mediaportal.iconcachepath.value + "icons_bw"
+	icons_bw_hashes = grabpage(icon_url+"icons_bw/hashes")
+	if icons_bw_hashes:
+		icons_bw_data = re.findall('(.*?)\s\*(.*?\.png)', icons_bw_hashes)
+		clean(icons_bw_data, path)
+	path = config_mp.mediaportal.iconcachepath.value + "logos"
+	logo_hashes = grabpage(icon_url+"logos/hashes")
+	if logo_hashes:
+		logo_data = re.findall('(.*?)\s\*(.*?\.png)', logo_hashes)
+		clean(logo_data, path)
 
 def MPmain(session, **kwargs):
 	mp_globals.start = True

@@ -258,9 +258,11 @@ class ssSerien(MPScreen, SearchHelper):
 		twAgentGetPage(url, agent=ss_agent, cookieJar=ss_cookies).addCallback(self.setCoverUrl).addErrback(self.dataError)
 
 	def setCoverUrl(self, data):
-		cover = re.findall('<div class=".*?picture">.*?<img src="(http[s]?://s.to/public/img/cover/.*?)"', data, re.S)
+		cover = re.findall('<div class=".*?picture">.*?<img src="((?:http[s]?://s.to|)/public/img/cover/.*?)"', data, re.S)
 		if cover:
 			self.cover = cover[0]
+			if self.cover.startswith('/'):
+				self.cover = BASE_URL + self.cover
 			CoverHelper(self['coverArt']).getCover(self.cover, agent=ss_agent, cookieJar=ss_cookies)
 
 	def keyOK(self):
@@ -393,9 +395,11 @@ class ssNeueEpisoden(MPScreen):
 		twAgentGetPage(url, agent=ss_agent, cookieJar=ss_cookies).addCallback(self.setCoverUrl).addErrback(self.dataError)
 
 	def setCoverUrl(self, data):
-		cover = re.findall('<div class=".*?picture">.*?<img src="(http[s]?://s.to/public/img/cover/.*?)"', data, re.S)
+		cover = re.findall('<div class=".*?picture">.*?<img src="((?:http[s]?://s.to|)/public/img/cover/.*?)"', data, re.S)
 		if cover:
 			self.cover = cover[0]
+			if self.cover.startswith('/'):
+				self.cover = BASE_URL + self.cover
 			CoverHelper(self['coverArt']).getCover(self.cover, agent=ss_agent, cookieJar=ss_cookies)
 
 	def reloadList(self):
@@ -491,9 +495,11 @@ class ssWatchlist(MPScreen, SearchHelper):
 		twAgentGetPage(url, agent=ss_agent, cookieJar=ss_cookies).addCallback(self.setCoverUrl).addErrback(self.dataError)
 
 	def setCoverUrl(self, data):
-		cover = re.findall('<div class=".*?picture">.*?<img src="(http[s]?://s.to/public/img/cover/.*?)"', data, re.S)
+		cover = re.findall('<div class=".*?picture">.*?<img src="((?:http[s]?://s.to|)/public/img/cover/.*?)"', data, re.S)
 		if cover:
 			self.cover = cover[0]
+			if self.cover.startswith('/'):
+				self.cover = BASE_URL + self.cover
 			CoverHelper(self['coverArt']).getCover(self.cover, agent=ss_agent, cookieJar=ss_cookies)
 
 	def keyOK(self):
@@ -821,7 +827,16 @@ class ssStreams(MPScreen):
 			if url.startswith('/redirect/'):
 				url = BASE_URL + url
 				headers = {'User-Agent': ss_agent}
+
+				from requests.adapters import HTTPAdapter
+				from requests.packages.urllib3.util.retry import Retry
+
 				s = requests.session()
+				retry = Retry(connect=3, backoff_factor=0.5)
+				adapter = HTTPAdapter(max_retries=retry)
+				s.mount('http://', adapter)
+				s.mount('https://', adapter)
+
 				response = s.get(url, cookies=ss_cookies, headers=headers)
 				if response.history:
 					get_stream_link(self.session).check_link(str(response.url), self.playfile)

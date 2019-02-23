@@ -3,7 +3,7 @@
 #
 #    MediaPortal for Dreambox OS
 #
-#    Coded by MediaPortal Team (c) 2013-2018
+#    Coded by MediaPortal Team (c) 2013-2019
 #
 #  This plugin is open source but it is NOT free software.
 #
@@ -267,7 +267,7 @@ class toSearchForPornBrowse(MPScreen):
 							if x.get("confcat") == "porn" and x.get("search") == "1":
 									if auswahl == x.get("name").replace("&amp;","&"):
 										Name = "2Search4Porn - %s" % self.suchString
-										Link = x.get("searchurl").replace("&amp;","&") % self.suchString.replace(" ",x.get("delim"))
+										Link = x.get("searchurl").replace("&amp;","&") % urllib.quote(self.suchString).replace(" ",x.get("delim"))
 										modfile = "Plugins.Extensions.MediaPortal.additions."+x.get("modfile")
 										mp_globals.activeIcon = x.get("icon")
 										exec("from "+modfile+" import *")
@@ -288,7 +288,7 @@ class toSearchForPornBrowse(MPScreen):
 										if x.get("confcat") == "porn" and x.get("search") == "1":
 												if auswahl == x.get("name").replace("&amp;","&"):
 													Name = "2Search4Porn - %s" % self.suchString
-													Link = x.get("searchurl").replace("&amp;","&") % self.suchString.replace(" ",x.get("delim"))
+													Link = x.get("searchurl").replace("&amp;","&") % urllib.quote(self.suchString).replace(" ",x.get("delim"))
 													modfile = "Plugins.Extensions.MediaPortal.additions."+x.get("modfile")
 													mp_globals.activeIcon = x.get("icon")
 													exec("from "+modfile+" import *")
