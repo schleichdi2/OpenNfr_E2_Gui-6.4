@@ -215,7 +215,7 @@ class bongacamsFilmScreen(MPScreen, ThumbsHelper):
 	def play_stream(self, data):
 		url = re.findall('"videoServerUrl":"(.*?)"', data, re.S)
 		if url:
-			url = 'https:' + url[-1].replace('\/','/') + '/hls/stream_' + self.username + '/chunks.m3u8'
+			url = 'https:' + url[-1].replace('\/','/') + '/hls/stream_' + self.username + '/playlist.m3u8'
 			title = self['liste'].getCurrent()[0][0]
 			self['name'].setText(title)
 			mp_globals.player_agent = bongacamsAgent

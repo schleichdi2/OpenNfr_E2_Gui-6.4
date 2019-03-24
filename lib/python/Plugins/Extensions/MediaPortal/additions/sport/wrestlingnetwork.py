@@ -12,10 +12,6 @@ class wrestlingnetworkGenreScreen(MPScreen):
 			self.portal = "Watch Wrestling.in"
 			self.baseurl = "http://watchwrestling.in"
 			default_cover = "file://%s/watchwrestling.png" % (config_mp.mediaportal.iconcachepath.value + "logos")
-		if self.mode == "watchwrestlinguno":
-			self.portal = "Watch Wrestling.ac"
-			self.baseurl = "http://watchwrestling.ac"
-			default_cover = "file://%s/watchwrestlinguno.png" % (config_mp.mediaportal.iconcachepath.value + "logos")
 
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
 

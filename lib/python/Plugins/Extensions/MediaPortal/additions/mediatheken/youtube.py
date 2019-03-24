@@ -1159,11 +1159,11 @@ class YT_ListScreen(MPScreen, ThumbsHelper):
 						if item.has_key('snippet'):
 							localized = item['snippet'].has_key('localized')
 							if not localized:
-								title = str(item['snippet'].get('title', ''))
+								title = decodeHtml(str(item['snippet'].get('title', '')))
 								desc = str(item['snippet'].get('description', ''))
 							else:
 								loca = item['snippet']['localized']
-								title = str(loca.get('title', ''))
+								title = decodeHtml(str(loca.get('title', '')))
 								desc = str(loca.get('description', ''))
 							if kind.endswith('#video'):
 								try:

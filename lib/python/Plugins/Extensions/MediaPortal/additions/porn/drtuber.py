@@ -58,7 +58,7 @@ class drtuberGenreScreen(MPScreen):
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
 		self.scope = 0
 		self.scopeText = ['Straight', 'Gays', 'Transsexual']
-		self.scopeval = ['straight', 'gay', 'trans']
+		self.scopeval = ['', 'gay/', 'shemale/']
 		self.scopefilter = [	'ch%3D178.1.2.3.4.191.7.8.5.9.169.10.11.12.13.14.15.16.17.18.28.190.20.21.22.27.23.24.25.26.189.30.31.32.181.35.36.37.180.176.38.33.34.39.40.41.42.177.44.43.46.45.47.48.49.50.51.52.53.54.55.56.57.58.179.59.63.60.61.62.64.65.66.69.68.71.67.70.72.73.74.75.182.183.77.76.78.79.80.81.82.84.85.88.86.188.87.91.90.92.93.94.%26rate%3D%26dur%3D%26added%3D%26hq%3D0%26sort%3D%2524search_filter__sort',
 					'ch%3D95.96.192.97.98.100.101.102.103.104.105.106.185.107.108.172.186.109.187.110.111.112.113.114.115.116.117.118.119.120.122.123.124.125.126.127.128.184.130.170.131.132.129.133.171.134.135.136.%26rate%3D%26dur%3D%26added%3D%26hq%3D0%26sort%3D%2524search_filter__sort',
 					'ch%3D138.173.195.139.140.141.142.143.144.145.146.193.175.147.174.148.194.149.150.151.152.153.154.155.156.157.159.160.161.162.163.164.165.166.158.168.%26rate%3D%26dur%3D%26added%3D%26hq%3D0%26sort%3D%2524search_filter__sort'
@@ -84,21 +84,20 @@ class drtuberGenreScreen(MPScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		ck.update({'cattype':self.scopeval[self.scope]})
 		ck.update({'search_filter_new':self.scopefilter[self.scope]})
 		self['F3'].setText(self.scopeText[self.scope])
 		self.keyLocked = True
-		url = "%s/categories" % BASE_URL
+		url = "%s/%scategories" % (BASE_URL, self.scopeval[self.scope])
 		getPage(url, agent=dtAgent, cookies=ck).addCallback(self.genreData).addErrback(self.dataError)
 
 	def genreData(self, data):
-		parse = re.search('<h2>%s</h2>(.*?)</div> </div>' % self.scopeText[self.scope], data, re.S)
+		parse = re.search('class="ID-list-category">(.*?)class="footer', data, re.S)
 		if parse:
-			genre = re.findall('<a\shref="(.*?)"\sdata-catFilter_category>(.*?)\s{0,1}<span>', parse.group(1), re.S)
+			genre = re.findall('class="item"> <a href="(.*?)">\s+<span>(.*?)</span>', parse.group(1), re.S)
 			if genre:
 				for genreurl, genrename in genre:
 					genreurl = BASE_URL + genreurl
-					self.genreliste.append((genrename, genreurl))
+					self.genreliste.append((genrename.title(), genreurl))
 		self.genreliste.sort()
 		self.genreliste.insert(0, ("Longest", "longest"))
 		self.genreliste.insert(0, ("Most Commented (All Time)", "comments_all"))
@@ -126,7 +125,7 @@ class drtuberGenreScreen(MPScreen):
 				ck.update({'index_filter_sort':''})
 			else:
 				ck.update({'index_filter_sort':Link})
-				Link = BASE_URL + "/videos"
+				Link = BASE_URL + "/" + self.scopeval[self.scope]
 			self.session.open(drtuberFilmScreen, Link, Name)
 
 	def SuchenCallback(self, callback = None):

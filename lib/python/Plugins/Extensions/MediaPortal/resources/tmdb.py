@@ -82,7 +82,11 @@ class MediaPortalTmdbScreen(MPScreen):
 			self['name'].setText(_("Results for \"%s\"") % self.movie_title)
 			self.showInfos()
 		else:
-			self['name'].setText(_("No results found for \"%s\"") % self.movie_title)
+			if " - " in self.movie_title:
+				self.movie_title = self.movie_title.split(" - ")[0]
+				self.tmdbSearch()
+			else:
+				self['name'].setText(_("No results found for \"%s\"") % self.movie_title)
 
 	def showInfos(self):
 		url_cover = self['liste'].getCurrent()[0][1]

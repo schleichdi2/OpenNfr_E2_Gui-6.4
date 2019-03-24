@@ -187,14 +187,14 @@ config_mp.mediaportal.epg_enabled = ConfigOnOff(default = False)
 config_mp.mediaportal.epg_runboot = ConfigOnOff(default = False)
 config_mp.mediaportal.epg_wakeupsleep = ConfigOnOff(default = False)
 config_mp.mediaportal.epg_wakeup = ConfigClock(default = calcDefaultStarttime())
-config_mp.mediaportal.epg_deepstandby = ConfigSelection(default = "skip", choices = [
+config_mp.mediaportal.epg_deepstandby = ConfigSelectionExt(default = "skip", choices = [
 		("wakeup", _("Wake up and import")),
 		("skip", _("Skip the import"))
 		])
 
 # Allgemein
-config_mp.mediaportal.version = NoSave(ConfigText(default="2019021701"))
-config.mediaportal.version = NoSave(ConfigText(default="2019021701"))
+config_mp.mediaportal.version = NoSave(ConfigText(default="2019032402"))
+config.mediaportal.version = NoSave(ConfigText(default="2019032402"))
 config_mp.mediaportal.autoupdate = ConfigYesNo(default = True)
 config.mediaportal.autoupdate = NoSave(ConfigYesNo(default = True))
 
@@ -221,8 +221,8 @@ config_mp.mediaportal.showuseradditions = ConfigYesNo(default = False)
 config_mp.mediaportal.pinuseradditions = ConfigYesNo(default = False)
 config_mp.mediaportal.ena_suggestions = ConfigYesNo(default = True)
 
-config_mp.mediaportal.animation_coverart = ConfigSelection(default = "mp_crossfade_fast", choices = [("mp_crossfade_fast", _("Crossfade (fast)")),("mp_crossfade_slow", _("Crossfade (slow)"))])
-config_mp.mediaportal.animation_label = ConfigSelection(default = "mp_crossfade_fast", choices = [("mp_crossfade_fast", _("Crossfade (fast)")),("mp_crossfade_slow", _("Crossfade (slow)"))])
+config_mp.mediaportal.animation_coverart = ConfigSelectionExt(default = "mp_crossfade_fast", choices = [("mp_crossfade_fast", _("Crossfade (fast)")),("mp_crossfade_slow", _("Crossfade (slow)"))])
+config_mp.mediaportal.animation_label = ConfigSelectionExt(default = "mp_crossfade_fast", choices = [("mp_crossfade_fast", _("Crossfade (fast)")),("mp_crossfade_slow", _("Crossfade (slow)"))])
 
 skins = []
 if mp_globals.videomode == 2:
@@ -230,8 +230,8 @@ if mp_globals.videomode == 2:
 	for skin in os.listdir("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/"):
 		if os.path.isdir(os.path.join("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_1080/", skin)):
 			skins.append(skin)
-	config_mp.mediaportal.skin2 = ConfigSelection(default = "clean_fhd", choices = skins)
-	config.mediaportal.skin2 = NoSave(ConfigSelection(default = "clean_fhd", choices = skins))
+	config_mp.mediaportal.skin2 = ConfigSelectionExt(default = "clean_fhd", choices = skins)
+	config.mediaportal.skin2 = NoSave(ConfigSelectionExt(default = "clean_fhd", choices = skins))
 	mp_globals.skinFallback = "/clean_fhd"
 else:
 	mp_globals.skinsPath = "/skins_720"
@@ -239,27 +239,27 @@ else:
 		if os.path.isdir(os.path.join("/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/skins_720/", skin)):
 			if skin != "original":
 				skins.append(skin)
-	config_mp.mediaportal.skin2 = ConfigSelection(default = "clean_hd", choices = skins)
-	config.mediaportal.skin2 = NoSave(ConfigSelection(default = "clean_hd", choices = skins))
+	config_mp.mediaportal.skin2 = ConfigSelectionExt(default = "clean_hd", choices = skins)
+	config.mediaportal.skin2 = NoSave(ConfigSelectionExt(default = "clean_hd", choices = skins))
 	mp_globals.skinFallback = "/clean_hd"
 
 config_mp.mediaportal.skin = NoSave(ConfigText(default=config_mp.mediaportal.skin2.value))
 
-config_mp.mediaportal.debugMode = ConfigSelection(default="Silent", choices = ["High", "Normal", "Silent"])
+config_mp.mediaportal.debugMode = ConfigSelectionExt(default="Silent", choices = ["High", "Normal", "Silent"])
 
 if mp_globals.covercollection or mp_globals.isVTi:
 	if config_mp.mediaportal.debugMode.value == "High":
-		config_mp.mediaportal.ansicht = ConfigSelection(default = "wall2", choices = [("wall2", _("Wall 2.0")), ("wall", _("Wall")), ("liste", _("List"))])
+		config_mp.mediaportal.ansicht = ConfigSelectionExt(default = "wall2", choices = [("wall2", _("Wall 2.0")), ("wall", _("Wall")), ("liste", _("List"))])
 	else:
-		config_mp.mediaportal.ansicht = ConfigSelection(default = "wall2", choices = [("wall2", _("Wall 2.0")), ("liste", _("List"))])
+		config_mp.mediaportal.ansicht = ConfigSelectionExt(default = "wall2", choices = [("wall2", _("Wall 2.0")), ("liste", _("List"))])
 elif mp_globals.videomode == 2 and mp_globals.fakeScale:
-	config_mp.mediaportal.ansicht = ConfigSelection(default = "wall", choices = [("wall", _("Wall")), ("liste", _("List"))])
+	config_mp.mediaportal.ansicht = ConfigSelectionExt(default = "wall", choices = [("wall", _("Wall")), ("liste", _("List"))])
 elif mp_globals.videomode == 2 and not mp_globals.isDreamOS:
-	config_mp.mediaportal.ansicht = ConfigSelection(default = "liste", choices = [("liste", _("List"))])
+	config_mp.mediaportal.ansicht = ConfigSelectionExt(default = "liste", choices = [("liste", _("List"))])
 else:
-	config_mp.mediaportal.ansicht = ConfigSelection(default = "wall", choices = [("wall", _("Wall")), ("liste", _("List"))])
-config_mp.mediaportal.wallmode = ConfigSelection(default = "color_zoom", choices = [("color_zoom", _("Color")),("bw_zoom", _("Black&White"))])
-config_mp.mediaportal.wall2mode = ConfigSelection(default = "color", choices = [("color", _("Color")),("bw", _("Black&White"))])
+	config_mp.mediaportal.ansicht = ConfigSelectionExt(default = "wall", choices = [("wall", _("Wall")), ("liste", _("List"))])
+config_mp.mediaportal.wallmode = ConfigSelectionExt(default = "color_zoom", choices = [("color_zoom", _("Color")),("bw_zoom", _("Black&White"))])
+config_mp.mediaportal.wall2mode = ConfigSelectionExt(default = "color", choices = [("color", _("Color")),("bw", _("Black&White"))])
 config_mp.mediaportal.hlsp_enable = ConfigYesNo(default = True)
 config_mp.mediaportal.hls_proxy_ip = ConfigIP(default = [127,0,0,1], auto_jump = True)
 config_mp.mediaportal.hls_proxy_port = ConfigInteger(default = 0, limits = (0,65535))
@@ -267,44 +267,44 @@ config_mp.mediaportal.hls_buffersize = ConfigInteger(default = 32, limits = (1,6
 config_mp.mediaportal.storagepath = ConfigText(default="/tmp/mediaportal/tmp/", fixed_size=False)
 config_mp.mediaportal.iconcachepath = ConfigText(default="/media/hdd/mediaportal/", fixed_size=False)
 config_mp.mediaportal.autoplayThreshold = ConfigInteger(default = 50, limits = (1,100))
-config_mp.mediaportal.filter = ConfigSelection(default = "ALL", choices = ["ALL", "Mediathek", "User-additions", "Fun", "NewsDoku", "Sport", "Music", "Porn"])
-config.mediaportal.filter = NoSave(ConfigSelection(default = "ALL", choices = ["ALL"]))
+config_mp.mediaportal.filter = ConfigSelectionExt(default = "ALL", choices = ["ALL", "Mediathek", "User-additions", "Fun", "NewsDoku", "Sport", "Music", "Porn"])
+config.mediaportal.filter = NoSave(ConfigSelectionExt(default = "ALL", choices = ["ALL"]))
 config_mp.mediaportal.youtubeenablevp9 = ConfigYesNo(default = False)
 config_mp.mediaportal.youtubeenabledash = ConfigYesNo(default = False)
 config_mp.mediaportal.youtubeenabledash720p = ConfigYesNo(default = False)
 config_mp.mediaportal.youtubeenabledash480p = ConfigYesNo(default = False)
-config_mp.mediaportal.youtubeprio = ConfigSelection(default = "2", choices = [("0", "360p"),("1", "480p"),("2", "720p"),("3", "1080p"),("4", "1440p"),("5", "2160p")])
-config_mp.mediaportal.videoquali_others = ConfigSelection(default = "2", choices = [("0", _("Low")),("1", _("Medium")),("2", _("High"))])
+config_mp.mediaportal.youtubeprio = ConfigSelectionExt(default = "2", choices = [("0", "360p"),("1", "480p"),("2", "720p"),("3", "1080p"),("4", "1440p"),("5", "2160p")])
+config_mp.mediaportal.videoquali_others = ConfigSelectionExt(default = "2", choices = [("0", _("Low")),("1", _("Medium")),("2", _("High"))])
 config_mp.mediaportal.pornpin = ConfigYesNo(default = True)
-config_mp.mediaportal.pornpin_cache = ConfigSelection(default = "0", choices = [("0", _("never")), ("5", _("5 minutes")), ("15", _("15 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes"))])
+config_mp.mediaportal.pornpin_cache = ConfigSelectionExt(default = "0", choices = [("0", _("never")), ("5", _("5 minutes")), ("15", _("15 minutes")), ("30", _("30 minutes")), ("60", _("60 minutes"))])
 config_mp.mediaportal.kidspin = ConfigYesNo(default = False)
 config_mp.mediaportal.setuppin = ConfigYesNo(default = False)
 config_mp.mediaportal.watchlistpath = ConfigText(default="/etc/enigma2/", fixed_size=False)
-config_mp.mediaportal.sortplugins = ConfigSelection(default = "abc", choices = [("hits", "Hits"), ("abc", "ABC"), ("user", "User")])
-config_mp.mediaportal.pagestyle = ConfigSelection(default="Graphic", choices = ["Graphic", "Text"])
-config_mp.mediaportal.font = ConfigSelection(default = "1", choices = [("1", "Mediaportal 1")])
+config_mp.mediaportal.sortplugins = ConfigSelectionExt(default = "abc", choices = [("hits", "Hits"), ("abc", "ABC"), ("user", "User")])
+config_mp.mediaportal.pagestyle = ConfigSelectionExt(default="Graphic", choices = ["Graphic", "Text"])
+config_mp.mediaportal.font = ConfigSelectionExt(default = "1", choices = [("1", "Mediaportal 1")])
 config_mp.mediaportal.showAsThumb = ConfigYesNo(default = False)
-config_mp.mediaportal.restorelastservice = ConfigSelection(default = "1", choices = [("1", _("after SimplePlayer quits")),("2", _("after MediaPortal quits"))])
+config_mp.mediaportal.restorelastservice = ConfigSelectionExt(default = "1", choices = [("1", _("after SimplePlayer quits")),("2", _("after MediaPortal quits"))])
 config_mp.mediaportal.backgroundtv = ConfigYesNo(default = False)
 config_mp.mediaportal.minitv = ConfigYesNo(default = True)
 
 # Konfiguration erfolgt in SimplePlayer
-config_mp.mediaportal.sp_playmode = ConfigSelection(default = "forward", choices = [("forward", _("Forward")),("backward", _("Backward")),("random", _("Random")),("endless", _("Endless"))])
-config_mp.mediaportal.sp_on_movie_stop = ConfigSelection(default = "quit", choices = [("ask", _("Ask user")), ("quit", _("Return to previous service"))])
-config_mp.mediaportal.sp_on_movie_eof = ConfigSelection(default = "quit", choices = [("ask", _("Ask user")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end"))])
+config_mp.mediaportal.sp_playmode = ConfigSelectionExt(default = "forward", choices = [("forward", _("Forward")),("backward", _("Backward")),("random", _("Random")),("endless", _("Endless"))])
+config_mp.mediaportal.sp_on_movie_stop = ConfigSelectionExt(default = "quit", choices = [("ask", _("Ask user")), ("quit", _("Return to previous service"))])
+config_mp.mediaportal.sp_on_movie_eof = ConfigSelectionExt(default = "quit", choices = [("ask", _("Ask user")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end"))])
 config_mp.mediaportal.sp_seekbar_sensibility = ConfigInteger(default = 10, limits = (1,50))
 config_mp.mediaportal.sp_infobar_cover_off = ConfigYesNo(default = False)
 config_mp.mediaportal.sp_use_number_seek = ConfigYesNo(default = True)
 config_mp.mediaportal.sp_pl_number = ConfigInteger(default = 1, limits = (1,99))
-config_mp.mediaportal.sp_use_yt_with_proxy = ConfigSelection(default = "no", choices = [("no", _("No")), ("prz", "with Premiumize"), ("rdb", "with Real-Debrid"), ("proxy", "with a HTTP Proxy")])
-config_mp.mediaportal.sp_on_movie_start = ConfigSelection(default = "start", choices = [("start", _("Start from the beginning")), ("ask", _("Ask user")), ("resume", _("Resume from last position"))])
+config_mp.mediaportal.sp_use_yt_with_proxy = ConfigSelectionExt(default = "no", choices = [("no", _("No")), ("prz", "with Premiumize"), ("rdb", "with Real-Debrid"), ("proxy", "with a HTTP Proxy")])
+config_mp.mediaportal.sp_on_movie_start = ConfigSelectionExt(default = "start", choices = [("start", _("Start from the beginning")), ("ask", _("Ask user")), ("resume", _("Resume from last position"))])
 config_mp.mediaportal.sp_save_resumecache = ConfigYesNo(default = False)
-config_mp.mediaportal.sp_radio_cover = ConfigSelection(default = "large", choices = [("large", _("large")), ("small", _("small")), ("off", _("off"))])
+config_mp.mediaportal.sp_radio_cover = ConfigSelectionExt(default = "large", choices = [("large", _("large")), ("small", _("small")), ("off", _("off"))])
 if model in ["dm900","dm920"]:
-	config_mp.mediaportal.sp_radio_visualization = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Mode 1")), ("2", _("Mode 2")), ("3", _("Mode 3"))])
+	config_mp.mediaportal.sp_radio_visualization = ConfigSelectionExt(default = "1", choices = [("0", _("Off")), ("1", _("Mode 1")), ("2", _("Mode 2")), ("3", _("Mode 3"))])
 else:
-	config_mp.mediaportal.sp_radio_visualization = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Mode 1")), ("2", _("Mode 2"))])
-config_mp.mediaportal.sp_radio_bgsaver = ConfigSelection(default = "1", choices = [("0", _("Off")), ("1", _("Ken Burns effect")), ("2", _("Just photos"))])
+	config_mp.mediaportal.sp_radio_visualization = ConfigSelectionExt(default = "1", choices = [("0", _("Off")), ("1", _("Mode 1")), ("2", _("Mode 2"))])
+config_mp.mediaportal.sp_radio_bgsaver = ConfigSelectionExt(default = "1", choices = [("0", _("Off")), ("1", _("Ken Burns effect")), ("2", _("Just photos"))])
 config_mp.mediaportal.sp_radio_bgsaver_keywords = ConfigText(default="music", fixed_size=False)
 config_mp.mediaportal.yt_proxy_username = ConfigText(default="user!", fixed_size=False)
 config_mp.mediaportal.yt_proxy_password = ConfigPassword(default="pass!", fixed_size=False)
@@ -314,7 +314,7 @@ config_mp.mediaportal.hlsp_proxy_username = ConfigText(default="user!", fixed_si
 config_mp.mediaportal.hlsp_proxy_password = ConfigPassword(default="pass!", fixed_size=False)
 config_mp.mediaportal.hlsp_proxy_host = ConfigText(default = "example_proxy.com!", fixed_size = False)
 config_mp.mediaportal.hlsp_proxy_port = ConfigInteger(default = 8080, limits = (0,65535))
-config_mp.mediaportal.sp_use_hlsp_with_proxy = ConfigSelection(default = "no", choices = [("no", _("No")), ("always", "Use it always"), ("plset", "Set in the playlist")])
+config_mp.mediaportal.sp_use_hlsp_with_proxy = ConfigSelectionExt(default = "no", choices = [("no", _("No")), ("always", "Use it always"), ("plset", "Set in the playlist")])
 
 # premiumize.me
 config_mp.mediaportal.premiumize_use = ConfigYesNo(default = False)
@@ -330,7 +330,7 @@ config_mp.mediaportal.realdebrid_rclient_id = ConfigText(default="", fixed_size=
 config_mp.mediaportal.realdebrid_rclient_secret = ConfigText(default="", fixed_size=False)
 
 # Premium Hosters
-config_mp.mediaportal.premium_color = ConfigSelection(default="0xFFFF00", choices = [("0xFF0000",_("Red")),("0xFFFF00",_("Yellow")),("0x00FF00",_("Green")),("0xFFFFFF",_("White")),("0x00ccff",_("Light Blue")),("0x66ff99",_("Light Green"))])
+config_mp.mediaportal.premium_color = ConfigSelectionExt(default="0xFFFF00", choices = [("0xFF0000",_("Red")),("0xFFFF00",_("Yellow")),("0x00FF00",_("Green")),("0xFFFFFF",_("White")),("0x00ccff",_("Light Blue")),("0x66ff99",_("Light Green"))])
 
 # Userchannels Help
 config_mp.mediaportal.show_userchan_help = ConfigYesNo(default = True)

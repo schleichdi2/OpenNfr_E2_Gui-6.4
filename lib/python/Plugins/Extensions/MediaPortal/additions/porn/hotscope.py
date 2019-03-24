@@ -215,3 +215,34 @@ class hotscopeFilmScreen(MPScreen, ThumbsHelper):
 			url = video[-1]
 			Title = self['liste'].getCurrent()[0][0]
 			self.session.open(SimplePlayer, [(Title, url)], showPlaylist=False, ltype='hotscope')
+		else:
+			embedurl = re.findall('"embedURL":"https://\w+.pornhub.com/embed/(.*?)",', data.replace('\u002F','/'), re.S)
+			if embedurl:
+				url = "https://www.pornhub.com/view_video.php?viewkey=" + embedurl[0]
+				twAgentGetPage(url, agent=agent).addCallback(self.getVideoPage2).addErrback(self.dataError)
+
+	def getVideoPage2(self, data):
+		match = re.findall('quality":"720","videoUrl"."(.*?)"', data, re.S)
+		if not match:
+			match = re.findall('quality":"480","videoUrl"."(.*?)"', data, re.S)
+		if not match:
+			match = re.findall('quality":"240","videoUrl"."(.*?)"', data, re.S)
+		fetchurl = urllib2.unquote(match[0]).replace('\/','/')
+
+		# retry till we get a good working cdn streamurl
+		if config_mp.mediaportal.pornhub_cdnfix.value:
+			if re.match('.*?bv.phncdn.com', fetchurl, re.S):
+				self.count += 1
+				if self.count < 20:
+					self.keyOK()
+					printl('CDN retry: '+str(self.count),self,'A')
+					return
+
+		Title = self['liste'].getCurrent()[0][0]
+		mp_globals.player_agent = agent
+		if "&hash=" in fetchurl:
+			url = fetchurl.split('&hash=')
+			url = url[0] + "&hash=" + url[1].replace('/','%252F').replace('=','%253D').replace('+','%252B')
+		else:
+			url = fetchurl
+		self.session.open(SimplePlayer, [(Title, url)], showPlaylist=False, ltype='hotscope')

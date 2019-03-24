@@ -136,7 +136,7 @@ class MPUpdateScreen(MPScreen):
 					feed = tmp_infolines[i].split('#FEED#')[-1]
 			if not feed:
 				feed = 'https://apt.fury.io/mediaportal/'
-			self.container.execute("rm -f /etc/apt/sources.list.d/mediaportal.list && echo deb [trusted=yes] %s / > /etc/apt/sources.list.d/mediaportal.list && apt-get update && apt-get --only-upgrade install -y enigma2-plugin-extensions-mediaportal" % feed)
+			self.container.execute("rm -f /etc/apt/sources.list.d/mediaportal.list && echo deb [trusted=yes] %s ./ > /etc/apt/sources.list.d/mediaportal.list && apt-get update && apt-get --only-upgrade install -y enigma2-plugin-extensions-mediaportal" % feed)
 		else:
 			self.container.appClosed.append(self.finishedPluginUpdate)
 			self.container.stdoutAvail.append(self.mplog)

@@ -27,12 +27,39 @@ from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.AVSwitch import AVSwitch
 from Components.Button import Button
 from config import config_mp, configfile_mp
-from Components.config import config, ConfigInteger, ConfigSelection, getConfigListEntry, ConfigText, ConfigDirectory, ConfigBoolean, configfile, ConfigSelection, ConfigSubsection, ConfigPIN, NoSave, ConfigNothing, ConfigIP
+from Components.config import config, ConfigElement, choicesList, ConfigInteger, ConfigSelection, getConfigListEntry, ConfigText, ConfigDirectory, ConfigBoolean, configfile, ConfigSubsection, ConfigPIN, NoSave, ConfigNothing, ConfigIP
+
+class ConfigSelectionExt(ConfigSelection):
+	def __init__(self, choices, default = None):
+		ConfigElement.__init__(self)
+		self.choices = choicesList(choices)
+		self.allow_invalid_choice = None
+		self.graphic = False
+		try:
+			self.choices.additemDescriptionUpdatedCallback(self._invalidateCachedDescription)
+		except:
+			pass
+		if default is None:
+			default = self.choices.default()
+		try:
+			self._invalidateCachedDescription()
+		except:
+			pass
+		self._descr = None
+		self.default = self._value = self.last_value = default
+
+boolean_descriptions = {False: "false", True: "true"}
+class ConfigBooleanExt(ConfigBoolean):
+	def __init__(self, default = False, descriptions = boolean_descriptions):
+		ConfigElement.__init__(self)
+		self.descriptions = descriptions
+		self.value = self.last_value = self.default = default
+		self.graphic = False
 
 yes_no_descriptions = {False: _("no"), True: _("yes")}
-class ConfigYesNo(ConfigBoolean):
+class ConfigYesNo(ConfigBooleanExt):
 	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
+		ConfigBooleanExt.__init__(self, default = default, descriptions = yes_no_descriptions)
 
 try:
 	from Components.config import ConfigPassword

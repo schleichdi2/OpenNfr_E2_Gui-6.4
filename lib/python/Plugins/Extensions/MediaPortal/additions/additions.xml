@@ -8,7 +8,6 @@
 		<plugin type="mod" modfile="music.mtvdecharts" confopt="showMTVdeCharts" default="True" confcat="music" gz="0" name="MTV Charts" icon="mtvdecharts" filter="Music" screen="MTVdeChartsGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="music.radio" confopt="showradio" default="True" confcat="music" gz="0" name="Radio" icon="radio" filter="Music" screen="RadioGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="music.shoutcast" confopt="showshoutcast" default="True" confcat="music" gz="0" name="shoutcast" icon="shoutcast" filter="Music" screen="ShoutcastGenreScreen" param1="" param2=""/>
-		<!--<plugin type="mod" modfile="music.jukebox" confopt="showJBTO" default="True" confcat="music" gz="0" name="JUKEBOX" icon="jukebox" filter="Music" screen="show_JBTO_Genre" param1="" param2=""/>-->
 		<!--newsdoku section-->
 		<plugin type="mod" modfile="newsdoku.focus" confopt="showFocus" default="True" confcat="newsdoku" gz="0" name="Focus" icon="focus" filter="NewsDoku" screen="focusGenre" param1="" param2=""/>
 		<plugin type="mod" modfile="newsdoku.autobild" confopt="showAutoBild" default="True" confcat="newsdoku" gz="0" name="Autobild" icon="autobild" filter="NewsDoku" screen="autoBildGenreScreen" param1="" param2=""/>
@@ -42,7 +41,6 @@
 		<plugin type="mod" modfile="mediatheken.arte" confopt="showArte" default="True" confcat="mediatheken" gz="0" name="arte Mediathek" icon="arte" filter="Mediathek" screen="arteFirstScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="mediatheken.atv" confopt="showatv" default="True" confcat="mediatheken" gz="0" name="ATV Mediathek" icon="atv" filter="Mediathek" screen="atvGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="mediatheken.brf" confopt="showbrf" default="True" confcat="mediatheken" gz="0" name="BRF Mediathek" icon="brf" filter="Mediathek" screen="brfGenreScreen" param1="" param2=""/>
-		<!--<plugin type="mod" modfile="mediatheken.br_tv" confopt="showBRTV" default="True" confcat="mediatheken" gz="0" name="BR Mediathek" icon="brtv" filter="Mediathek" screen="BRGenreScreen" param1="" param2=""/>-->
 		<plugin type="mod" modfile="mediatheken.funk" confopt="showFUNK" default="True" confcat="mediatheken" gz="0" name="FUNK" icon="funk" filter="Mediathek" screen="funkGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="mediatheken.spiegeltv" confopt="showspiegeltv" default="True" confcat="mediatheken" gz="0" name="SPIEGEL.TV" icon="spiegeltv" filter="Mediathek" screen="spiegeltvGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="mediatheken.kindertube" confopt="showkindertube" default="True" confcat="mediatheken" gz="0" name="KinderTube" icon="kindertube" filter="Mediathek" screen="kindertubeMain" param1="" param2="" kids="1"/>

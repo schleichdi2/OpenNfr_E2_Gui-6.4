@@ -45,7 +45,7 @@ class x123pandamovieGenreScreen(MPScreen):
 				self.filmliste.sort()
 		if self.mode == "Genres":
 			self.filmliste.insert(0, ("Years", "Release Year", None))
-			self.filmliste.insert(0, ("Studios", "Studios", None))
+			#self.filmliste.insert(0, ("Studios", "Studios", None))
 			self.filmliste.insert(0, ("Newest Movies", "https://123pandamovie.me/adult/movies/page/", None))
 			self.filmliste.insert(0, ("--- Search ---", "callSuchen", None))
 		self.ml.setList(map(self._defaultlistcenter, self.filmliste))

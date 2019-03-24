@@ -45,13 +45,18 @@ default_cover = "file://%s/servustv.png" % (config_mp.mediaportal.iconcachepath.
 
 class sTVGenreScreen(MPScreen):
 
-	def __init__(self, session):
+	def __init__(self, session, url = ''):
+		self.url = url
 
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
 
 		self["actions"] = ActionMap(["MP_Actions"], {
 			"ok"    : self.keyOK,
 			"0" : self.closeAll,
+			"up" : self.keyUp,
+			"down" : self.keyDown,
+			"right" : self.keyRight,
+			"left" : self.keyLeft,
 			"cancel": self.keyCancel
 		}, -1)
 
@@ -62,25 +67,50 @@ class sTVGenreScreen(MPScreen):
 		self.ml = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
 		self['liste'] = self.ml
 
-		self.onLayoutFinish.append(self.layoutFinished)
+		if self.url:
+			self.onLayoutFinish.append(self.loadPage)
+		else:
+			self.onLayoutFinish.append(self.layoutFinished)
+
+	def loadPage(self):
+		self.genreliste = []
+		self.keyLocked = True
+		twAgentGetPage(self.url, agent=stvAgent).addCallback(self.loadPageData).addErrback(self.dataError)
+
+	def loadPageData(self, data):
+		shows = re.findall('class="component__card.*?href="(.*?)".*?class="card__image-container">.*?img\ssrc="(.*?\.(?:jpg|png)).*?".*?heading--two">(.*?)</', data, re.S)
+		if shows:
+			for (url,image,title) in shows:
+				image = image + "?resize=600,413&crop_strategy=smart"
+				url = url.replace(baseurl,'')
+				self.genreliste.append((decodeHtml(title), url, image))
+			self.ml.setList(map(self._defaultlistleft, self.genreliste))
+			self.keyLocked = False
+			self.showInfos()
+
+	def showInfos(self):
+		Image = self['liste'].getCurrent()[0][2]
+		CoverHelper(self['coverArt']).getCover(Image)
 
 	def layoutFinished(self):
-		self.genreliste.append(("Aktuelles", "/de/aktuelles"))
-		self.genreliste.append(("Abenteuer", "/de/abenteuer"))
-		self.genreliste.append(("Dokumentarfilm", "/de/dokumentarfilm"))
-		self.genreliste.append(("Kultur", "/de/kultur"))
-		self.genreliste.append(("Natur", "/de/natur"))
-		self.genreliste.append(("Sport", "/de/sport"))
-		self.genreliste.append(("Unterhaltung", "/de/unterhaltung"))
-		self.genreliste.append(("Volkskultur", "/de/volkskultur"))
-		self.genreliste.append(("Wissen", "/de/wissen"))
+		self.genreliste.append(("Sendungen A-Z", "/tv/sendungen-a-z/", default_cover))
+		self.genreliste.append(("Aktuelles", "/tv/rubrik/aktuelles/", default_cover))
+		self.genreliste.append(("Kultur", "/tv/rubrik/kultur/", default_cover))
+		self.genreliste.append(("Natur", "/tv/rubrik/natur/", default_cover))
+		self.genreliste.append(("Sport", "/tv/rubrik/sport/", default_cover))
+		self.genreliste.append(("Unterhaltung", "/tv/rubrik/unterhaltung/", default_cover))
+		self.genreliste.append(("Volkskultur", "/tv/rubrik/volkskultur/", default_cover))
+		self.genreliste.append(("Wissen", "/tv/rubrik/wissen/", default_cover))
 		self.ml.setList(map(self._defaultlistcenter, self.genreliste))
 
 	def keyOK(self):
 		name = self['liste'].getCurrent()[0][0]
 		url = self['liste'].getCurrent()[0][1]
 		url = baseurl + url
-		self.session.open(sTVids,name,url)
+		if name == "Sendungen A-Z":
+			self.session.open(sTVGenreScreen,url)
+		else:
+			self.session.open(sTVids,name,url)
 
 class sTVids(MPScreen):
 
@@ -96,13 +126,19 @@ class sTVids(MPScreen):
 			"up" : self.keyUp,
 			"down" : self.keyDown,
 			"right" : self.keyRight,
-			"left" : self.keyLeft
+			"left" : self.keyLeft,
+			"nextBouquet" : self.keyPageUp,
+			"prevBouquet" : self.keyPageDown,
 		}, -1)
 
 		self.keyLocked = True
 		self['title'] = Label("ServusTV")
 		self['ContentTitle'] = Label("Genre: %s" % self.Name)
 		self['name'] = Label(_("Please wait..."))
+		self['Page'] = Label(_("Page:"))
+
+		self.page = 1
+		self.lastpage = 1
 
 		self.filmliste = []
 		self.ml = MenuList([], enableWrapAround=True, content=eListboxPythonMultiContent)
@@ -111,15 +147,20 @@ class sTVids(MPScreen):
 		self.onLayoutFinish.append(self.loadPage)
 
 	def loadPage(self):
+		self.filmliste = []
 		self.keyLocked = True
-		getPage(self.Link, agent=stvAgent).addCallback(self.loadPageData).addErrback(self.dataError)
+		url = self.Link + "page/" + str(self.page) + "/?video_type=full-episodes"
+		twAgentGetPage(url, agent=stvAgent).addCallback(self.loadPageData).addErrback(self.dataError)
 
 	def loadPageData(self, data):
-		parse = re.search('row products(.*?)id="foot"', data, re.S)
-		shows = re.findall('video-play"\shref="(.*?([A-Z0-9-]+)\/)">.*?src="(https://da\d{0,2}.rbmbtnx.net/.*?\.jpg).*?class="card-title"><a href=".*?">(.*?)</a>', parse.group(1), re.S)
+		self.getLastPage(data, 'class="pagination">(.*?)</ul>')
+		shows = re.findall('class="component__card media_asset.*?href="(https://www.servus.com/tv/videos/(.*?)/)".*?class="card__image-container">.*?img\ssrc="(.*?\.(?:jpg|png)).*?".*?card__label">(.*?)</div.*?heading--two">(.*?)</.*?card__date">(.*?)</div', data, re.S)
 		if shows:
-			for (url,id,image,title) in shows:
-				self.filmliste.append((decodeHtml(title),id,image,url))
+			for (url,id,image,title,subtitle,date) in shows:
+				id = id.upper()
+				image = image + "?resize=600,413&crop_strategy=smart"
+				title = title + " - " + subtitle
+				self.filmliste.append((decodeHtml(title),id,image,url,date.strip()))
 			self.ml.setList(map(self._defaultlistleft, self.filmliste))
 			self.ml.moveToIndex(0)
 			self.keyLocked = False
@@ -129,16 +170,17 @@ class sTVids(MPScreen):
 		title = self['liste'].getCurrent()[0][0]
 		pic = self['liste'].getCurrent()[0][2]
 		url = self['liste'].getCurrent()[0][3]
-		url = baseurl + url
+		self.date = self['liste'].getCurrent()[0][4]
 		self['name'].setText(title)
 		CoverHelper(self['coverArt']).getCover(pic)
 		self['handlung'].setText('')
-		getPage(url, agent=stvAgent).addCallback(self.getDescr).addErrback(self.dataError)
+		twAgentGetPage(url, agent=stvAgent).addCallback(self.getDescr).addErrback(self.dataError)
 
 	def getDescr(self, data):
-		descr = re.findall('class="product-content.*?</div><br>(.*?)(?:</div>|<div)', data, re.S)
+		descr = re.findall('<div id="media-asset-content-container".*?<p>(.*?)</p>', data, re.S)
 		if descr:
-			descr = decodeHtml(stripAllTags(descr[0].replace('<br /><br />', '\n').replace('<br />', '\n')))
+			descr = decodeHtml(descr[0].replace('<br />', '\n'))
+			descr = self.date + "\n\n" + descr
 			self['handlung'].setText(descr)
 
 	def keyOK(self):
@@ -147,7 +189,7 @@ class sTVids(MPScreen):
 		url = self['liste'].getCurrent()[0][1]
 		url = 'https://stv.rbmbtnx.net/api/v1/manifests/%s.m3u8' % url
 		basepath = 'https://stv.rbmbtnx.net/api/v1/manifests/'
-		getPage(url, agent=stvAgent).addCallback(self.loadplaylist, basepath).addErrback(self.dataError)
+		twAgentGetPage(url, agent=stvAgent).addCallback(self.loadplaylist, basepath).addErrback(self.dataError)
 
 	def loadplaylist(self, data, basepath):
 		bandwith_list = []

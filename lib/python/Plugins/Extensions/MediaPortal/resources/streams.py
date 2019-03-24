@@ -86,6 +86,7 @@ class get_stream_link:
 	from hosters.flyflv import flyflv, flyflvData
 	from hosters.google import google
 	from hosters.gounlimited import gounlimited
+	from hosters.kissmovies import kissmovies
 	from hosters.kodik import kodik, kodikData
 	from hosters.mailru import mailru
 	from hosters.mega3x import mega3x
@@ -511,6 +512,12 @@ class get_stream_link:
 				link = 'http://www.fembed.com/api/source/' + data.split('/v/')[-1]
 				mp_globals.player_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
 				twAgentGetPage(link, method='POST', agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.fembed).addErrback(self.errorload)
+
+			elif re.search('kissmovies.cc', data, re.S):
+				link = 'https://kissmovies.cc/api/source/' + data.split('/v/')[-1]
+				print link
+				mp_globals.player_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+				twAgentGetPage(link, method='POST', agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36', headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.kissmovies).addErrback(self.errorload)
 
 			elif re.search('flashx.tv|flashx.pw|flashx.co|flashx.to', data, re.S):
 				link = data

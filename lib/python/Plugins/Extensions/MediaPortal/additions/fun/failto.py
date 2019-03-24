@@ -78,8 +78,8 @@ class failScreen(MPScreen, ThumbsHelper):
 
 	def loadPage(self):
 		self.keyLocked = True
-		url = "http://www.fail.to/genre/1-videos/p-%s" % str(self.page)
-		getPage(url).addCallback(self.loadPageData).addErrback(self.dataError)
+		url = "https://www.fail.to/genre/1-videos/p-%s" % str(self.page)
+		twAgentGetPage(url).addCallback(self.loadPageData).addErrback(self.dataError)
 
 	def loadPageData(self, data):
 		self.getLastPage(data, '', 'class="pagination">.*?<strong>(.*?)</strong>')
@@ -88,8 +88,8 @@ class failScreen(MPScreen, ThumbsHelper):
 		if Videos:
 			self.filmliste = []
 			for (Url, Title, Image, Descr) in Videos:
-				Url = "http://www.fail.to" + Url
-				Image = "http://www.fail.to" + Image
+				Url = "https://www.fail.to" + Url
+				Image = "https://www.fail.to" + Image
 				Descr = stripAllTags(Descr).strip()
 				self.filmliste.append((Title, Url, Image, Descr))
 			self.ml.setList(map(self._defaultlistleft, self.filmliste))
@@ -110,13 +110,13 @@ class failScreen(MPScreen, ThumbsHelper):
 		if self.keyLocked:
 			return
 		url = self['liste'].getCurrent()[0][1]
-		getPage(url).addCallback(self.parseData).addErrback(self.dataError)
+		twAgentGetPage(url).addCallback(self.parseData).addErrback(self.dataError)
 
 	def parseData(self, data):
 		Title = self['liste'].getCurrent()[0][0]
 		Stream = re.findall("'file': '(.*?)'", data)
 		if Stream:
-			Stream = "http://www.fail.to" + Stream[0]
+			Stream = "https://www.fail.to" + Stream[0]
 			self.session.open(SimplePlayer, [(Title, Stream)], showPlaylist=False, ltype='failto')
 		else:
 			videoPage = re.findall('www.youtube.com/(v|embed)/(.*?)"', data, re.S)

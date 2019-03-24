@@ -66,8 +66,23 @@ class ORFGenreScreen(MPScreen):
 		self.onLayoutFinish.append(self.loadPage)
 
 	def loadPage(self):
-		self.genreliste.append(('Sendungen A-Z', 'https://tvthek.orf.at/profiles/a-z'))
-		self.genreliste.append(('Thema', 'https://tvthek.orf.at/profiles'))
+		self.genreliste.append(('Sendungen A-Z', 'https://tvthek.orf.at/profiles'))
+		self.genreliste.append(('Film & Serie', 'https://tvthek.orf.at/profiles/genre/Film-Serie/2703833'))
+		self.genreliste.append(('Doku & Reportage', 'https://tvthek.orf.at/profiles/genre/Doku-Reportage/1173'))
+		self.genreliste.append(('Information', 'https://tvthek.orf.at/profiles/genre/Information/2703825'))
+		self.genreliste.append(('Kultur', 'https://tvthek.orf.at/profiles/genre/Kultur/1175'))
+		self.genreliste.append(('Religion', 'https://tvthek.orf.at/profiles/genre/Religion/1655'))
+		self.genreliste.append(('Regionales', 'https://tvthek.orf.at/profiles/genre/Regionales/3309573'))
+		self.genreliste.append(('Wissenschaft', 'https://tvthek.orf.at/profiles/genre/Wissenschaft/13776490'))
+		self.genreliste.append(('Wetter', 'https://tvthek.orf.at/profiles/genre/Wetter/2703827'))
+		self.genreliste.append(('Volksgruppen', 'https://tvthek.orf.at/profiles/genre/Volksgruppen/70443'))
+		self.genreliste.append(('Magazin', 'https://tvthek.orf.at/profiles/genre/Magazin/1176'))
+		self.genreliste.append(('Unterhaltung', 'https://tvthek.orf.at/profiles/genre/Unterhaltung/13776489'))
+		self.genreliste.append(('Talk', 'https://tvthek.orf.at/profiles/genre/Talk/13776488'))
+		self.genreliste.append(('Sport', 'https://tvthek.orf.at/profiles/genre/Sport/1178'))
+		self.genreliste.append(('Kinder', 'https://tvthek.orf.at/profiles/genre/Kinder/2703801'))
+		self.genreliste.append(('Comedy & Satire', 'https://tvthek.orf.at/profiles/genre/Comedy-Satire/2703835'))
+		self.genreliste.append(('Diskussion', 'https://tvthek.orf.at/profiles/genre/Diskussion/2703831'))
 		self.ml.setList(map(self._defaultlistcenter, self.genreliste))
 		self.keyLocked = False
 
@@ -112,30 +127,13 @@ class ORFSubGenreScreen(MPScreen):
 		getPage(self.Link).addCallback(self.loadPageData).addErrback(self.dataError)
 
 	def loadPageData(self, data):
-		if self.Name == "Sendungen A-Z":
-			preparse = re.findall('letter_group_headline">(.*?)</h3(.*?)</div', data, re.S)
-			for (letter, data) in preparse:
-				sendungen = re.findall('<article class="item">.*?img\ssrc="(.*?)".*?item_title">(.*?)</h4', data, re.S)
-				if sendungen:
-					for (image, title) in sendungen:
-						if letter == "#":
-							letter = "0"
-						self.genreliste.append((decodeHtml(title), letter, title, image))
-				self.genreliste.sort(key=lambda t : t[0].lower())
-		elif self.Name == "Thema":
-			themen = re.findall('<li class="base_list_item(?: current|) js_filter_element">.*?href="(.*?)".*?base_list_item_headline">(.*?)</h4>', data, re.S)
-			if themen:
-				for (url, title) in themen:
-					self.genreliste.append((decodeHtml(title), url, url, default_cover))
-				self.genreliste.sort(key=lambda t : t[0].lower())
-		else:
-			parse = re.search('subheadline">Verfügbare\sSendungen(.*?)<footer', data, re.S)
-			sendungen = re.findall('base_list_item_headline">(.*?)</.*?class="episode_image">.*?src="(.*?)".*?</figure>', parse.group(1), re.S)
-			if sendungen:
-				self.genreliste = []
-				for (title, image) in sendungen:
-					self.genreliste.append((decodeHtml(title), self.Link, title, image))
-				self.genreliste.sort(key=lambda t : t[0].lower())
+		sendungen = re.findall('<article.*?title="(.*?)".*?href="(.*?)".*?img\sdata-src="(.*?)"', data, re.S)
+		if sendungen:
+			self.genreliste = []
+			for (title, url, image) in sendungen:
+				if not "AD | " in title and not "(ÖGS)" in title:
+					self.genreliste.append((decodeHtml(title), url, title, image))
+			self.genreliste.sort(key=lambda t : t[0].lower())
 		if len(self.genreliste) == 0:
 			self.genreliste.append(('Keine Sendungen gefunden!', None, None, None))
 		self.ml.setList(map(self._defaultlistleft, self.genreliste))
@@ -146,14 +144,8 @@ class ORFSubGenreScreen(MPScreen):
 		if self.keyLocked:
 			return
 		Name = self['liste'].getCurrent()[0][0]
-		Letter = self['liste'].getCurrent()[0][1]
-		Link = self['liste'].getCurrent()[0][2]
-		if Letter:
-			if Letter.startswith('/profiles'):
-				Link = "http://tvthek.orf.at" + Link
-				self.session.open(ORFSubGenreScreen, Name, Link)
-			else:
-				self.session.open(ORFFilmeListeScreen, Link, Letter, Name)
+		Link = self['liste'].getCurrent()[0][1]
+		self.session.open(ORFFilmeListeScreen, Link, Name)
 
 	def showInfos(self):
 		streamPic = self['liste'].getCurrent()[0][3]
@@ -165,9 +157,8 @@ class ORFSubGenreScreen(MPScreen):
 
 class ORFFilmeListeScreen(MPScreen):
 
-	def __init__(self, session, Link, Letter, Name):
+	def __init__(self, session, Link, Name):
 		self.Link = Link
-		self.Letter = Letter
 		self.Name = Name
 		MPScreen.__init__(self, session, skin='MP_Plugin', default_cover=default_cover)
 
@@ -189,22 +180,25 @@ class ORFFilmeListeScreen(MPScreen):
 
 	def loadPage(self):
 		self['name'].setText(_('Please wait...'))
-		if self.Letter.startswith('http'):
-			url = self.Letter
-		else:
-			url = "http://tvthek.orf.at/profiles/letter/%s" % self.Letter
+		url = self.Link
 		getPage(url).addCallback(self.loadPageData).addErrback(self.dataError)
 
 	def loadPageData(self, data):
-		Link = self.Link.replace('(','\(').replace(')','\)').replace('[','\[').replace(']','\]').replace('|','\|')
-		parse = re.search('base_list_item_headline">'+Link+'(.*?)</ul>', data, re.S)
-		folgen = re.findall('a\shref="(.*?)".*?meta_date">(.*?)</span.*?meta_time">(.*?)</span', parse.group(1), re.S)
-		self.filmliste = []
-		if folgen:
-			for (url, date, time) in folgen:
-				self.filmliste.append((decodeHtml(date + ', ' + time),url))
+		if "other_episodes" in self.Link:
+			folgen = re.findall('<article.*?href="(.*?)".*?class="time">(.*?)</span.*?class="date-as-string">(.*?)</p>', data, re.S)
+			if folgen:
+				for (url, time, date) in folgen:
+					self.filmliste.append((decodeHtml(date + ', ' + time), url))
 		else:
-			self.filmliste.append(('Momentan ist keine Sendung in der TVthek vorhanden.', None))
+			folgen = re.findall('class="date">(.*?)</span.*?class="time">(.*?)</span', data, re.S)
+			if folgen:
+				for (date, time) in folgen:
+					self.filmliste.append((decodeHtml(date + ', ' + time), self.Link))
+				more = re.findall('class="related-videos">.*?&quot;(.*?)&quot;', data, re.S)
+				self.Link = "https://tvthek.orf.at" + more[0].replace('&amp;','&').replace('\/','/')
+				self.loadPage()
+			else:
+				self.filmliste.append(('Momentan ist keine Sendung in der TVthek vorhanden.', None))
 		self.ml.setList(map(self._defaultlistleft, self.filmliste))
 		self.keyLocked = False
 		self['name'].setText('')

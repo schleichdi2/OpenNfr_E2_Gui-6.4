@@ -48,6 +48,7 @@
 <hoster>vidoza</hoster><regex>vidoza.net</regex>
 <hoster>openload</hoster><regex>openload\.(?:co|io|link)|oload\.(?:tv|stream|site|xyz|win|download|cloud|cc)</regex>
 <hoster>fembed</hoster><regex>fembed.com</regex>
+<hoster>kissmovies</hoster><regex>kissmovies.cc</regex>
 <hoster>powvideo</hoster><regex>powvideo.net</regex>
 <hoster>youtube</hoster><regex>youtube.com</regex>
 <hoster>vidzi</hoster><regex>vidzi.tv</regex>

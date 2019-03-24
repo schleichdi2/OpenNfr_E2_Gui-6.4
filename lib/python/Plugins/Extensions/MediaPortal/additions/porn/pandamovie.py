@@ -146,7 +146,7 @@ class pandamovieListScreen(MPScreen, ThumbsHelper):
 			self['page'].setText(str(self.page) + ' / ' + str(self.lastpage))
 		else:
 			self.getLastPage(data, "class='pagination'>(.*?)</nav>")
-		raw = re.findall('class="ml-item.*?.*?href="(.*?)".*?data-original="(.*?)".*?mli-info">(.*?)</span', data, re.S)
+		raw = re.findall('class="ml-item.*?href="(.*?)".*?img\ssrc="(.*?)".*?mli-info">(.*?)</span', data, re.S)
 		if raw:
 			for (link, image, title) in raw:
 				title = stripAllTags(title).strip()

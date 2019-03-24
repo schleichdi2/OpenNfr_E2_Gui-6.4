@@ -2,7 +2,6 @@
 <plugins>
 	<set name="additions_user">
 		<plugin type="mod" modfile="sport.wrestlingnetwork" confopt="showWatchwrestling" default="False" confcat="sport" gz="1" name="Watch Wrestling.in" icon="watchwrestling" filter="Sport" screen="wrestlingnetworkGenreScreen" param1="watchwrestling" param2=""/>
-		<!--<plugin type="mod" modfile="sport.wrestlingnetwork" confopt="showWatchwrestlinguno" default="False" confcat="sport" gz="1" name="Watch Wrestling.ac" icon="watchwrestlinguno" filter="Sport" screen="wrestlingnetworkGenreScreen" param1="watchwrestlinguno" param2=""/>-->
 		<plugin type="mod" modfile="music.canna" confopt="showCanna" default="False" confcat="music" gz="1" name="CannaPower" icon="canna" filter="Music" screen="cannaGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="music.eighties" confopt="showEighties" default="False" confcat="music" gz="1" name="80s &amp; 90s Music" icon="eighties" filter="Music" screen="eightiesGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="porn.hqporner" confopt="showhqporner" default="False" confcat="porn" gz="1" name="HQPORNER" icon="hqporner" filter="Porn" screen="hqpornerGenreScreen" param1="" param2="" search="1" delim="+" searchurl="%s" searchscreen="hqpornerListScreen" searchparam=""/>
@@ -45,7 +44,6 @@
 		<plugin type="mod" modfile="useradditions.watchseries" confopt="showwatchseries" default="False" confcat="useradditions" gz="1" name="watchseries" icon="watchseries" filter="User-additions" screen="watchseriesGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="useradditions.watchseriesonline" confopt="showWatchseriesonline" default="False" confcat="useradditions" gz="1" name="watchseries-online" icon="watchseriesonline" filter="User-additions" screen="wsoMain" param1="" param2=""/>
 		<plugin type="mod" modfile="useradditions.primewire" confopt="showprimewire" default="False" confcat="useradditions" gz="1" name="PrimeWire" icon="primewire" filter="User-additions" screen="PrimeWireGenreScreen" param1="" param2=""/>
-		<plugin type="mod" modfile="useradditions.ganime" confopt="showganime" default="False" confcat="useradditions" gz="1" name="GenX-Anime" icon="genxanime" filter="User-additions" screen="gAnimeMain" param1="" param2=""/>
 		<plugin type="mod" modfile="useradditions.flimmerstube" confopt="showflimmerstube" default="False" confcat="useradditions" gz="1" name="FlimmerStube" icon="flimmerstube" filter="User-additions" screen="flimmerstubeGenreScreen" param1="" param2=""/>
 		<plugin type="mod" modfile="useradditions.sharedir" confopt="showsharedir" default="False" confcat="useradditions" gz="1" name="ShareDir" icon="sharedir" filter="User-additions" screen="sharedirMenueScreen" param1="" param2=""/>
 	</set>
